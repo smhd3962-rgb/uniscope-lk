@@ -335,6 +335,150 @@
     padding: 12px 24px; border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,.28);
     font-size: 14px; font-weight: 600; white-space: nowrap; border: 1px solid rgba(255,255,255,0.12);
   }
+
+  /* ── Universal Mobile Responsive Polish & Text Overlap Fix ── */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  .nav-actions-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  @media (max-width: 768px) {
+    /* Hero Buttons - Stacked & thumb-friendly */
+    .hero-buttons {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      max-width: 380px !important;
+      margin: 0 auto !important;
+      gap: 10px !important;
+    }
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-outline,
+    .hero-buttons .btn-purple,
+    .hero-buttons .btn-hero-outline {
+      display: flex !important;
+      width: 100% !important;
+      min-height: 48px !important;
+      padding: 12px 18px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      line-height: 1.35 !important;
+      white-space: normal !important;
+      text-align: center !important;
+      justify-content: center !important;
+      align-items: center !important;
+      border-radius: 12px !important;
+      flex: none !important;
+      box-sizing: border-box !important;
+      text-decoration: none !important;
+    }
+
+    /* Stats Bar - 2x2 Grid instead of cramped 4-column flex */
+    .hs-bar {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 10px !important;
+      padding: 16px 14px !important;
+    }
+    .hs-div {
+      display: none !important;
+    }
+    .hs-stat {
+      padding: 14px 10px !important;
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+    .hs-num {
+      font-size: 26px !important;
+    }
+    .hs-lbl {
+      font-size: 10.5px !important;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    /* Card padding & container width */
+    .uniscope-card {
+      padding: 22px 18px !important;
+      border-radius: 16px !important;
+    }
+    .container {
+      padding: 0 14px !important;
+    }
+
+    /* Nav adjustments */
+    .nav-container {
+      padding: 0 14px !important;
+      height: 56px !important;
+    }
+    .nav-actions-wrap {
+      gap: 6px !important;
+    }
+    .nav-cart-btn-shortcut {
+      display: none !important;
+    }
+    .bp-panel {
+      right: -36px !important;
+      width: calc(100vw - 24px) !important;
+      max-width: 320px !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    /* Search Bar Responsive Wrap */
+    .hero-search-wrap {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0 4px !important;
+      box-sizing: border-box !important;
+    }
+    .hero-search-form {
+      display: flex !important;
+      align-items: center !important;
+      width: 100% !important;
+      padding: 5px 6px 5px 14px !important;
+      box-sizing: border-box !important;
+    }
+    .hero-search-form input {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      font-size: 14px !important;
+    }
+    .hero-search-form button {
+      flex-shrink: 0 !important;
+      padding: 9px 16px !important;
+      font-size: 13px !important;
+      border-radius: var(--radius-pill) !important;
+    }
+    .hero-eyebrow {
+      font-size: 11px !important;
+      padding: 6px 12px !important;
+      border-radius: 12px !important;
+      line-height: 1.4 !important;
+      text-align: center !important;
+      max-width: 95% !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logo-text {
+      font-size: 15px !important;
+    }
+    .logo-text em {
+      font-size: 9.5px !important;
+      padding: 1px 4px !important;
+    }
+  }
   </style>
 </head>
 <body data-user-id="<%= typeof user !== 'undefined' && user ? user.id : '' %>">

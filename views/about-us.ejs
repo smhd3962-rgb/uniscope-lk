@@ -2,7 +2,15 @@
 <%- include('partials/navbar') %>
 
 <style>
-  @media (max-width: 680px) {
+  @media (max-width: 768px) {
+    .about-page-wrap {
+      padding: 76px 14px 48px !important;
+    }
+    .about-card {
+      padding: 22px 18px !important;
+      border-radius: 16px !important;
+      margin-bottom: 20px !important;
+    }
     .founder-grid {
       grid-template-columns: 1fr !important;
       gap: 20px !important;
@@ -11,6 +19,32 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 4px;
+    }
+    .founder-details-col {
+      text-align: left;
+    }
+    .founder-name-wrap {
+      text-align: center;
+    }
+    .founder-name-wrap h2 {
+      font-size: 22px !important;
+    }
+    .founder-interests-wrap {
+      justify-content: flex-start;
+    }
+    .about-contact-banner {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      text-align: center !important;
+      gap: 16px !important;
+    }
+    .about-contact-banner .btn-primary {
+      width: 100% !important;
+      text-align: center !important;
+      justify-content: center !important;
+      padding: 12px 18px !important;
+      font-size: 14px !important;
     }
   }
   .founder-social-btn:hover {
@@ -20,7 +54,7 @@
   }
 </style>
 
-<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+<div class="about-page-wrap" style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
   <div class="container" style="max-width: 920px;">
     
     <!-- Hero Banner -->
@@ -31,16 +65,16 @@
       <div style="display:inline-flex; align-items:center; gap:6px; background:var(--apple-blue-subtle); color:var(--apple-blue); padding:4px 14px; border-radius:980px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px; border:1px solid rgba(0,113,227,0.2);">
         Open Higher Education Initiative
       </div>
-      <h1 style="font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif; font-size:clamp(30px, 4.5vw, 44px); font-weight:700; letter-spacing:-0.03em; color:var(--text-main); margin-bottom:14px; line-height:1.2;">
+      <h1 style="font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif; font-size:clamp(26px, 5vw, 42px); font-weight:700; letter-spacing:-0.03em; color:var(--text-main); margin-bottom:14px; line-height:1.2;">
         Empowering Sri Lankan Higher Education
       </h1>
-      <p style="color:var(--text-secondary); font-size: 16.5px; max-width: 720px; margin: 0 auto; line-height: 1.6;">
+      <p style="color:var(--text-secondary); font-size: 16px; max-width: 720px; margin: 0 auto; line-height: 1.6;">
         An independent, student-first platform providing verified UGC admission insights, multi-year cut-off trends, and degree roadmaps.
       </p>
     </div>
 
     <!-- Section 1: Our Mission -->
-    <div class="uniscope-card" style="padding:32px; border-radius:var(--radius-xl); margin-bottom:30px;">
+    <div class="uniscope-card about-card" style="padding:32px; border-radius:var(--radius-xl); margin-bottom:30px;">
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
         <div style="width:36px; height:36px; border-radius:8px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
@@ -60,7 +94,7 @@
 
     <!-- Section 2: Core Principles & Methodology -->
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-bottom:30px;">
-      <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+      <div class="uniscope-card about-card" style="padding:24px; border-radius:var(--radius-xl);">
         <div style="width:40px; height:40px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -73,7 +107,7 @@
         </p>
       </div>
 
-      <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+      <div class="uniscope-card about-card" style="padding:24px; border-radius:var(--radius-xl);">
         <div style="width:40px; height:40px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
             <circle cx="12" cy="12" r="10"/>
@@ -87,7 +121,7 @@
         </p>
       </div>
 
-      <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+      <div class="uniscope-card about-card" style="padding:24px; border-radius:var(--radius-xl);">
         <div style="width:40px; height:40px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
             <rect x="4" y="2" width="16" height="20" rx="2"/>
@@ -102,7 +136,7 @@
     </div>
 
     <!-- Section 3: Meet the Founder (Placed after Our Mission and before Contact Us) -->
-    <div class="uniscope-card" style="padding:36px; border-radius:var(--radius-xl); margin-bottom:30px; position:relative; overflow:hidden;">
+    <div class="uniscope-card about-card" style="padding:36px; border-radius:var(--radius-xl); margin-bottom:30px; position:relative; overflow:hidden;">
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:24px;">
         <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--apple-blue);"></span>
         <span style="font-size:12px; font-weight:700; color:var(--apple-blue); letter-spacing:0.05em; text-transform:uppercase;">Leadership &amp; Development</span>
@@ -144,8 +178,8 @@
         </div>
 
         <!-- Founder Details Column -->
-        <div>
-          <div style="margin-bottom:14px;">
+        <div class="founder-details-col">
+          <div class="founder-name-wrap" style="margin-bottom:14px;">
             <h2 style="font-size:24px; font-weight:800; color:var(--text-main); margin:0 0 4px; letter-spacing:-0.02em;">
               Farhan NM
             </h2>
@@ -165,7 +199,7 @@
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                 <path d="M6 12v5c3 3 9 3 12 0v-5"/>
               </svg>
-              <div style="font-size:13.5px; line-height:1.55; color:var(--text-secondary);">
+              <div style="font-size:13.5px; line-height:1.55; color:var(--text-secondary); word-break:break-word;">
                 <strong style="color:var(--text-main);">Education:</strong> Third-Year Electrical &amp; Electronic Engineering Undergraduate, Faculty of Engineering, University of Jaffna, Sri Lanka
               </div>
             </div>
@@ -181,7 +215,7 @@
             <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); margin-bottom:8px;">
               Areas of Focus &amp; Interests:
             </div>
-            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <div class="founder-interests-wrap" style="display:flex; flex-wrap:wrap; gap:6px;">
               <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Web Development</span>
               <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Renewable Energy</span>
               <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Embedded Systems</span>
@@ -194,7 +228,7 @@
     </div>
 
     <!-- Section 4: Contact Us -->
-    <div class="uniscope-card" style="padding:24px 28px; border-radius:var(--radius-xl); margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div class="uniscope-card about-card about-contact-banner" style="padding:24px 28px; border-radius:var(--radius-xl); margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
       <div>
         <h3 style="font-size:17px; font-weight:700; color:var(--text-main); margin:0 0 4px;">Have Questions, Suggestions, or Data Inquiries?</h3>
         <p style="font-size:13.5px; color:var(--text-secondary); margin:0;">Reach out directly to our student advisory and development team.</p>
@@ -205,14 +239,14 @@
     </div>
 
     <!-- Section 5: Institutional Disclaimer -->
-    <div class="uniscope-card" style="padding:24px 28px; border-radius:var(--radius-xl); background:var(--bg-card-subtle);">
+    <div class="uniscope-card about-card" style="padding:24px 28px; border-radius:var(--radius-xl); background:var(--bg-card-subtle);">
       <div style="display:flex; align-items:flex-start; gap:12px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22" style="color:var(--text-muted); flex-shrink:0; margin-top:2px;">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="8" x2="12" y2="12"></line>
           <line x1="12" y1="16" x2="12.01" y2="16"></line>
         </svg>
-        <div style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">
+        <div style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; word-break:break-word;">
           <strong style="color:var(--text-main);">Institutional &amp; Admissions Disclaimer:</strong>
           UniScope LK is an independent academic directory and calculator suite. It is not affiliated with, endorsed by, or an official representative of the University Grants Commission (UGC) of Sri Lanka or the Ministry of Education. For final, legally binding admission procedures and decisions, candidates must refer to the official publications and announcements of the University Grants Commission (<a href="https://www.ugc.ac.lk/" target="_blank" rel="noopener" style="color:var(--apple-blue);">ugc.ac.lk</a>).
         </div>

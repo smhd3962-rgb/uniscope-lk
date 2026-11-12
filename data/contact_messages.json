@@ -38,5 +38,15 @@
     "ip": "::1",
     "userAgent": "unknown",
     "status": "recorded"
+  },
+  {
+    "id": "msg_1794468927079_78e35f",
+    "name": "QA Test Student",
+    "email": "qatest@example.com",
+    "message": "Automated verification test of student message recording.",
+    "receivedAt": "2026-11-12T07:35:27.079Z",
+    "ip": "::1",
+    "userAgent": "unknown",
+    "status": "recorded"
   }
 ]
