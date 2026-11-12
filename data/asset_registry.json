@@ -1,0 +1,691 @@
+{
+  "generated_at": "2026-11-10T18:31:45.135701",
+  "platform": "UniScope LK",
+  "lead_developer": "UniScope LK Academic Intelligence Team",
+  "universities": {
+    "UOC": {
+      "name": "University of Colombo",
+      "logo": {
+        "path": "/assets/universities/logos/uoc.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/f/f9/Logo_of_the_University_of_Colombo.png",
+        "creator": "University of Colombo",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Colombo (Buddhih Sarvatra Bhrajate)",
+        "dimensions": [
+          300,
+          344
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uoc_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Department_of_Mathematics_UoC.jpg",
+        "creator": "Cossde (Wikimedia Commons)",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Department of Mathematics complex, Faculty of Science, University of Colombo by Cossde",
+        "dimensions": [
+          604,
+          453
+        ],
+        "status": "verified"
+      }
+    },
+    "UOM": {
+      "name": "University of Moratuwa",
+      "logo": {
+        "path": "/assets/universities/logos/uom.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/6/60/University_of_Moratuwa_logo.png",
+        "creator": "University of Moratuwa",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Moratuwa (Vidyayeva Sarvadhana)",
+        "dimensions": [
+          306,
+          325
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uom_campus.webp",
+        "source": "Uni photos/Morattuwa Uni.png",
+        "attribution": "University of Moratuwa main campus complex",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          950,
+          538
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "USJ": {
+      "name": "University of Sri Jayewardenepura",
+      "logo": {
+        "path": "/assets/universities/logos/usj.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/University_of_Sri_Jayewardenepura_logo.png",
+        "creator": "University of Sri Jayewardenepura",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Sri Jayewardenepura (Vijja Uppatatam Settha)",
+        "dimensions": [
+          400,
+          64
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/usj_campus.webp",
+        "source": "Uni photos/jaywardhanapura uni.jpg",
+        "attribution": "University of Sri Jayewardenepura main campus entrance & faculty complex",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          1000,
+          625
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "UOK": {
+      "name": "University of Kelaniya",
+      "logo": {
+        "path": "/assets/universities/logos/uok.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/1/1f/University_of_Kelaniya_logo.png",
+        "creator": "University of Kelaniya",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Kelaniya (Pannaya Parisujjhati)",
+        "dimensions": [
+          393,
+          119
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uok_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/University_of_Kelaniya.jpg",
+        "creator": "Sandunruki (English Wikipedia / Wikimedia Commons)",
+        "license": "Public domain",
+        "attribution": "Administrative building and academic grounds, University of Kelaniya by Sandunruki",
+        "dimensions": [
+          870,
+          800
+        ],
+        "status": "verified"
+      }
+    },
+    "UOJ": {
+      "name": "University of Jaffna",
+      "logo": {
+        "path": "/assets/universities/logos/uoj.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/b/b9/UoJ_logo.png",
+        "creator": "University of Jaffna",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Jaffna (Mei Kande Balam)",
+        "dimensions": [
+          220,
+          221
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uoj_campus.webp",
+        "source": "Uni photos/UOJ.png",
+        "attribution": "University of Jaffna main campus administration & academic complex",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          1200,
+          796
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "UOR": {
+      "name": "University of Ruhuna",
+      "logo": {
+        "path": "/assets/universities/logos/uor.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/2/2e/University_of_Ruhuna_logo.png",
+        "creator": "University of Ruhuna",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Ruhuna",
+        "dimensions": [
+          190,
+          265
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uor_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ruhuna_University_air_view.jpg",
+        "creator": "Fazal Mohamed (Wikimedia Commons)",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Aerial view of Geoffrey Bawa designed campus, Wellamadama, University of Ruhuna by Fazal Mohamed",
+        "dimensions": [
+          1067,
+          800
+        ],
+        "status": "verified"
+      }
+    },
+    "EUSL": {
+      "name": "Eastern University, Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/eusl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/a/a0/EUSL_logo2.png",
+        "creator": "Eastern University, Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Eastern University, Sri Lanka",
+        "dimensions": [
+          195,
+          200
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/eusl_campus.webp",
+        "source": "Uni photos/Eastern Uni.png",
+        "attribution": "Eastern University Sri Lanka main administrative & academic campus",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          628,
+          398
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "SEUSL": {
+      "name": "South Eastern University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/seusl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/6/6c/South_Eastern_University_of_Sri_Lanka_logo.png",
+        "creator": "South Eastern University of Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of South Eastern University of Sri Lanka",
+        "dimensions": [
+          301,
+          330
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/seusl_campus.webp",
+        "source": "Uni photos/SEUSL.png",
+        "attribution": "South Eastern University of Sri Lanka Oluvil main campus",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          678,
+          510
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "RUSL": {
+      "name": "Rajarata University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/rusl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/a/a5/Rajarata_logo.png",
+        "creator": "Rajarata University of Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Rajarata University of Sri Lanka",
+        "dimensions": [
+          279,
+          357
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/rusl_campus.webp",
+        "source": "Uni photos/Rajartta.png",
+        "attribution": "Rajarata University of Sri Lanka faculty and campus complex, Mihintale",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          875,
+          641
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "SUSL": {
+      "name": "Sabaragamuwa University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/susl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/5/5a/Logo-SUSL.png",
+        "creator": "Sabaragamuwa University of Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Sabaragamuwa University of Sri Lanka",
+        "dimensions": [
+          244,
+          240
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/susl_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/UG-LK_Photowalk_-_2018-03-25_-_Sabaragamuwa_University_%281%29.jpg",
+        "creator": "Rehman Abubakr (Wikimedia Commons)",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Belihuloya campus grounds, Sabaragamuwa University of Sri Lanka by Rehman Abubakr",
+        "dimensions": [
+          1067,
+          800
+        ],
+        "status": "verified"
+      }
+    },
+    "WUSL": {
+      "name": "Wayamba University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/wusl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/8/8d/Wayabauniversity.png",
+        "creator": "Wayamba University of Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Wayamba University of Sri Lanka",
+        "dimensions": [
+          276,
+          360
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/wusl_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/WUSL010.jpg",
+        "creator": "Isuru.nuwan001 (Wikimedia Commons)",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Kuliyapitiya premises, Wayamba University of Sri Lanka by Isuru.nuwan001",
+        "dimensions": [
+          640,
+          480
+        ],
+        "status": "verified"
+      }
+    },
+    "UWU": {
+      "name": "Uva Wellassa University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/uwu.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Logo_uwu.jpg",
+        "creator": "Uva Wellassa University",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Uva Wellassa University",
+        "dimensions": [
+          220,
+          277
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uwu_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Uva_Wellassa_university.jpg",
+        "creator": "Kaushalya shamila (Wikimedia Commons)",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Passara Road main campus, Badulla, Uva Wellassa University by Kaushalya shamila",
+        "dimensions": [
+          1067,
+          800
+        ],
+        "status": "verified"
+      }
+    },
+    "UVPA": {
+      "name": "University of the Visual and Performing Arts",
+      "logo": {
+        "path": "/assets/universities/logos/uvpa.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/d/dd/University_of_the_Visual_and_Performing_Arts.gif",
+        "creator": "University of the Visual and Performing Arts",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of University of the Visual and Performing Arts",
+        "dimensions": [
+          327,
+          304
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/uvpa_campus.webp",
+        "source": "Uni photos/visual performing arts.png",
+        "attribution": "University of the Visual and Performing Arts complex, Albert Crescent",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          1038,
+          597
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "GWUIM": {
+      "name": "Gampaha Wickramarachchi University of Indigenous Medicine, Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/gwuim.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Gampaha_Wickramarachchi_University_of_Indigenous_Medicine_logo.png",
+        "creator": "GWUIM",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Gampaha Wickramarachchi University of Indigenous Medicine",
+        "dimensions": [
+          282,
+          400
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/gwuim_campus.webp",
+        "source": "Uni photos/Gampaha vikramrchi.png",
+        "attribution": "Gampaha Wickramarachchi University campus grounds",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          1200,
+          653
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    },
+    "OUSL": {
+      "name": "The Open University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/ousl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/8/8e/Logo_ousl.jpg",
+        "creator": "The Open University of Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of The Open University of Sri Lanka",
+        "dimensions": [
+          239,
+          319
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/ousl_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Open_University_of_Sri_Lanka.jpg",
+        "creator": "Gihan Jayaweera (Wikimedia Commons)",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Central campus administrative complex, Nawala, Open University of Sri Lanka by Gihan Jayaweera",
+        "dimensions": [
+          1067,
+          800
+        ],
+        "status": "verified"
+      }
+    },
+    "OCUSL": {
+      "name": "Ocean University of Sri Lanka",
+      "logo": {
+        "path": "/assets/universities/logos/ocusl.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/en/a/ab/Ocean_University_Sri_Lanka_Crest.png",
+        "creator": "Ocean University of Sri Lanka",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of Ocean University of Sri Lanka",
+        "dimensions": [
+          303,
+          329
+        ],
+        "status": "verified"
+      },
+      "campus": {
+        "path": "/assets/universities/campuses/ocusl_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Entrance_of_Ocean_University.jpg",
+        "creator": "Irdnia (Wikimedia Commons)",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Crow Island central entrance, Ocean University of Sri Lanka by Irdnia",
+        "dimensions": [
+          600,
+          800
+        ],
+        "status": "verified"
+      }
+    },
+    "UOP": {
+      "name": "University of Peradeniya",
+      "campus": {
+        "path": "/assets/universities/campuses/uop_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Campus_lion_UoP.jpg",
+        "creator": "Anuradha Ratnaweera (Wikimedia Commons)",
+        "license": "CC BY-SA 2.0",
+        "attribution": "Senate Building & Campus Lion landmark, University of Peradeniya by Anuradha Ratnaweera",
+        "dimensions": [
+          1024,
+          768
+        ],
+        "status": "verified"
+      },
+      "logo": {
+        "path": "/assets/universities/logos/uop.png",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/University_of_Peradeniya_Crest.svg",
+        "creator": "University of Peradeniya / Wikimedia Commons",
+        "license": "Public domain / Official Institutional Insignia",
+        "attribution": "Official emblem of the University of Peradeniya (Sarvasya Locanam Sastram)",
+        "status": "verified"
+      }
+    },
+    "SP-UOC": {
+      "name": "Sripalee Campus, University Of Colombo",
+      "campus": {
+        "path": "/assets/universities/campuses/sp-uoc_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Sri_Palee_Campus_-_Layan_House.jpg",
+        "creator": "Sri Palee Campus (Wikimedia Commons)",
+        "license": "CC BY-SA 4.0",
+        "attribution": "Layan House heritage academic complex, Horana, Sripalee Campus",
+        "dimensions": [
+          450,
+          200
+        ],
+        "status": "verified"
+      }
+    },
+    "VAV": {
+      "name": "University of Vavuniya",
+      "campus": {
+        "path": "/assets/universities/campuses/vav_campus.webp",
+        "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Vavuniya_campus.jpg",
+        "creator": "Ragulanrex (Wikimedia Commons)",
+        "license": "CC BY-SA 3.0",
+        "attribution": "Park Road campus premises, University of Vavuniya by Ragulanrex",
+        "dimensions": [
+          891,
+          632
+        ],
+        "status": "verified"
+      }
+    },
+    "SVIAS": {
+      "name": "Swamy Vipulananda Institute Of Aesthetic Studies, Eastern University, Sri Lanka",
+      "campus": {
+        "path": "/assets/universities/campuses/svias_campus.webp",
+        "source": "Uni photos/swami vipulanadha.png",
+        "attribution": "Swami Vipulananda Institute of Aesthetic Studies campus premises",
+        "license": "Official / Authenticated Sri Lankan University Photography",
+        "dimensions": [
+          721,
+          481
+        ],
+        "status": "verified",
+        "updated_at": "2026-11-11"
+      }
+    }
+  },
+  "degree_categories": {
+    "engineering": {
+      "name": "Engineering & Applied Technology",
+      "path": "/assets/degrees/engineering.webp",
+      "source_url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&q=80",
+      "creator": "ThisisEngineering RAEng (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Engineering research laboratory and robotic workbench",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "medicine": {
+      "name": "Medicine, Healthcare & Allied Health",
+      "path": "/assets/degrees/medicine.webp",
+      "source_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80",
+      "creator": "National Cancer Institute (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Modern clinical healthcare and patient diagnostics",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "computing": {
+      "name": "Computer Science, Software Engineering & IT",
+      "path": "/assets/degrees/computing.webp",
+      "source_url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&q=80",
+      "creator": "Clément H (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Software architecture and computer programming workspace",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "business": {
+      "name": "Business, Management, Commerce & Finance",
+      "path": "/assets/degrees/business.webp",
+      "source_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80",
+      "creator": "Carlos Muza (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Business analytics, financial markets, and strategic management",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "science": {
+      "name": "Physical, Biological & Chemical Sciences",
+      "path": "/assets/degrees/science.webp",
+      "source_url": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80",
+      "creator": "Hans Reniers (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Laboratory science research, molecular chemistry, and physics",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "agriculture": {
+      "name": "Agriculture, Animal Science & Agribusiness",
+      "path": "/assets/degrees/agriculture.webp",
+      "source_url": "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=900&q=80",
+      "creator": "Gabriel Jimenez (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Sustainable agriculture, plant agronomy, and crop research",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "architecture": {
+      "name": "Architecture, Built Environment & Design",
+      "path": "/assets/degrees/architecture.webp",
+      "source_url": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80",
+      "creator": "Daniel McCullough (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Architectural drafting blueprints and spatial structure design",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "arts": {
+      "name": "Arts, Humanities & Social Sciences",
+      "path": "/assets/degrees/arts.webp",
+      "source_url": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=900&q=80",
+      "creator": "Patrick Tomasso (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Humanities literature, historical archives, and academic library",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "law": {
+      "name": "Law, Justice & Jurisprudence",
+      "path": "/assets/degrees/law.webp",
+      "source_url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&q=80",
+      "creator": "Tingey Injury Law Firm (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Scales of justice, legal statutes, and judicial governance",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "education": {
+      "name": "Education, Pedagogy & Teaching",
+      "path": "/assets/degrees/education.webp",
+      "source_url": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&q=80",
+      "creator": "Dom Fou (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Higher education lecture seminar and pedagogy discussion",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "technology": {
+      "name": "Technology, Biosystems & Engineering Technology",
+      "path": "/assets/degrees/technology.webp",
+      "source_url": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80",
+      "creator": "Alexandre Debiève (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Hardware microchip electronics and applied technology",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "ayurveda": {
+      "name": "Indigenous & Ayurvedic Medicine",
+      "path": "/assets/degrees/ayurveda.webp",
+      "source_url": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=900&q=80",
+      "creator": "Katherine Hanlon (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "Natural herbal medicine, pharmacognosy, and botanical remedies",
+      "dimensions": [
+        800,
+        450
+      ],
+      "status": "verified"
+    },
+    "default": {
+      "name": "Undergraduate University Degree",
+      "path": "/assets/degrees/default.webp",
+      "source_url": "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
+      "creator": "Priscilla Du Preez (Unsplash)",
+      "license": "Unsplash Free License",
+      "attribution": "University students studying together in academic environment",
+      "status": "verified"
+    }
+  },
+  "placeholders": {
+    "campus": {
+      "path": "/assets/placeholders/campus_placeholder.webp",
+      "description": "Minimalist Apple graphite campus silhouette placeholder",
+      "status": "local_fallback"
+    },
+    "degree": {
+      "path": "/assets/placeholders/degree_placeholder.webp",
+      "description": "Universal Apple dark-card degree discovery placeholder",
+      "status": "local_fallback"
+    },
+    "logo": {
+      "path": "/assets/placeholders/university_logo_placeholder.svg",
+      "description": "Apple-style academic insignia SVG placeholder",
+      "status": "local_fallback"
+    }
+  }
+}

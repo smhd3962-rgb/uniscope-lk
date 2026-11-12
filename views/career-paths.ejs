@@ -1,0 +1,91 @@
+<%- include('partials/head', { title: "Job Fields Explorer - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 1100px;">
+    
+    <div style="text-align:center; margin-bottom: 36px;">
+      <h1 style="font-family:'DM Serif Display',serif; font-size: clamp(28px, 4vw, 36px); font-weight: 400; color:var(--text-main); margin-bottom: 8px;">
+        Sri Lankan Job Fields &amp; Career Pathways
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 15.5px; max-width: 650px; margin: 0 auto;">
+        Explore career opportunities across public &amp; private sectors with verified degree alignments and salary benchmarks
+      </p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <% careerFields.forEach(function(cf) { %>
+        <div class="uniscope-card" style="padding:28px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="font-size:36px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); border-radius:14px; width:54px; height:54px; display:flex; align-items:center; justify-content:center;">
+                <%= cf.icon %>
+              </div>
+              <div>
+                <h3 style="font-size:20px; font-weight:800; color:var(--text-main); margin-bottom:4px;">
+                  <%= cf.title %>
+                </h3>
+                <div style="display:flex; gap:10px; font-size:12.5px;">
+                  <span style="color:#10b981; font-weight:700;">Demand: <%= cf.demand %></span>
+                  <span style="color:var(--text-muted);">·</span>
+                  <span style="color:#7c3aed; font-weight:700;"><%= cf.growth %></span>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:var(--bg-card-subtle); border:1px solid var(--border-subtle); padding:8px 14px; border-radius:10px; text-align:right;">
+              <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:var(--text-muted);">Avg Salary (LKR)</div>
+              <div style="font-size:14.5px; font-weight:800; color:var(--text-main);"><%= cf.avg_salary_lkr %></div>
+            </div>
+          </div>
+
+          <!-- Public vs Private Sector Grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin:20px 0;">
+            <div class="uniscope-card" style="background:var(--bg-card-subtle); padding:16px; border-radius:12px;">
+              <div style="font-size:12px; font-weight:700; color:#10b981; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 5H2l10-5z"/></svg>
+                Public Sector Positions
+              </div>
+              <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+                <% cf.public_roles.forEach(function(r) { %>
+                  <li style="font-size:13px; color:var(--text-secondary); font-weight:600;">• <%= r %></li>
+                <% }); %>
+              </ul>
+            </div>
+
+            <div class="uniscope-card" style="background:var(--bg-card-subtle); padding:16px; border-radius:12px;">
+              <div style="font-size:12px; font-weight:700; color:var(--apple-blue); text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                Private Corporate &amp; Tech Positions
+              </div>
+              <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+                <% cf.private_roles.forEach(function(r) { %>
+                  <li style="font-size:13px; color:var(--text-secondary); font-weight:600;">• <%= r %></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mapped Degrees -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:14px; border-top:1px solid var(--border-subtle);">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span style="font-size:12px; font-weight:700; color:var(--text-muted);">Direct Degree Pathways:</span>
+              <% cf.matching_degrees.forEach(function(md) { %>
+                <a href="/degrees/all/?q=<%= encodeURIComponent(md) %>" style="background:rgba(124,58,237,0.12); color:#7c3aed; border:1px solid rgba(124,58,237,0.25); padding:3px 10px; border-radius:6px; font-size:12px; font-weight:700; text-decoration:none;">
+                  <%= md %>
+                </a>
+              <% }); %>
+            </div>
+            <div style="font-size:12px; color:var(--text-secondary); font-style:italic;">
+              <%= cf.ai_risk_assessment %>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>

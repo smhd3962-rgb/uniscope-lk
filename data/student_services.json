@@ -1,0 +1,922 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-11-11",
+  "total_services": 29,
+  "verified_services": 29,
+  "categories": [
+    {
+      "id": "all",
+      "name": "All Services",
+      "icon": "view-grid",
+      "count": 29
+    },
+    {
+      "id": "exams",
+      "name": "Exams & Results",
+      "icon": "clipboard-check",
+      "count": 4
+    },
+    {
+      "id": "admissions",
+      "name": "University Admissions",
+      "icon": "academic-cap",
+      "count": 4
+    },
+    {
+      "id": "scholarships",
+      "name": "Scholarships",
+      "icon": "cash",
+      "count": 3
+    },
+    {
+      "id": "documents",
+      "name": "Documents",
+      "icon": "document-text",
+      "count": 5
+    },
+    {
+      "id": "learning",
+      "name": "Learning Resources",
+      "icon": "book-open",
+      "count": 4
+    },
+    {
+      "id": "technical",
+      "name": "Technical Education",
+      "icon": "briefcase",
+      "count": 7
+    },
+    {
+      "id": "careers",
+      "name": "Careers",
+      "icon": "newspaper",
+      "count": 2
+    }
+  ],
+  "services": [
+    {
+      "id": "exam-results-official",
+      "title": "Official Examination Results Portal",
+      "description": "Direct portal by the Department of Examinations to check G.C.E. O/L, G.C.E. A/L, and Grade 5 Scholarship examination results by index number.",
+      "category": "exams",
+      "categoryName": "Exams & Results",
+      "officialUrl": "https://www.results.exams.gov.lk/home.htm",
+      "provider": "Department of Examinations, Sri Lanka",
+      "targetAudience": "G.C.E. A/L, O/L, and Grade 5 Candidates",
+      "keywords": [
+        "exam results",
+        "a/l results",
+        "o/l results",
+        "grade 5 scholarship",
+        "department of examinations",
+        "doenets",
+        "index number"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2024/2025/2026",
+      "sourceUrl": "https://www.results.exams.gov.lk/home.htm",
+      "lastUpdated": "2026-11-11",
+      "icon": "clipboard-check"
+    },
+    {
+      "id": "doenets-main",
+      "title": "Department of Examinations Official Portal",
+      "description": "Official institutional portal for exam timetables, candidate registrations, re-scrutiny applications, downloadable past papers, and administrative gazettes.",
+      "category": "exams",
+      "categoryName": "Exams & Results",
+      "officialUrl": "https://www.doenets.lk/",
+      "provider": "Department of Examinations, Sri Lanka",
+      "targetAudience": "School Students, Private Candidates & Teachers",
+      "keywords": [
+        "doenets",
+        "department of examinations",
+        "timetables",
+        "past papers",
+        "marking schemes",
+        "re-scrutiny",
+        "exam gazette"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "All Years",
+      "sourceUrl": "https://www.doenets.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "school"
+    },
+    {
+      "id": "doenets-certificates",
+      "title": "Online Examination Certificate Service",
+      "description": "Request certified statements of examination results (G.C.E. O/L & A/L) online with home postal delivery or digital Ministry of Foreign Affairs attestation.",
+      "category": "exams",
+      "categoryName": "Exams & Results",
+      "officialUrl": "https://certificate.doenets.lk/",
+      "provider": "Department of Examinations, Sri Lanka",
+      "targetAudience": "Undergraduates, Job Applicants, Visa Applicants",
+      "keywords": [
+        "exam certificate",
+        "statement of results",
+        "o/l certificate",
+        "a/l certificate",
+        "attestation",
+        "mfa verification"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Historical & Current",
+      "sourceUrl": "https://certificate.doenets.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "badge-check"
+    },
+    {
+      "id": "grade-6-school-selection",
+      "title": "Grade 6 National School Selection Portal",
+      "description": "Ministry of Education application service for students qualifying for national and provincial school placements following Grade 5 Scholarship examination.",
+      "category": "exams",
+      "categoryName": "Exams & Results",
+      "officialUrl": "https://g6application.moe.gov.lk/",
+      "provider": "Ministry of Education, Sri Lanka",
+      "targetAudience": "Grade 5 Scholarship Qualifiers & Parents",
+      "keywords": [
+        "grade 6 selection",
+        "national schools",
+        "school admission",
+        "scholarship cutoffs",
+        "moe portal"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2025/2026",
+      "sourceUrl": "https://g6application.moe.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "building-library"
+    },
+    {
+      "id": "ugc-selection-status",
+      "title": "UGC National University Selection Checking",
+      "description": "Official University Grants Commission portal to check candidate degree course allocation, assigned university, and registration schedule.",
+      "category": "admissions",
+      "categoryName": "University Admissions",
+      "officialUrl": "https://www.ugc.ac.lk/selection_26/",
+      "provider": "University Grants Commission (UGC) Sri Lanka",
+      "targetAudience": "G.C.E. A/L University Applicants",
+      "keywords": [
+        "ugc selection",
+        "university selection",
+        "course allocation",
+        "selection 2026",
+        "z-score admission",
+        "assigned university"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2025/2026 (Active Intake)",
+      "sourceUrl": "https://www.ugc.ac.lk/selection_26/",
+      "lastUpdated": "2026-11-11",
+      "icon": "academic-cap"
+    },
+    {
+      "id": "ugc-handbook-official",
+      "title": "Official UGC Admission Handbook & Criteria",
+      "description": "Complete digital reference and downloadable PDF guide outlining minimum eligibility, special course requirements, subject combinations, and quota rules.",
+      "category": "admissions",
+      "categoryName": "University Admissions",
+      "officialUrl": "https://eugc.ugc.ac.lk/ugc_handbook/",
+      "provider": "University Grants Commission (UGC) Sri Lanka",
+      "targetAudience": "A/L Students, School Principals, Academic Counselors",
+      "keywords": [
+        "ugc handbook",
+        "admission criteria",
+        "student handbook",
+        "course requirements",
+        "subject combinations",
+        "university guide"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2025/2026",
+      "sourceUrl": "https://eugc.ugc.ac.lk/ugc_handbook/",
+      "lastUpdated": "2026-11-11",
+      "icon": "book-open"
+    },
+    {
+      "id": "ugc-eugc-portal",
+      "title": "UGC Online University Application System",
+      "description": "Official electronic submission platform where eligible candidates submit university preferences, course ranking lists, and upload verified documents.",
+      "category": "admissions",
+      "categoryName": "University Admissions",
+      "officialUrl": "https://eugc.ugc.ac.lk/",
+      "provider": "University Grants Commission (UGC) Sri Lanka",
+      "targetAudience": "Eligible G.C.E. A/L Candidates",
+      "keywords": [
+        "eugc",
+        "online application",
+        "university apply",
+        "course preference",
+        "candidate portal",
+        "ugc apply"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2025/2026",
+      "sourceUrl": "https://eugc.ugc.ac.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "desktop-computer"
+    },
+    {
+      "id": "ugc-selection-historical",
+      "title": "Historical University Selection Archive (2024/2025)",
+      "description": "Archive reference for comparing prior academic cycle university selection thresholds and faculty registration schedules across all 25 districts.",
+      "category": "admissions",
+      "categoryName": "University Admissions",
+      "officialUrl": "https://ugc.ac.lk/selection_25/",
+      "provider": "University Grants Commission (UGC) Sri Lanka",
+      "targetAudience": "Students Analyzing Admission Trends & Quotas",
+      "keywords": [
+        "historical selection",
+        "selection 25",
+        "2024 admissions",
+        "past cutoffs",
+        "trend analysis"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2024/2025",
+      "sourceUrl": "https://ugc.ac.lk/selection_25/",
+      "lastUpdated": "2026-11-11",
+      "icon": "archive"
+    },
+    {
+      "id": "mahapola-scholarship",
+      "title": "Mahapola Higher Education Scholarship Trust",
+      "description": "Official portal of the Mahapola Trust Fund providing information on merit and need-based financial scholarships for undergraduate university students.",
+      "category": "scholarships",
+      "categoryName": "Scholarships & Finance",
+      "officialUrl": "https://www.mahapola.lk/",
+      "provider": "Mahapola Higher Education Scholarship Trust Fund",
+      "targetAudience": "State University Undergraduates",
+      "keywords": [
+        "mahapola",
+        "scholarship",
+        "financial assistance",
+        "undergraduate grant",
+        "bursary",
+        "trust fund"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Annual Undergraduate Cycle",
+      "sourceUrl": "https://www.mahapola.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "cash"
+    },
+    {
+      "id": "mohe-student-loans",
+      "title": "Government Interest-Free Student Loan Scheme (IFSLS)",
+      "description": "Ministry of Higher Education scheme offering interest-free loans for students qualified in G.C.E. A/L to pursue recognized degree courses at non-state institutions.",
+      "category": "scholarships",
+      "categoryName": "Scholarships & Finance",
+      "officialUrl": "https://studentloans.mohe.gov.lk/",
+      "provider": "Ministry of Higher Education, Sri Lanka",
+      "targetAudience": "A/L Qualified Candidates Seeking Non-State Degrees",
+      "keywords": [
+        "student loans",
+        "interest free loan",
+        "ifsls",
+        "higher education loan",
+        "private degree financing"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Intake 8 & 9 (2025/2026)",
+      "sourceUrl": "https://studentloans.mohe.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "banknotes"
+    },
+    {
+      "id": "mohe-foreign-scholarships",
+      "title": "Foreign Undergraduate & Postgraduate Scholarships",
+      "description": "Official government clearinghouse for bilateral foreign scholarships offered by international partner governments to Sri Lankan citizens.",
+      "category": "scholarships",
+      "categoryName": "Scholarships & Finance",
+      "officialUrl": "https://foreignscholarships.mohe.gov.lk/",
+      "provider": "Ministry of Higher Education & Foreign Missions",
+      "targetAudience": "Undergraduates, Graduates & Academic Researchers",
+      "keywords": [
+        "foreign scholarship",
+        "bilateral scholarships",
+        "study abroad",
+        "china scholarship",
+        "commonwealth scholarship",
+        "postgraduate"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Announced Periodically",
+      "sourceUrl": "https://foreignscholarships.mohe.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "globe-alt"
+    },
+    {
+      "id": "rgd-birth-certificates",
+      "title": "Online Birth, Marriage & Death Certificates (eBMD)",
+      "description": "Official Registrar General's Department e-service for requesting authenticated certified copies of birth certificates required for school exams and university registration.",
+      "category": "documents",
+      "categoryName": "Government Documents",
+      "officialUrl": "https://online.ebmd.rgd.gov.lk/",
+      "provider": "Registrar General's Department, Sri Lanka",
+      "targetAudience": "Students, Exam Candidates, University Applicants",
+      "keywords": [
+        "birth certificate",
+        "ebmd",
+        "certified copy",
+        "registrar general",
+        "rgd",
+        "exam document"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing Service",
+      "sourceUrl": "https://online.ebmd.rgd.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "document-text"
+    },
+    {
+      "id": "drp-nic-portal",
+      "title": "Department for Registration of Persons (NIC Services)",
+      "description": "Official national identity card (NIC) portal for new 16+ student applicant guidelines, lost card replacements, and online tracking.",
+      "category": "documents",
+      "categoryName": "Government Documents",
+      "officialUrl": "https://drp.gov.lk/",
+      "provider": "Department for Registration of Persons (DRP)",
+      "targetAudience": "Students (Age 15+), A/L Candidates, Undergraduates",
+      "keywords": [
+        "nic",
+        "national identity card",
+        "drp",
+        "identity card apply",
+        "student id",
+        "exam identification"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing Service",
+      "sourceUrl": "https://drp.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "identification"
+    },
+    {
+      "id": "drp-eservices-portal",
+      "title": "DRP Online Identity Card E-Services Portal",
+      "description": "Direct digital submission portal for identity verifications, electronic renewals, and divisional secretariat appointment coordination.",
+      "category": "documents",
+      "categoryName": "Government Documents",
+      "officialUrl": "https://eservices.drp.gov.lk/nic-portal/",
+      "provider": "Department for Registration of Persons (DRP)",
+      "targetAudience": "Citizens & Students Requiring Online NIC Renewal",
+      "keywords": [
+        "nic online",
+        "drp portal",
+        "e-services",
+        "id card verification"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing Service",
+      "sourceUrl": "https://eservices.drp.gov.lk/nic-portal/",
+      "lastUpdated": "2026-11-11",
+      "icon": "fingerprint"
+    },
+    {
+      "id": "immigration-passport-appointments",
+      "title": "Passport Appointment Booking & Services",
+      "description": "Department of Immigration and Emigration online appointment reservation system for ordinary passport issuance and student visa document processing.",
+      "category": "documents",
+      "categoryName": "Government Documents",
+      "officialUrl": "https://eservices.immigration.gov.lk/MakeAppointments/",
+      "provider": "Department of Immigration and Emigration",
+      "targetAudience": "Students Planning Foreign Education or Exchange",
+      "keywords": [
+        "passport appointment",
+        "immigration",
+        "travel document",
+        "foreign study",
+        "battaramulla appointment"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing Service",
+      "sourceUrl": "https://eservices.immigration.gov.lk/MakeAppointments/",
+      "lastUpdated": "2026-11-11",
+      "icon": "ticket"
+    },
+    {
+      "id": "gic-1919-portal",
+      "title": "Government Information Centre (GIC 1919)",
+      "description": "Central citizen hotline and verified directory detailing procedures, required documents, and processing times for 65+ government departments.",
+      "category": "documents",
+      "categoryName": "Government Documents",
+      "officialUrl": "https://gic.gov.lk/",
+      "provider": "Government Information Centre, Sri Lanka",
+      "targetAudience": "All Citizens, Students & Parents",
+      "keywords": [
+        "gic",
+        "1919",
+        "government information",
+        "citizen charter",
+        "public procedures",
+        "documents guide"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing 24/7 Service",
+      "sourceUrl": "https://gic.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "phone"
+    },
+    {
+      "id": "e-thaksalawa-lms",
+      "title": "e-Thaksalawa National Learning Content Portal",
+      "description": "Official Ministry of Education digital learning repository offering lesson modules, video tutorials, audiobooks, past term test papers from Grade 1 to 13.",
+      "category": "learning",
+      "categoryName": "Learning Resources",
+      "officialUrl": "https://e-thaksalawa.moe.gov.lk/",
+      "provider": "Ministry of Education, Sri Lanka",
+      "targetAudience": "Primary, Secondary, and A/L Students",
+      "keywords": [
+        "e-thaksalawa",
+        "online lessons",
+        "term test papers",
+        "learning management",
+        "moe content",
+        "past papers"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Grades 1 to 13 Curricula",
+      "sourceUrl": "https://e-thaksalawa.moe.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "laptop"
+    },
+    {
+      "id": "edupub-school-textbooks",
+      "title": "Free School Textbooks Download Portal",
+      "description": "Official Educational Publications Department repository providing complete, approved school textbooks from Grade 1 through Grade 11 in Sinhala, Tamil, and English.",
+      "category": "learning",
+      "categoryName": "Learning Resources",
+      "officialUrl": "http://www.edupub.gov.lk/BooksDownload.php",
+      "provider": "Educational Publications Department, Sri Lanka",
+      "targetAudience": "School Students, Parents & Educators",
+      "keywords": [
+        "school textbooks",
+        "edupub",
+        "pdf textbooks",
+        "free books",
+        "grade 1 to 11",
+        "school syllabus"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Official National Syllabuses",
+      "sourceUrl": "http://www.edupub.gov.lk/BooksDownload.php",
+      "lastUpdated": "2026-11-11",
+      "icon": "book"
+    },
+    {
+      "id": "nie-national-institute-education",
+      "title": "National Institute of Education (NIE) Curriculum Portal",
+      "description": "National curricular authority offering downloadable teacher instructional manuals, resource books, sample papers, and G.C.E. subject syllabi.",
+      "category": "learning",
+      "categoryName": "Learning Resources",
+      "officialUrl": "https://www.nie.ac.lk/",
+      "provider": "National Institute of Education (NIE) Maharagama",
+      "targetAudience": "Teachers, G.C.E. O/L & A/L Candidates",
+      "keywords": [
+        "nie",
+        "syllabus",
+        "teacher guide",
+        "resource books",
+        "curriculum",
+        "a/l syllabus",
+        "o/l syllabus"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Active Curricula",
+      "sourceUrl": "https://www.nie.ac.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "academic-cap"
+    },
+    {
+      "id": "national-library-sri-lanka",
+      "title": "National Library & Documentation Services Board",
+      "description": "National library catalogue, electronic bibliographic search, academic reference archives, and historical preservation resources.",
+      "category": "learning",
+      "categoryName": "Learning Resources",
+      "officialUrl": "https://www.natlib.lk/",
+      "provider": "National Library and Documentation Services Board",
+      "targetAudience": "Undergraduates, Researchers & School Scholars",
+      "keywords": [
+        "national library",
+        "research archive",
+        "bibliographic",
+        "study resource",
+        "colombo 07"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Year-Round Resource",
+      "sourceUrl": "https://www.natlib.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "library"
+    },
+    {
+      "id": "sliate-hnd-apply",
+      "title": "SLIATE Higher National Diploma (HND) Admission Portal",
+      "description": "Central application portal for 18+ Advanced Technological Institutes offering recognized HNDs in Engineering, IT, Accountancy, Business, and Agriculture.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://apply.sliate.ac.lk/",
+      "provider": "Sri Lanka Institute of Advanced Technological Education (SLIATE)",
+      "targetAudience": "G.C.E. A/L Students Seeking HND Qualifications",
+      "keywords": [
+        "sliate",
+        "hnd apply",
+        "higher national diploma",
+        "hnda",
+        "hnde",
+        "hndit",
+        "advanced technological institute"
+      ],
+      "languageAvailability": [
+        "en",
+        "si"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2025/2026 Admission Cycle",
+      "sourceUrl": "https://apply.sliate.ac.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "briefcase"
+    },
+    {
+      "id": "tvec-nvq-portal",
+      "title": "TVEC National Vocational Qualification (NVQ) System",
+      "description": "Regulatory portal for National Vocational Qualifications (NVQ Levels 1 to 7), recognized training providers, and national competency standards.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://www.tvec.gov.lk/",
+      "provider": "Tertiary and Vocational Education Commission (TVEC)",
+      "targetAudience": "Vocational Trainees & Technical Students",
+      "keywords": [
+        "tvec",
+        "nvq",
+        "vocational training",
+        "nvq level 4",
+        "nvq level 5",
+        "nvq diploma",
+        "accredited institutions"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "National NVQ Standards",
+      "sourceUrl": "https://www.tvec.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "cog"
+    },
+    {
+      "id": "naita-training",
+      "title": "National Apprentice & Industrial Training Authority (NAITA)",
+      "description": "Government apprenticeships, workplace dual-training programmes, and trade certifications across 150+ recognized crafts and technical sectors.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://www.naita.gov.lk/",
+      "provider": "NAITA, Ministry of Education",
+      "targetAudience": "School Leavers & Apprentices",
+      "keywords": [
+        "naita",
+        "apprenticeship",
+        "industrial training",
+        "vocational apprentice",
+        "hands on training"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing Placements",
+      "sourceUrl": "https://www.naita.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "wrench"
+    },
+    {
+      "id": "vtasl-vocational-training",
+      "title": "Vocational Training Authority of Sri Lanka (VTA)",
+      "description": "Network of over 200 island-wide vocational training centres providing NVQ diplomas, certificates, and technical skills training.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://www.vtasl.gov.lk/",
+      "provider": "Vocational Training Authority (VTA)",
+      "targetAudience": "School Leavers & Youth Seeking Practical Skills",
+      "keywords": [
+        "vta",
+        "vtasl",
+        "vocational training",
+        "skills training",
+        "nvq courses",
+        "district centres"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Semi-Annual Intakes",
+      "sourceUrl": "https://www.vtasl.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "shield-check"
+    },
+    {
+      "id": "dtet-technical-colleges",
+      "title": "Department of Technical Education and Training (DTET)",
+      "description": "Admissions to 39 Technical Colleges and Colleges of Technology across Sri Lanka offering National Diploma and Certificate courses.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://dtet.gov.lk/en/",
+      "provider": "Department of Technical Education and Training",
+      "targetAudience": "O/L and A/L Leavers",
+      "keywords": [
+        "dtet",
+        "technical college",
+        "college of technology",
+        "diploma in technology",
+        "maradana tech"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Annual Gazetted Intake",
+      "sourceUrl": "https://dtet.gov.lk/en/",
+      "lastUpdated": "2026-11-11",
+      "icon": "office-building"
+    },
+    {
+      "id": "univotec-btech",
+      "title": "University of Vocational Technology (UNIVOTEC)",
+      "description": "State university chartered specifically for technical education pathways, awarding Bachelor of Technology (B.Tech) degrees to NVQ and technical diploma holders.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://www.uovt.ac.lk/",
+      "provider": "University of Vocational Technology, Ratmalana",
+      "targetAudience": "NVQ Level 5/6 Diplomates, Technical College Graduates",
+      "keywords": [
+        "univotec",
+        "uovt",
+        "btech",
+        "vocational technology",
+        "ratmalana university",
+        "technical degree"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "2025/2026 Intake",
+      "sourceUrl": "https://www.uovt.ac.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "sparkles"
+    },
+    {
+      "id": "ousl-distance-learning",
+      "title": "The Open University of Sri Lanka (OUSL)",
+      "description": "Premier national distance higher education institution offering open-access university degrees, diplomas, and foundational certificates across Sri Lanka.",
+      "category": "technical",
+      "categoryName": "Technical Education",
+      "officialUrl": "https://ou.ac.lk/",
+      "provider": "The Open University of Sri Lanka",
+      "targetAudience": "Working Adults, Distance Learners, A/L Students",
+      "keywords": [
+        "ousl",
+        "open university",
+        "distance education",
+        "nawala",
+        "regional centres",
+        "flexible degree"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Rolling Academic Intakes",
+      "sourceUrl": "https://ou.ac.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "academic-cap"
+    },
+    {
+      "id": "government-gazette-vacancies",
+      "title": "Official Government Gazette (Weekly Vacancies & Exams)",
+      "description": "Every Friday, the Department of Government Printing gazettes official state service vacancies, open competitive service exams, and public recruitment notices.",
+      "category": "careers",
+      "categoryName": "Careers & Employment",
+      "officialUrl": "http://documents.gov.lk/",
+      "provider": "Department of Government Printing, Sri Lanka",
+      "targetAudience": "Graduates, School Leavers & Job Seekers",
+      "keywords": [
+        "government gazette",
+        "gazette jobs",
+        "public service exam",
+        "government vacancies",
+        "sri lanka gazette"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": true,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Published Weekly",
+      "sourceUrl": "http://documents.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "newspaper"
+    },
+    {
+      "id": "dome-manpower-employment",
+      "title": "Department of Manpower and Employment (DOME)",
+      "description": "Ministry of Labour portal providing national career guidance, labor market bulletins, graduate job placement programs, and district career centres.",
+      "category": "careers",
+      "categoryName": "Careers & Employment",
+      "officialUrl": "https://www.dome.gov.lk/",
+      "provider": "Department of Manpower and Employment",
+      "targetAudience": "Job Seekers, Undergraduates & Career Planners",
+      "keywords": [
+        "dome",
+        "career guidance",
+        "manpower",
+        "job placement",
+        "employment services",
+        "district career officer"
+      ],
+      "languageAvailability": [
+        "en",
+        "si",
+        "ta"
+      ],
+      "featured": false,
+      "verificationStatus": "verified",
+      "lastVerified": "2026-11-11",
+      "academicYear": "Ongoing Service",
+      "sourceUrl": "https://www.dome.gov.lk/",
+      "lastUpdated": "2026-11-11",
+      "icon": "user-group"
+    }
+  ]
+}

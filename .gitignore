@@ -1,0 +1,12 @@
+node_modules
+.env
+.vercel
+*.log
+*.zip
+audit_screenshots/
+dev_reference/
+scraped_thush/
+About section/
+Uni photos/
+Bacground/
+Updated Cutoff/

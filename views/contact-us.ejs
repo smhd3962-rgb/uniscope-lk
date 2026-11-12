@@ -1,0 +1,138 @@
+<%- include('partials/head', { title: "Contact Us - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 840px;">
+    
+    <div style="text-align:center; margin-bottom: 36px;">
+      <h1 style="font-family:'DM Serif Display',serif; font-size: clamp(28px, 4vw, 36px); font-weight: 400; color:var(--text-main); margin-bottom: 8px;">
+        Contact Us
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 15.5px; max-width: 600px; margin: 0 auto;">
+        Direct communication with the UniScope LK student advisory and technical team
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
+      
+      <!-- Contact Info Card -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl);">
+        <h3 style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:16px;">Direct Channels</h3>
+        
+        <div style="display:flex; flex-direction:column; gap:16px; font-size:14px; color:var(--text-secondary);">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:36px; height:36px; border-radius:8px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--text-main);">Academic Operations &amp; Support</div>
+              <div>UniScope LK Student Help Desk</div>
+              <div style="font-size:12.5px; color:var(--text-muted);">Independent Sri Lankan Higher Education Directory</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:36px; height:36px; border-radius:8px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--text-main);">General &amp; Admissions Inquiry</div>
+              <a href="mailto:contact@uniscope.lk" style="color:var(--apple-blue); text-decoration:none; font-weight:600;">contact@uniscope.lk</a>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:36px; height:36px; border-radius:8px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:700; color:var(--text-main);">Curriculum &amp; Data Verification</div>
+              <div style="font-size:13.5px; color:var(--text-secondary);">Direct submission via the online inquiry form below for rapid verification and audit.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="uniscope-card" style="padding:28px;">
+        <h3 style="font-size:18px; font-weight:800; color:var(--text-main); margin-bottom:16px;">Send Message or Inaccuracy Report</h3>
+        
+        <form action="/api/contact" method="POST" onsubmit="handleContactSubmit(event)" style="display:flex; flex-direction:column; gap:14px;">
+          <div>
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">Your Full Name</label>
+            <input type="text" name="name" required placeholder="Enter your name" class="uniscope-input">
+          </div>
+
+          <div>
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">Email Address</label>
+            <input type="email" name="email" required placeholder="name@example.com" class="uniscope-input">
+          </div>
+
+          <div>
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">Message / Data Inquiry</label>
+            <textarea name="message" rows="4" required placeholder="Write your question, curriculum update report, or feedback..." class="uniscope-input" style="height:auto; resize:vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="btn-calc-action" style="background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; border:none; padding:12px 20px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer;">
+            Submit Message →
+          </button>
+        </form>
+
+        <div id="contactMsgResult" style="display:none; margin-top:12px; padding:12px; border-radius:8px; font-size:13px; font-weight:600; text-align:center;"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function handleContactSubmit(e) {
+  e.preventDefault();
+  var resultBox = document.getElementById('contactMsgResult');
+  var form = e.target;
+  var submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    })
+  })
+  .then(function(r) { return r.json().then(function(data) { return { status: r.status, data: data }; }); })
+  .then(function(res) {
+    resultBox.style.display = 'block';
+    if (res.status === 200 && res.data.status === 'success') {
+      resultBox.style.background = 'var(--status-success-bg, rgba(16,185,129,0.12))';
+      resultBox.style.border = '1px solid rgba(16,185,129,0.3)';
+      resultBox.style.color = '#10b981';
+      resultBox.textContent = res.data.message || 'Thank you! Your message has been securely recorded.';
+      form.reset();
+    } else {
+      resultBox.style.background = 'rgba(239, 68, 68, 0.12)';
+      resultBox.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+      resultBox.style.color = '#ef4444';
+      resultBox.textContent = res.data.error || res.data.message || 'Failed to submit message. Please check required fields.';
+    }
+  })
+  .catch(function(err) {
+    resultBox.style.display = 'block';
+    resultBox.style.background = 'rgba(239, 68, 68, 0.12)';
+    resultBox.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+    resultBox.style.color = '#ef4444';
+    resultBox.textContent = 'Network error while submitting message. Please try again.';
+  })
+  .finally(function() {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Message →';
+  });
+}
+</script>

@@ -1,0 +1,127 @@
+<%- include('partials/head', { title: "Student Dashboard - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 1050px;">
+    
+    <!-- User Header Card -->
+    <div class="uniscope-card" style="padding:32px; margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800;">
+          <%= (user.name || 'S').charAt(0).toUpperCase() %>
+        </div>
+        <div>
+          <h1 style="font-size:24px; font-weight:800; color:var(--text-main); margin-bottom:4px;">
+            <%= user.name %>
+          </h1>
+          <div style="font-size:13.5px; color:var(--text-secondary); margin-bottom:6px;">
+            <%= user.email %> · District: <strong><%= user.district || 'Colombo' %></strong> · Stream: <strong><%= user.stream || 'Physical Science' %></strong>
+          </div>
+          <span style="background:var(--status-success-bg, rgba(16,185,129,0.15)); color:#10b981; border:1px solid rgba(16,185,129,0.3); padding:3px 10px; border-radius:12px; font-size:12px; font-weight:700;">
+            ✓ Active Student Account
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <a href="/accounts/logout/" class="btn-calc-action" style="padding:10px 20px; border:1.5px solid var(--border-card); border-radius:10px; text-decoration:none; color:#ef4444; font-weight:700; font-size:13.5px; background:var(--bg-card);">
+          Log Out
+        </a>
+      </div>
+    </div>
+
+    <!-- Shortlisted Degrees in Cart -->
+    <div class="uniscope-card" style="padding:32px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px;">
+        <div>
+          <h2 style="font-size:20px; font-weight:700; color:var(--text-main); margin:0 0 4px; display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="color:var(--apple-blue);"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Your Degree Cart &amp; Shortlist
+          </h2>
+          <p style="font-size:13.5px; color:var(--text-secondary); margin:0;">
+            Degrees you've saved while browsing. Launch side-by-side comparison anytime.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <a href="/dashboard/compare/" class="btn-calc-action" style="background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; padding:10px 20px; border-radius:10px; font-weight:700; font-size:13.5px; text-decoration:none;">
+            Compare Shortlist Side-by-Side →
+          </a>
+        </div>
+      </div>
+
+      <div id="profileCartList" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px;">
+        <div style="padding:40px; text-align:center; color:var(--text-muted); grid-column:1/-1;">
+          Loading your degree cart...
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var cart = JSON.parse(localStorage.getItem('uniscope_cart') || '[]');
+  var container = document.getElementById('profileCartList');
+  
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div style="padding:40px 20px; text-align:center; color:var(--text-secondary); grid-column:1/-1;">
+        <div style="width:48px; height:48px; border-radius:50%; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <div style="font-size:16px; font-weight:700; color:var(--text-main); margin-bottom:6px;">Your Degree Cart is Empty</div>
+        <p style="font-size:13.5px;">Browse degrees and click the bookmark button on any card to build your comparison shortlist.</p>
+        <a href="/degrees/all/" class="btn-calc-action" style="display:inline-block; margin-top:12px; padding:10px 20px; background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; border-radius:10px; text-decoration:none; font-weight:700; font-size:13.5px;">
+          Browse Degree Catalog →
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  fetch('/api/degrees')
+    .then(r => r.json())
+    .then(all => {
+      var filtered = all.filter(d => cart.includes(d.code));
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="padding:30px; text-align:center; color:var(--text-muted); grid-column:1/-1;">No matching degrees found for stored codes.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      filtered.forEach(d => {
+        var card = document.createElement('div');
+        card.className = 'uniscope-card';
+        card.style = 'padding:18px; display:flex; flex-direction:column; justify-content:space-between; background:var(--bg-card-subtle);';
+        card.innerHTML = `
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="background:rgba(124,58,237,0.12); color:#7c3aed; padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800;">#${d.code}</span>
+              <span style="font-size:12px; color:var(--text-secondary);">${d.stream}</span>
+            </div>
+            <div style="font-size:15.5px; font-weight:800; color:var(--text-main); margin-bottom:4px;">${d.name}</div>
+            <div style="font-size:12.5px; color:var(--text-secondary); margin-bottom:12px;">${d.university}</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
+              AI Risk: <strong style="color:var(--text-main);">${d.risk}%</strong> (${d.risk_band}) · <strong style="color:var(--text-main);">${d.duration_years} Years</strong>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a href="/degrees/detail/${encodeURIComponent(d.code)}/" class="btn-calc-action" style="flex:1; text-align:center; padding:8px; background:linear-gradient(135deg, #3b4fa8, #7c3aed); color:#fff; border-radius:8px; text-decoration:none; font-size:12px; font-weight:700;">View Profile</a>
+            <button onclick="removeFromProfileCart('${d.code}', '${d.name.replace(/'/g, "\\'")}')" class="btn-calc-action" style="padding:8px 12px; border:1px solid rgba(239,68,68,0.3); border-radius:8px; background:var(--status-danger-bg, rgba(239,68,68,0.1)); color:#ef4444; font-size:12px; font-weight:700; cursor:pointer;">Remove</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    });
+});
+
+function removeFromProfileCart(code, name) {
+  window.toggleCart(code, name);
+  setTimeout(function(){ location.reload(); }, 300);
+}
+</script>

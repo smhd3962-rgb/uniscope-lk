@@ -1,0 +1,696 @@
+<%- include('partials/head', { title: "Data Sources & Transparency - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<style>
+.tab-nav-wrap { display: flex; justify-content: center; margin: 24px 0 32px; }
+.tab-nav { display: flex; gap: 8px; background: var(--bg-card, #fff); padding: 6px; border-radius: 14px; border: 1px solid var(--border-subtle, #e2e8f0); flex-wrap: wrap; justify-content: center; }
+.tab-btn { border: none; background: none; padding: 8px 16px; border-radius: 10px; font-size: 13.5px; font-weight: 700; color: var(--text-secondary, #475569); cursor: pointer; transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out), box-shadow 150ms var(--ease-out), transform 100ms var(--ease-out); font-family: 'Outfit', sans-serif; display: flex; align-items: center; gap: 6px; }
+.tab-btn:hover { color: #7c3aed; }
+.tab-btn:active { transform: scale(0.96); }
+.tab-btn.active { background: linear-gradient(135deg, #3b4fa8, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(124,58,237,0.3); }
+
+.pillar-card { background: var(--bg-card, #fff); border-radius: 16px; border: 1px solid var(--border-subtle, #e2e8f0); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow-xs); }
+.step-card { background: var(--bg-card, #fff); border-radius: 16px; border: 1px solid var(--border-subtle, #e2e8f0); padding: 22px; margin-bottom: 14px; }
+.step-num-badge { width: 32px; height: 32px; border-radius: 8px; background: rgba(124,58,237,0.15); color: #7c3aed; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+.hidden-tab { display: none !important; }
+
+[data-theme="dark"] .tab-nav { background: #161f36; border-color: #273553; }
+[data-theme="dark"] .tab-btn { color: #94a3b8; }
+[data-theme="dark"] .tab-btn:hover { color: #c4b5fd; }
+[data-theme="dark"] .pillar-card,
+[data-theme="dark"] .step-card { background: #161f36 !important; border-color: #273553 !important; color: #f8fafc !important; }
+[data-theme="dark"] .pillar-card h2,
+[data-theme="dark"] .pillar-card h3,
+[data-theme="dark"] .step-card h3,
+[data-theme="dark"] .step-card h4 { color: #f8fafc !important; }
+[data-theme="dark"] .pillar-card p,
+[data-theme="dark"] .step-card p { color: #cbd5e1 !important; }
+[data-theme="dark"] .step-num-badge { background: #312e81; color: #c7d2fe; }
+</style>
+
+<div style="background:var(--bg, #f8fafc); min-height: 100vh; padding: 100px 20px 80px;">
+  <div class="container" style="max-width: 960px;">
+    
+    <div style="text-align:center; margin-bottom: 24px;">
+      <div style="display:inline-flex; align-items:center; gap:6px; background:#f0fdf4; color:#15803d; padding:4px 14px; border-radius:20px; font-size:12px; font-weight:800; text-transform:uppercase; margin-bottom:10px;">
+        ✓ Research · Integrity · Transparency
+      </div>
+      <h1 style="font-family:'DM Serif Display',serif; font-size: 36px; font-weight: 400; color:#0f172a; margin-bottom: 8px;">
+        Data Sources &amp; Research Standards
+      </h1>
+      <p style="color:#64748b; font-size: 15.5px; max-width: 720px; margin: 0 auto;">
+        Every data point on UniScope LK is verified at the source. This document provides the full public record of where our data comes from and how our models are engineered.
+      </p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav-wrap">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchDsTab('overview', this)">Overview</button>
+        <button class="tab-btn" onclick="switchDsTab('sources', this)">Primary Sources</button>
+        <button class="tab-btn" onclick="switchDsTab('method', this)">7-Stage Pipeline</button>
+        <button class="tab-btn" onclick="switchDsTab('airisk', this)">AI Risk Framework</button>
+        <button class="tab-btn" onclick="switchDsTab('tools', this)">Platform Methodology</button>
+        <button class="tab-btn" onclick="switchDsTab('vision', this)">Vision &amp; Standards</button>
+        <button class="tab-btn" onclick="switchDsTab('assets', this)">Visual Asset Registry</button>
+      </div>
+    </div>
+
+    <!-- 1. OVERVIEW TAB -->
+    <div id="tab-overview">
+      <div class="pillar-card" style="border-radius:20px; padding:32px; margin-bottom:24px;">
+        <h2 style="font-size:22px; font-weight:800; color:var(--text-main, #0f172a); margin-bottom:12px;">
+          Every data point, <em>verified at the source</em>.
+        </h2>
+        <p style="color:var(--text-secondary, #475569); font-size:15px; line-height:1.75; margin-bottom:14px;">
+          <strong>UniScope LK</strong> operates on one uncompromising principle — 
+          <span style="color:#7c3aed; font-weight:700;">no Sri Lankan student should make a life-changing decision on unverified information or social media rumours</span>. 
+          Published by the UniScope LK Academic Intelligence Team, this document outlines our public research covenant.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="font-size:12px; font-weight:800; color:#4f46e5; text-transform:uppercase; margin-bottom:4px;">Section 01</div>
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin-bottom:8px;">Six Pillars of Verified Truth</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          University official handbooks, state university web portals, UGC publications, peer-reviewed higher education research papers, direct faculty phone calls, and official university domain email correspondence.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="font-size:12px; font-weight:800; color:#4f46e5; text-transform:uppercase; margin-bottom:4px;">Section 02</div>
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin-bottom:8px;">Seven-Stage Research Pipeline</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          How raw sources turn into trusted student intelligence: Primary Collection → Multi-Source Cross-Referencing → Direct Escalation → 6-Dimensional Data Modeling → Editorial Review → Verification Stamped Publication → Continuous Monitoring.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="font-size:12px; font-weight:800; color:#4f46e5; text-transform:uppercase; margin-bottom:4px;">Section 03</div>
+        <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin-bottom:8px;">AI Displacement Risk Engine</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          Sri Lanka's first degree-level automation index, integrating Frey &amp; Osborne task probabilities, Acemoglu &amp; Restrepo substitution models, WEF future of work forecasts, and OpenAI LLM exposure scores.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2. SIX SOURCES TAB -->
+    <div id="tab-sources" class="hidden-tab">
+      <div class="pillar-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin:0;">Pillar 01 · University Official Handbooks</h3>
+          <span style="background:#dcfce7; color:#15803d; font-size:11px; font-weight:800; padding:2px 8px; border-radius:6px;">VERIFIED</span>
+        </div>
+        <p style="color:#475569; font-size:14px; line-height:1.6; margin-bottom:8px;">
+          The latest published edition of each university's student handbook. Every course structure, credit breakdown, and graduation requirement is traced directly to faculty board approved documents.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin:0;">Pillar 02 · Official University Websites</h3>
+          <span style="background:#dcfce7; color:#15803d; font-size:11px; font-weight:800; padding:2px 8px; border-radius:6px;">VERIFIED</span>
+        </div>
+        <p style="color:#475569; font-size:14px; line-height:1.6; margin-bottom:8px;">
+          Public academic portals of every UGC-approved university (.ac.lk domains). Tracked on a rolling weekly schedule to detect faculty updates, syllabus revisions, and new degree accreditations.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin:0;">Pillar 03 · UGC Sri Lanka Publications</h3>
+          <span style="background:#dcfce7; color:#15803d; font-size:11px; font-weight:800; padding:2px 8px; border-radius:6px;">VERIFIED</span>
+        </div>
+        <p style="color:#475569; font-size:14px; line-height:1.6; margin-bottom:8px;">
+          The statutory Admission Handbook, year-over-year minimum Z-score cut-off tables, and district quota allocations published by the University Grants Commission of Sri Lanka.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin:0;">Pillar 04 · Academic Research Studies</h3>
+          <span style="background:#dcfce7; color:#15803d; font-size:11px; font-weight:800; padding:2px 8px; border-radius:6px;">VERIFIED</span>
+        </div>
+        <p style="color:#475569; font-size:14px; line-height:1.6; margin-bottom:8px;">
+          Peer-reviewed studies on graduate employability, workforce trends, and international curricular benchmarks across STEM, Humanities, and Commerce.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin:0;">Pillar 05 · Direct University Phone Calls</h3>
+          <span style="background:#fef9c3; color:#854d0e; font-size:11px; font-weight:800; padding:2px 8px; border-radius:6px;">DIRECT ESCALATION</span>
+        </div>
+        <p style="color:#475569; font-size:14px; line-height:1.6; margin-bottom:8px;">
+          When published documentation is ambiguous or contradictory, we contact the academic coordinators, department heads, or dean's offices directly to verify what is actually being taught.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h3 style="font-size:18px; font-weight:800; color:#0f172a; margin:0;">Pillar 06 · Official Email Correspondence</h3>
+          <span style="background:#fef9c3; color:#854d0e; font-size:11px; font-weight:800; padding:2px 8px; border-radius:6px;">DIRECT ESCALATION</span>
+        </div>
+        <p style="color:#475569; font-size:14px; line-height:1.6; margin-bottom:8px;">
+          Written confirmation from verified university email addresses for significant curriculum updates or newly approved degree specializations.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3. 7-STAGE PIPELINE TAB -->
+    <div id="tab-method" class="hidden-tab">
+      <div class="pillar-card" style="border-radius:18px; padding:24px; margin-bottom:20px;">
+        <h3 style="font-size:18px; font-weight:800; color:var(--text-main, #0f172a); margin-bottom:6px;">The 7-Stage Research &amp; Publishing Pipeline</h3>
+        <p style="color:var(--text-secondary, #64748b); font-size:14px; margin:0;">No degree page bypasses any stage. Everything is corroborated before going live.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">01</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">Primary Source Collection</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Acquisition of latest official university handbooks, UGC gazettes, and departmental program descriptions.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">02</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">Multi-Source Cross-Referencing</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Each entry point is checked across ≥ 2 sources. Inconsistencies are flagged for direct verification.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">03</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">Direct Faculty Confirmation</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Phone calls and emails with academic departments to resolve any conflicting information.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">04</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">6-Dimensional Vector Data Modeling</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Mapping into the UniScope schema across Specialization Depth, Career Breadth, Practical Exposure, Rigor, Flexibility, and Entry Breadth.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">05</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">Editorial Review for Clarity</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Simplifying academic jargon into accessible language for high-school students without altering facts.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">06</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">Timestamped Publication</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Publishing with an explicit last-verified date stamp and change history trail.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div class="step-num-badge">07</div>
+          <div style="font-size:16px; font-weight:800; color:#0f172a;">Continuous Monitoring</div>
+        </div>
+        <p style="color:#475569; font-size:14px; margin:0; line-height:1.6;">Rolling annual audits aligned with each new UGC A/L admission handbook release.</p>
+      </div>
+    </div>
+
+    <!-- 4. AI RISK FORMULA TAB -->
+    <div id="tab-airisk" class="hidden-tab">
+      <div style="background:#0f172a; color:#fff; border-radius:18px; padding:28px; margin-bottom:24px;">
+        <h3 style="font-size:20px; font-weight:800; color:#fbbf24; margin-bottom:8px;">The Mathematical Composite Formula</h3>
+        <p style="color:#cbd5e1; font-size:14px; line-height:1.6; margin-bottom:16px;">
+          Automation probability is not a simplistic binary score. We decompose each degree's primary job paths into atomic tasks, evaluate task substitutability across 7 research frameworks, and adjust for Sri Lankan economic conditions:
+        </p>
+        <div style="background:rgba(255,255,255,0.08); padding:16px; border-radius:12px; font-family:'Courier New', monospace; font-size:16px; color:#f8fafc;">
+          R<sub>degree</sub> = Σ<sub>i=1..7</sub> (w<sub>i</sub> · F<sub>i</sub> · T<sub>i</sub>) + α · C<sub>SL</sub> − β · H<sub>human</sub>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <h4 style="font-size:16px; font-weight:800; color:#0f172a; margin-bottom:8px;">Framework Breakdown:</h4>
+        <ul style="padding-left:20px; font-size:14px; color:#475569; line-height:1.7;">
+          <li><strong>Framework 01:</strong> Task-probability Computerisation Model (Frey &amp; Osborne)</li>
+          <li><strong>Framework 02:</strong> Task-based Substitution Mechanics (Acemoglu &amp; Restrepo)</li>
+          <li><strong>Framework 03:</strong> Global Workforce &amp; Job Creation Outlook (WEF Future of Jobs)</li>
+          <li><strong>Framework 04:</strong> Skill-Demand Velocity Shift Index</li>
+          <li><strong>Framework 05:</strong> Cognitive vs Routine Axis Decomposition</li>
+          <li><strong>Framework 06:</strong> Large Language Model (LLM) Direct Exposure Index (OpenAI &amp; Eloundou)</li>
+          <li><strong>Framework 07:</strong> Sri Lankan Labour-Market Model &amp; Public Sector Absorption (C<sub>SL</sub>)</li>
+          <li><strong>Protective Shield (H<sub>human</sub>):</strong> Human empathy, physical dexterity, medical judgment, and legal responsibility factor.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 5. TOOLS TAB -->
+    <div id="tab-tools" class="hidden-tab">
+      <div class="pillar-card">
+        <h3 style="font-size:17px; font-weight:800; color:#0f172a; margin-bottom:6px;">Tool 01 · Subject Combination to Degree Search</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          Dynamic 3-subject selector with select2 duplicate prevention and instant stream grouping, linking 56 A/L subjects to 255+ university degrees.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <h3 style="font-size:17px; font-weight:800; color:#0f172a; margin-bottom:6px;">Tool 02 · UGC Cut-Off Marks Comparison Tool</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          Multi-year historical cutoff tracker covering all 25 administrative districts with interactive Z-score comparison.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <h3 style="font-size:17px; font-weight:800; color:#0f172a; margin-bottom:6px;">Tool 03 · 17-Section Side-by-Side Comparison</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          Like-for-like matrix evaluating core subjects, specializations, AI risk, and public/private careers across up to 4 degrees.
+        </p>
+      </div>
+
+      <div class="pillar-card">
+        <h3 style="font-size:17px; font-weight:800; color:#0f172a; margin-bottom:6px;">Tool 04 · Smart Degree Finder (Cosine Vector Match)</h3>
+        <p style="color:#64748b; font-size:14px; line-height:1.6; margin:0;">
+          10-Step student intake calculating cosine similarity against 6-dimensional faculty vectors.
+        </p>
+      </div>
+    </div>
+
+    <!-- 6. VISION & PROMISES TAB -->
+    <div id="tab-vision" class="hidden-tab">
+      <div class="pillar-card" style="border-radius:18px; padding:32px; margin-bottom:24px;">
+        <h3 style="font-size:20px; font-weight:800; color:var(--text-main, #0f172a); margin-bottom:12px;">Public Integrity Covenant</h3>
+        <div style="display:flex; flex-direction:column; gap:16px; font-size:14px; color:var(--text-secondary, #475569); line-height:1.7;">
+          <div style="display:flex; gap:10px;">
+            <span style="color:#10b981; font-weight:800; font-size:16px;">✓</span>
+            <div><strong>We will never publish unverified claims:</strong> If an admission detail cannot be backed by official university publications or dean-level confirmation, it will never appear on UniScope LK.</div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <span style="color:#10b981; font-weight:800; font-size:16px;">✓</span>
+            <div><strong>We will never sell placement or advertising:</strong> No higher educational institution can pay to rank higher in our recommendation algorithms or compare results.</div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <span style="color:#10b981; font-weight:800; font-size:16px;">✓</span>
+            <div><strong>We will remain 100% free for students:</strong> Access to cutoffs, degree finder, comparison matrix, and AI risk scores will always be free to every Sri Lankan student.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. VISUAL ASSET REGISTRY & IMAGE LICENSES TAB -->
+    <div id="tab-assets" class="hidden-tab">
+      <div class="pillar-card" style="border-radius:18px; padding:32px; margin-bottom:24px;">
+        <h3 style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text-main); margin-bottom:12px;">
+          Institutional Branding &amp; Visual Asset Transparency
+        </h3>
+        <p style="font-size:14.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">
+          UniScope LK complies strictly with intellectual property rights, educational fair use, and open content licensing. 
+          Every university logo, campus photograph, and degree category visual has been verified, legally sourced, optimized, and documented with complete attribution.
+        </p>
+
+        <h4 style="font-size:16px; font-weight:700; color:var(--text-main); margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+          1. Official University Insignia &amp; Emblems
+        </h4>
+        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+          University crests are displayed strictly under <strong>nominative fair use</strong> and open educational directory standards for institutional identification. 
+          Logos are preserved in their authentic colors, proportions, and emblems without modification, distortion, or artificial alteration.
+        </div>
+
+        <div style="overflow-x:auto; margin-bottom:28px;">
+          <table class="uniscope-table" style="font-size:12.5px; width:100%;">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Institution</th>
+                <th>Emblem File</th>
+                <th>License / Status</th>
+                <th>Attribution / Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>UOC</strong></td>
+                <td>University of Colombo</td>
+                <td><code>/assets/universities/logos/uoc.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Buddhih Sarvatra Bhrajate (Wisdom Enlightens Everywhere)</td>
+              </tr>
+              <tr>
+                <td><strong>UOP</strong></td>
+                <td>University of Peradeniya</td>
+                <td><code>/assets/universities/logos/uop.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Sarvasya Locanam Sastram (Science is the Eye of All)</td>
+              </tr>
+              <tr>
+                <td><strong>UOM</strong></td>
+                <td>University of Moratuwa</td>
+                <td><code>/assets/universities/logos/uom.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Vidyayeva Sarvadhana (Knowledge is the Supreme Wealth)</td>
+              </tr>
+              <tr>
+                <td><strong>USJ</strong></td>
+                <td>University of Sri Jayewardenepura</td>
+                <td><code>/assets/universities/logos/usj.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Vijja Uppatatam Settha (Among Things that Arise, Knowledge is Foremost)</td>
+              </tr>
+              <tr>
+                <td><strong>UOK</strong></td>
+                <td>University of Kelaniya</td>
+                <td><code>/assets/universities/logos/uok.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Pannaya Parisujjhati (By Wisdom is One Purified)</td>
+              </tr>
+              <tr>
+                <td><strong>UOJ</strong></td>
+                <td>University of Jaffna</td>
+                <td><code>/assets/universities/logos/uoj.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Mei Kande Balam (Truth Discovered is Strength)</td>
+              </tr>
+              <tr>
+                <td><strong>UOR</strong></td>
+                <td>University of Ruhuna</td>
+                <td><code>/assets/universities/logos/uor.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of the University of Ruhuna</td>
+              </tr>
+              <tr>
+                <td><strong>EUSL</strong></td>
+                <td>Eastern University, Sri Lanka</td>
+                <td><code>/assets/universities/logos/eusl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of Eastern University, Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>SEUSL</strong></td>
+                <td>South Eastern University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/seusl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of South Eastern University of Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>RUSL</strong></td>
+                <td>Rajarata University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/rusl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of Rajarata University of Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>SUSL</strong></td>
+                <td>Sabaragamuwa University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/susl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of Sabaragamuwa University of Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>WUSL</strong></td>
+                <td>Wayamba University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/wusl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of Wayamba University of Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>UWU</strong></td>
+                <td>Uva Wellassa University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/uwu.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of Uva Wellassa University</td>
+              </tr>
+              <tr>
+                <td><strong>UVPA</strong></td>
+                <td>University of the Visual &amp; Performing Arts</td>
+                <td><code>/assets/universities/logos/uvpa.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of University of the Visual and Performing Arts</td>
+              </tr>
+              <tr>
+                <td><strong>GWUIM</strong></td>
+                <td>Gampaha Wickramarachchi University of Indigenous Medicine</td>
+                <td><code>/assets/universities/logos/gwuim.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of GWUIM</td>
+              </tr>
+              <tr>
+                <td><strong>OUSL</strong></td>
+                <td>The Open University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/ousl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of The Open University of Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>OCUSL</strong></td>
+                <td>Ocean University of Sri Lanka</td>
+                <td><code>/assets/universities/logos/ocusl.png</code></td>
+                <td>Public Domain / Official Insignia</td>
+                <td>Official emblem of Ocean University of Sri Lanka</td>
+              </tr>
+              <tr>
+                <td><strong>VAV</strong></td>
+                <td>University of Vavuniya</td>
+                <td><code>/assets/placeholders/university_logo_placeholder.svg</code></td>
+                <td>Apple SVG Academic Crest Identifier</td>
+                <td>Official emblem pending vector clearance; clean identifier used</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="font-size:16px; font-weight:700; color:var(--text-main); margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+          2. Real Campus Photography (Wikimedia Commons Open Licenses)
+        </h4>
+        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+          All campus photographs depict genuine structural grounds of the respective university. We never substitute one university's campus for another.
+        </div>
+
+        <div style="overflow-x:auto; margin-bottom:28px;">
+          <table class="uniscope-table" style="font-size:12.5px; width:100%;">
+            <thead>
+              <tr>
+                <th>Campus</th>
+                <th>Depicted Facility</th>
+                <th>Author / Photographer</th>
+                <th>License</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Colombo</strong></td>
+                <td>Dept of Mathematics &amp; Science Faculty complex</td>
+                <td>Cossde (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Peradeniya</strong></td>
+                <td>Senate Building &amp; Campus Lion monument</td>
+                <td>Anuradha Ratnaweera (Wikimedia Commons)</td>
+                <td>CC BY-SA 2.0</td>
+              </tr>
+              <tr>
+                <td><strong>Sri Jayewardenepura</strong></td>
+                <td>Faculty of Applied Sciences complex</td>
+                <td>Studentlanka (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Kelaniya</strong></td>
+                <td>Main administrative &amp; academic complex</td>
+                <td>Sandunruki (English Wikipedia)</td>
+                <td>Public domain</td>
+              </tr>
+              <tr>
+                <td><strong>Jaffna</strong></td>
+                <td>Thirunelvely main entrance &amp; administration</td>
+                <td>BlueLankan (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Ruhuna</strong></td>
+                <td>Aerial view of Geoffrey Bawa campus, Wellamadama</td>
+                <td>Fazal Mohamed (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Eastern</strong></td>
+                <td>Faculty of Health-Care Sciences, Batticaloa</td>
+                <td>Camera007 (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>South Eastern</strong></td>
+                <td>Oluvil main campus administrative grounds</td>
+                <td>L Manju (Wikimedia Commons)</td>
+                <td>CC BY-SA 4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Rajarata</strong></td>
+                <td>Main Library building, Mihintale campus</td>
+                <td>Uahamed (Wikimedia Commons)</td>
+                <td>CC BY-SA 4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Sabaragamuwa</strong></td>
+                <td>Belihuloya central academic grounds</td>
+                <td>Rehman Abubakr (Wikimedia Commons)</td>
+                <td>CC BY-SA 4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Wayamba</strong></td>
+                <td>Kuliyapitiya campus academic premises</td>
+                <td>Isuru.nuwan001 (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Uva Wellassa</strong></td>
+                <td>Passara Road main campus grounds, Badulla</td>
+                <td>Kaushalya shamila (Wikimedia Commons)</td>
+                <td>CC BY-SA 4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Open University</strong></td>
+                <td>Nawala central campus administration</td>
+                <td>Gihan Jayaweera (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+              <tr>
+                <td><strong>Ocean University</strong></td>
+                <td>Crow Island central entrance complex</td>
+                <td>Irdnia (Wikimedia Commons)</td>
+                <td>CC BY-SA 4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Sripalee Campus</strong></td>
+                <td>Layan House heritage academic complex</td>
+                <td>Sri Palee Campus (Wikimedia Commons)</td>
+                <td>CC BY-SA 4.0</td>
+              </tr>
+              <tr>
+                <td><strong>Vavuniya</strong></td>
+                <td>Park Road campus grounds, Vavuniya</td>
+                <td>Ragulanrex (Wikimedia Commons)</td>
+                <td>CC BY-SA 3.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="font-size:16px; font-weight:700; color:var(--text-main); margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">
+          3. Degree Category Visuals (Unsplash Free Educational License)
+        </h4>
+        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:20px;">
+          Photographs representing degree categories are legally reusable high-resolution works licensed under the Unsplash Free License. They are clearly labeled as general field category visuals rather than depictions of a specific university's lab.
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="uniscope-table" style="font-size:12.5px; width:100%;">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Visual Subject</th>
+                <th>Creator / Source</th>
+                <th>License</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Engineering</strong></td>
+                <td>Robotics &amp; Electronic Engineering Lab</td>
+                <td>ThisisEngineering RAEng</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Medicine</strong></td>
+                <td>Clinical Diagnostics &amp; Healthcare</td>
+                <td>National Cancer Institute</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Computing</strong></td>
+                <td>Software Engineering &amp; Programming</td>
+                <td>Clément H</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Business</strong></td>
+                <td>Business Analytics &amp; Finance Markets</td>
+                <td>Carlos Muza</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Science</strong></td>
+                <td>Molecular Chemistry &amp; Laboratory Glassware</td>
+                <td>Hans Reniers</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Agriculture</strong></td>
+                <td>Agronomy &amp; Sustainable Crop Science</td>
+                <td>Gabriel Jimenez</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Architecture</strong></td>
+                <td>Architectural Drafting &amp; Blueprints</td>
+                <td>Daniel McCullough</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Arts</strong></td>
+                <td>Literature, Humanities &amp; Library</td>
+                <td>Patrick Tomasso</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Law</strong></td>
+                <td>Scales of Justice &amp; Legal Statutes</td>
+                <td>Tingey Injury Law Firm</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Education</strong></td>
+                <td>Higher Education Lecture &amp; Seminar</td>
+                <td>Dom Fou</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Technology</strong></td>
+                <td>Microchip Hardware &amp; Circuits</td>
+                <td>Alexandre Debiève</td>
+                <td>Unsplash Free License</td>
+              </tr>
+              <tr>
+                <td><strong>Ayurveda</strong></td>
+                <td>Herbal Pharmacognosy &amp; Botanical Medicine</td>
+                <td>Katherine Hanlon</td>
+                <td>Unsplash Free License</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function switchDsTab(tabId, btn) {
+  var tabs = ['overview', 'sources', 'method', 'airisk', 'tools', 'vision', 'assets'];
+  tabs.forEach(function(t) {
+    var el = document.getElementById('tab-' + t);
+    if (el) el.classList.add('hidden-tab');
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  var activeEl = document.getElementById('tab-' + tabId);
+  if (activeEl) activeEl.classList.remove('hidden-tab');
+  if (btn) btn.classList.add('active');
+}
+</script>

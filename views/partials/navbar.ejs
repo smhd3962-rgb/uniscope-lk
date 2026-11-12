@@ -1,0 +1,286 @@
+  <!-- Fixed Navbar -->
+  <nav id="navbar" class="navbar scrolled" data-fixed-color="true" role="navigation" aria-label="Main Navigation">
+    <div class="nav-container">
+      <a href="/" class="logo" style="text-decoration:none;" aria-label="UniScope LK Homepage">
+        <img src="/static/home/images/uniscope_logo_mark.png" alt="UniScope LK Official Logo Emblem" class="logo-icon" style="width:34px;height:34px;object-fit:contain;border-radius:0;">
+        <span class="logo-text">UniScope <em>LK</em></span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="/" class="<%= (typeof currentPath !== 'undefined' && currentPath === '/') ? 'nav-active' : '' %>">Home</a>
+
+        <!-- Universities -->
+        <a href="/universities/" class="<%= (typeof currentPath !== 'undefined' && currentPath.startsWith('/universities')) ? 'nav-active' : '' %>">Universities</a>
+
+        <!-- Degrees dropdown -->
+        <div class="nav-dd">
+          <button class="<%= (typeof currentPath !== 'undefined' && (currentPath.startsWith('/degrees') || currentPath.startsWith('/subject') || currentPath.startsWith('/degree-finder') || currentPath.startsWith('/career-paths') || currentPath.startsWith('/ai-risk'))) ? 'nav-active' : '' %>">
+            Degrees ▾
+          </button>
+          <div class="nav-dd-panel">
+            <a href="/degrees/all/">All Degrees Directory</a>
+            <a href="/subject-combination/">Subject to Degree Matcher</a>
+            <a href="/degree-finder/">Smart Degree Finder (AI Match)</a>
+            <a href="/dashboard/compare/">Compare Degrees Side-by-Side</a>
+            <a href="/career-paths/">Career Pathways Explorer</a>
+            <a href="/ai-risk/">AI Displacement Risk Checker</a>
+          </div>
+        </div>
+
+        <!-- Admissions & Z-Scores dropdown -->
+        <div class="nav-dd">
+          <button class="<%= (typeof currentPath !== 'undefined' && (currentPath.includes('cutoff') || currentPath.includes('zscore') || currentPath.includes('district') || currentPath.includes('application-checklist') || currentPath.includes('announcements'))) ? 'nav-active' : '' %>">
+            Admissions &amp; Z-Scores ▾
+          </button>
+          <div class="nav-dd-panel">
+            <a href="/degrees/cutoff-tool/">University Z-Score Explorer</a>
+            <a href="/zscore-calculator/">Z-Score Eligibility Calculator</a>
+            <a href="/district-tool/">UGC District Determination Tool</a>
+            <a href="/student-tools/application-checklist/" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Application Checklist</span>
+              <span style="background:var(--apple-blue); color:#fff; font-size:9.5px; padding:2px 7px; border-radius:980px; font-weight:700;">GUIDE</span>
+            </a>
+            <a href="/community/announcements/">Official UGC Announcements</a>
+          </div>
+        </div>
+
+        <!-- Student Tools dropdown -->
+        <div class="nav-dd">
+          <button class="<%= (typeof currentPath !== 'undefined' && (currentPath.includes('gpa') || currentPath.includes('cost-planner'))) ? 'nav-active' : '' %>">
+            Student Tools ▾
+          </button>
+          <div class="nav-dd-panel">
+            <a href="/gpa-calculator/">GPA &amp; CGPA Calculator</a>
+            <a href="/student-tools/cost-planner/" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Cost-of-Living Planner</span>
+              <span style="background:#10b981; color:#fff; font-size:9.5px; padding:2px 7px; border-radius:980px; font-weight:700;">PLANNER</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Resources & Guides dropdown -->
+        <div class="nav-dd">
+          <button class="<%= (typeof currentPath !== 'undefined' && (currentPath.includes('student-services') || currentPath.includes('degree-recognition') || currentPath.includes('resources') || currentPath.includes('faq') || currentPath.includes('data-sources'))) ? 'nav-active' : '' %>">
+            Resources &amp; Guides ▾
+          </button>
+          <div class="nav-dd-panel">
+            <a href="/student-services/">Student Services &amp; Official Portals</a>
+            <a href="/student-tools/degree-recognition/" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Degree Recognition &amp; Accreditation</span>
+              <span style="background:#8b5cf6; color:#fff; font-size:9.5px; padding:2px 7px; border-radius:980px; font-weight:700;">SLQF</span>
+            </a>
+            <a href="/community/resources/">Student Resources &amp; Guides</a>
+            <a href="/faq/">Admissions &amp; Student FAQ</a>
+            <a href="/data-sources/">Data Sources &amp; Methodology</a>
+          </div>
+        </div>
+
+        <!-- About UniScope dropdown -->
+        <div class="nav-dd">
+          <button class="<%= (typeof currentPath !== 'undefined' && (currentPath.includes('about') || currentPath.includes('contact') || currentPath.includes('privacy') || currentPath.includes('terms') || currentPath.includes('disclaimer'))) ? 'nav-active' : '' %>">
+            About ▾
+          </button>
+          <div class="nav-dd-panel">
+            <a href="/about-us/">About UniScope &amp; Team</a>
+            <a href="/contact-us/">Contact &amp; Inaccuracy Reports</a>
+            <a href="/privacy-policy/">Privacy Policy</a>
+            <a href="/terms-of-use/">Terms of Use</a>
+            <a href="/disclaimer/">UGC Data Disclaimers</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Nav Action Controls -->
+      <div style="display:flex;align-items:center;gap:12px;">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+          <svg id="themeMoon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Notification Bell -->
+        <div class="bp-wrap">
+          <button class="bp-btn" onclick="toggleNotifications()" aria-label="Notifications" title="Official Bulletins">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="bp-count" id="notifBadge" style="display:inline-block;">3</span>
+          </button>
+          
+          <div class="bp-panel" id="bpPanel">
+            <div class="bp-head">
+              <h4><span>●</span> Official Bulletins</h4>
+              <button onclick="markAllRead()" style="color:var(--apple-blue);background:var(--apple-blue-subtle);padding:3px 9px;border-radius:980px;font-size:11px;font-weight:600;border:none;cursor:pointer;">Mark Read</button>
+            </div>
+            <div class="bp-body">
+              <div class="bp-item">
+                <div class="bp-avatar ugc" style="display:flex;align-items:center;justify-content:center;">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 5H2l10-5z"/></svg>
+                </div>
+                <div class="bp-content">
+                  <div class="bp-title">UGC Admissions 2025/2026 Verified</div>
+                  <p class="bp-msg">Official minimum selection cut-off points loaded across all 25 districts from UGC Release 31/07/2026.</p>
+                  <div class="bp-time">Official UGC Release · 2025/2026</div>
+                </div>
+              </div>
+              <div class="bp-item">
+                <div class="bp-avatar broadcast" style="display:flex;align-items:center;justify-content:center;">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <div class="bp-content">
+                  <div class="bp-title">4-Year Historical Trend Analysis</div>
+                  <p class="bp-msg">Compare verified admission cutoffs across 2022/23, 2023/24, 2024/25, and 2025/26 cohorts.</p>
+                  <div class="bp-time">Dataset Verification</div>
+                </div>
+              </div>
+              <div class="bp-item">
+                <div class="bp-avatar system" style="display:flex;align-items:center;justify-content:center;">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/></svg>
+                </div>
+                <div class="bp-content">
+                  <div class="bp-title">Sri Lankan University GPA Calculator</div>
+                  <p class="bp-msg">UoM 4.2 &amp; UGC 4.0 scales with SGPA/CGPA semester forecasting and Honours Class prediction.</p>
+                  <div class="bp-time">Student Tool</div>
+                </div>
+              </div>
+            </div>
+            <div class="bp-footer" style="padding:10px 14px; border-top:1px solid var(--border-subtle, rgba(0,0,0,0.08)); text-align:center;">
+              <a href="/community/announcements/" style="color:var(--apple-blue); font-size:12px; font-weight:600; text-decoration:none;">View All Announcements →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Degree Cart Shortcut -->
+        <a href="/dashboard/compare/" class="bp-btn" title="View Compare & Shortlist" style="text-decoration:none;position:relative;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="bp-count" id="navCartCount" style="display:none;background:var(--apple-blue);">0</span>
+        </a>
+
+        <% if (typeof user !== 'undefined' && user) { %>
+          <div class="nav-dd" style="margin-left:4px;">
+            <button class="nav-profile-pill" style="border-radius:980px;padding:6px 14px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--text-main);">
+              <span style="width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;"></span>
+              <%= user.name.split(' ')[0] %> ▾
+            </button>
+            <div class="nav-dd-panel" style="right:0;left:auto;transform:none;">
+              <a href="/accounts/profile/">My Profile Dashboard</a>
+              <a href="/dashboard/compare/">Saved Degrees Cart</a>
+              <a href="/accounts/logout/" style="color:#ef4444 !important;">Sign Out</a>
+            </div>
+          </div>
+        <% } else { %>
+          <a href="/accounts/login/" class="login-btn" data-testid="link-login">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Sign In
+          </a>
+        <% } %>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Open Navigation Menu">
+          <svg id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <svg id="closeIcon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Drawer (Identical 7-Pillar Architecture) -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/" class="mob-acc-item" style="font-weight:700;">Home</a>
+      <a href="/universities/" class="mob-acc-item" style="font-weight:700;">Universities Directory</a>
+
+      <!-- 1. Degrees accordion -->
+      <button class="mob-acc-btn" onclick="toggleMobAcc(this)">Degrees &amp; Academic Exploration <span class="mob-acc-chevron">▾</span></button>
+      <div class="mob-acc-body">
+        <a href="/degrees/all/" class="mob-acc-item">All Degrees Directory</a>
+        <a href="/subject-combination/" class="mob-acc-item">Subject to Degree Matcher</a>
+        <a href="/degree-finder/" class="mob-acc-item">Smart Degree Finder (AI Match)</a>
+        <a href="/dashboard/compare/" class="mob-acc-item">Compare Degrees Side-by-Side</a>
+        <a href="/career-paths/" class="mob-acc-item">Career Pathways Explorer</a>
+        <a href="/ai-risk/" class="mob-acc-item">AI Displacement Risk Checker</a>
+      </div>
+
+      <!-- 2. Admissions & Z-Scores accordion -->
+      <button class="mob-acc-btn" onclick="toggleMobAcc(this)">Admissions &amp; Z-Scores <span class="mob-acc-chevron">▾</span></button>
+      <div class="mob-acc-body">
+        <a href="/degrees/cutoff-tool/" class="mob-acc-item">University Z-Score Explorer</a>
+        <a href="/zscore-calculator/" class="mob-acc-item">Z-Score Eligibility Calculator</a>
+        <a href="/district-tool/" class="mob-acc-item">UGC District Determination Tool</a>
+        <a href="/student-tools/application-checklist/" class="mob-acc-item" style="font-weight:600; color:var(--apple-blue);">University Application Checklist</a>
+        <a href="/community/announcements/" class="mob-acc-item">Official UGC Announcements</a>
+      </div>
+
+      <!-- 3. Student Tools accordion -->
+      <button class="mob-acc-btn" onclick="toggleMobAcc(this)">Student Tools <span class="mob-acc-chevron">▾</span></button>
+      <div class="mob-acc-body">
+        <a href="/gpa-calculator/" class="mob-acc-item">GPA &amp; CGPA Calculator</a>
+        <a href="/student-tools/cost-planner/" class="mob-acc-item" style="font-weight:600; color:#10b981;">Cost-of-Living Planner</a>
+      </div>
+
+      <!-- 4. Resources & Guides accordion -->
+      <button class="mob-acc-btn" onclick="toggleMobAcc(this)">Resources &amp; Guides <span class="mob-acc-chevron">▾</span></button>
+      <div class="mob-acc-body">
+        <a href="/student-services/" class="mob-acc-item">Student Services &amp; Official Portals</a>
+        <a href="/student-tools/degree-recognition/" class="mob-acc-item" style="font-weight:600; color:#8b5cf6;">Degree Recognition &amp; Accreditation</a>
+        <a href="/community/resources/" class="mob-acc-item">Student Resources &amp; Guides</a>
+        <a href="/faq/" class="mob-acc-item">Admissions &amp; Student FAQ</a>
+        <a href="/data-sources/" class="mob-acc-item">Data Sources &amp; Research Standards</a>
+      </div>
+
+      <!-- 5. About UniScope accordion -->
+      <button class="mob-acc-btn" onclick="toggleMobAcc(this)">About UniScope <span class="mob-acc-chevron">▾</span></button>
+      <div class="mob-acc-body">
+        <a href="/about-us/" class="mob-acc-item">About Platform &amp; Founder</a>
+        <a href="/contact-us/" class="mob-acc-item">Contact Us &amp; Inaccuracy Reporting</a>
+        <a href="/privacy-policy/" class="mob-acc-item">Privacy Policy</a>
+        <a href="/terms-of-use/" class="mob-acc-item">Terms of Use</a>
+        <a href="/disclaimer/" class="mob-acc-item">UGC Data Disclaimers</a>
+      </div>
+
+      <% if (typeof user !== 'undefined' && user) { %>
+        <a href="/accounts/profile/" class="mobile-login-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <%= user.name %> (My Account)
+        </a>
+      <% } else { %>
+        <a href="/accounts/login/" class="mobile-login-btn" data-testid="link-mobile-login">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Sign In
+        </a>
+      <% } %>
+    </div>
+  </nav>
+
+  <script>
+  // Bulletin notification read management
+  (function() {
+    try {
+      if (localStorage.getItem('uniscope_bulletins_read') === 'true') {
+        var b = document.getElementById('notifBadge');
+        if (b) b.style.display = 'none';
+      }
+    } catch(e) {}
+  })();
+
+  function markAllRead() {
+    try {
+      localStorage.setItem('uniscope_bulletins_read', 'true');
+      var b = document.getElementById('notifBadge');
+      if (b) b.style.display = 'none';
+    } catch(e) {}
+  }
+  </script>

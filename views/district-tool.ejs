@@ -1,0 +1,132 @@
+<%- include('partials/head', { title: "UGC District Determination Tool - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 860px;">
+    
+    <div style="text-align:center; margin-bottom: 30px;">
+      <h1 style="font-family:'DM Serif Display',serif; font-size: clamp(28px, 4vw, 36px); font-weight: 400; color:var(--text-main); margin-bottom: 8px;">
+        UGC District Determination Tool
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 15.5px; max-width: 600px; margin: 0 auto;">
+        Resolve your official UGC admission quota district based on statutory rulebook logic
+      </p>
+    </div>
+
+    <!-- Rule Explanation Card -->
+    <div class="uniscope-card" style="padding:28px; margin-bottom:28px; border-radius:var(--radius-xl);">
+      <h3 style="font-size:17px; font-weight:700; color:var(--text-main); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--apple-blue);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        The Statutory UGC Admission Rule
+      </h3>
+      <p style="color:var(--text-secondary); font-size:14px; line-height:1.7; margin-bottom:14px;">
+        Under Section 3.2 of the University Grants Commission Sri Lanka Admission Handbook:
+        A candidate's district of eligibility for university admission is determined strictly by the 
+        <strong>administrative district in which the candidate studied in a recognized school during the period of three (03) years</strong> 
+        immediately preceding the date of the examination.
+      </p>
+      <div style="background:var(--bg-card-subtle); border:1px solid var(--border-subtle); padding:14px 18px; border-radius:12px; font-size:13px; color:var(--text-main); line-height:1.6; display:flex; align-items:flex-start; gap:8px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="color:var(--apple-blue); flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span><strong>Important Rule Note:</strong> Your permanent residence address on your National Identity Card (NIC) or electoral register does NOT dictate your district quota if your school was located in a different administrative district.</span>
+      </div>
+    </div>
+
+    <!-- Wizard Form -->
+    <div class="uniscope-card" style="padding:32px;">
+      <form id="districtForm" onsubmit="calculateDistrict(event)" style="display:flex; flex-direction:column; gap:22px;">
+        
+        <div>
+          <label style="display:block; font-size:14px; font-weight:700; color:var(--text-main); margin-bottom:10px;">
+            1. Did you attend school for the entire 3 years (Grade 11–13 / A/L) in the SAME district?
+          </label>
+          <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <label style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text-secondary); cursor:pointer;">
+              <input type="radio" name="sameSchool" value="yes" checked onchange="toggleMultiDistrict(false)">
+              Yes, entirely in one district
+            </label>
+            <label style="display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text-secondary); cursor:pointer;">
+              <input type="radio" name="sameSchool" value="no" onchange="toggleMultiDistrict(true)">
+              No, changed schools across different districts
+            </label>
+          </div>
+        </div>
+
+        <div id="singleDistrictGroup">
+          <label style="display:block; font-size:14px; font-weight:700; color:var(--text-main); margin-bottom:8px;">
+            Select School Administrative District:
+          </label>
+          <select id="singleDistrict" class="uniscope-select" style="padding:12px 14px; font-size:14.5px;">
+            <% districts.forEach(function(d) { %>
+              <option value="<%= d %>"><%= d %></option>
+            <% }); %>
+          </select>
+        </div>
+
+        <div id="multiDistrictGroup" style="display:none; padding:18px; background:var(--bg-card-subtle); border-radius:12px; border:1px solid var(--border-subtle);">
+          <div style="margin-bottom:14px;">
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-secondary); margin-bottom:6px;">District of Longest School Attendance:</label>
+            <select id="distLongest" class="uniscope-select">
+              <% districts.forEach(function(d) { %>
+                <option value="<%= d %>"><%= d %></option>
+              <% }); %>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:13px; font-weight:700; color:var(--text-secondary); margin-bottom:6px;">Months spent in this district (out of 36 months):</label>
+            <input type="number" id="monthsLongest" min="1" max="36" value="24" class="uniscope-input">
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="btn-calc-action" style="background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:700; font-size:15px; cursor:pointer;">
+            Resolve Official Admission District
+          </button>
+        </div>
+      </form>
+
+      <!-- Result Banner -->
+      <div id="districtResult" style="display:none; margin-top:24px; padding:22px; border-radius:14px; background:var(--status-success-bg, rgba(16,185,129,0.12)); border:1px solid var(--status-success, #10b981);">
+        <div style="font-size:12px; text-transform:uppercase; font-weight:800; color:#10b981; margin-bottom:4px; letter-spacing:0.5px;">UGC Determination Result</div>
+        <div id="resultText" style="font-size:22px; font-weight:800; color:var(--text-main); margin-bottom:8px;"></div>
+        <p id="resultExplanation" style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;"></p>
+        <div style="margin-top:16px;">
+          <a id="cutoffLink" href="/degrees/cutoff-tool/" style="display:inline-block; padding:10px 20px; background:#10b981; color:#fff; border-radius:8px; text-decoration:none; font-weight:700; font-size:13.5px;">
+            Check Cutoffs for this District →
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function toggleMultiDistrict(show) {
+  document.getElementById('singleDistrictGroup').style.display = show ? 'none' : 'block';
+  document.getElementById('multiDistrictGroup').style.display = show ? 'block' : 'none';
+}
+
+function calculateDistrict(e) {
+  e.preventDefault();
+  var isSame = document.querySelector('input[name="sameSchool"]:checked').value === 'yes';
+  var targetDistrict = '';
+  var explanation = '';
+
+  if (isSame) {
+    targetDistrict = document.getElementById('singleDistrict').value;
+    explanation = "Because you spent the continuous 3-year pre-examination period in " + targetDistrict + ", your university quota district is unconditionally registered as " + targetDistrict + ".";
+  } else {
+    targetDistrict = document.getElementById('distLongest').value;
+    var months = document.getElementById('monthsLongest').value;
+    explanation = "Under UGC multi-school provisions, you spent the longest contiguous duration (" + months + " months) in " + targetDistrict + ", making " + targetDistrict + " your primary quota district.";
+  }
+
+  document.getElementById('resultText').textContent = "Eligible District: " + targetDistrict;
+  document.getElementById('resultExplanation').textContent = explanation;
+  document.getElementById('cutoffLink').href = "/degrees/cutoff-tool/?district=" + encodeURIComponent(targetDistrict);
+  document.getElementById('districtResult').style.display = 'block';
+}
+</script>

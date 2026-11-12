@@ -1,0 +1,226 @@
+<%- include('partials/head', { title: "About Us - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<style>
+  @media (max-width: 680px) {
+    .founder-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+    .founder-portrait-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .founder-social-btn:hover {
+    background: var(--apple-blue) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+  }
+</style>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 920px;">
+    
+    <!-- Hero Banner -->
+    <div style="text-align:center; margin-bottom: 40px;">
+      <div style="display:flex; justify-content:center; margin-bottom:20px;">
+        <img src="/static/home/images/uniscope_logo_full.png" alt="UniScope LK Brand" style="height:56px; width:auto; max-width:90%; object-fit:contain; filter:drop-shadow(0 4px 16px rgba(0,0,0,0.06));">
+      </div>
+      <div style="display:inline-flex; align-items:center; gap:6px; background:var(--apple-blue-subtle); color:var(--apple-blue); padding:4px 14px; border-radius:980px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px; border:1px solid rgba(0,113,227,0.2);">
+        Open Higher Education Initiative
+      </div>
+      <h1 style="font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif; font-size:clamp(30px, 4.5vw, 44px); font-weight:700; letter-spacing:-0.03em; color:var(--text-main); margin-bottom:14px; line-height:1.2;">
+        Empowering Sri Lankan Higher Education
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 16.5px; max-width: 720px; margin: 0 auto; line-height: 1.6;">
+        An independent, student-first platform providing verified UGC admission insights, multi-year cut-off trends, and degree roadmaps.
+      </p>
+    </div>
+
+    <!-- Section 1: Our Mission -->
+    <div class="uniscope-card" style="padding:32px; border-radius:var(--radius-xl); margin-bottom:30px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+        <div style="width:36px; height:36px; border-radius:8px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <h2 style="font-size:22px; font-weight:700; color:var(--text-main); margin:0;">Our Mission</h2>
+      </div>
+      <p style="color:var(--text-secondary); font-size:15px; line-height:1.75; margin-bottom:14px;">
+        Every year, over 170,000 Sri Lankan students sit for the G.C.E. Advanced Level examination. When results are released, candidates and parents face a complex maze of 25 district quotas, 21 national universities, 255+ degree programs, and fragmented PDF gazettes.
+      </p>
+      <p style="color:var(--text-secondary); font-size:15px; line-height:1.75; margin:0;">
+        <strong>UniScope LK</strong> synthesizes official University Grants Commission (UGC) handbooks, gazetted admission cut-offs across multiple academic cycles, and faculty academic profiles into one unified, accessible digital directory. The platform is completely free, non-commercial, and neutral.
+      </p>
+    </div>
+
+    <!-- Section 2: Core Principles & Methodology -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-bottom:30px;">
+      <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+        <div style="width:40px; height:40px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </div>
+        <h3 style="font-size:17px; font-weight:700; color:var(--text-main); margin-bottom:6px;">Direct UGC Verification</h3>
+        <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin:0;">
+          All 26,225 minimum Z-Scores across 2022/2023, 2023/2024, 2024/2025, and 2025/2026 are parsed directly from official UGC admission gazettes and verified against student handbooks.
+        </p>
+      </div>
+
+      <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+        <div style="width:40px; height:40px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4"/>
+            <path d="M12 8h.01"/>
+          </svg>
+        </div>
+        <h3 style="font-size:17px; font-weight:700; color:var(--text-main); margin-bottom:6px;">Complete Neutrality</h3>
+        <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin:0;">
+          UniScope LK is completely unaffiliated with any private institute or commercial sponsor. No institution can purchase ranking promotions or priority placement.
+        </p>
+      </div>
+
+      <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+        <div style="width:40px; height:40px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <line x1="8" y1="6" x2="16" y2="6"/>
+          </svg>
+        </div>
+        <h3 style="font-size:17px; font-weight:700; color:var(--text-main); margin-bottom:6px;">Student-Centred Design</h3>
+        <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.6; margin:0;">
+          Purpose-built to bridge critical information gaps encountered during G.C.E. A/L higher education planning and undergraduate life in Sri Lanka.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 3: Meet the Founder (Placed after Our Mission and before Contact Us) -->
+    <div class="uniscope-card" style="padding:36px; border-radius:var(--radius-xl); margin-bottom:30px; position:relative; overflow:hidden;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:24px;">
+        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--apple-blue);"></span>
+        <span style="font-size:12px; font-weight:700; color:var(--apple-blue); letter-spacing:0.05em; text-transform:uppercase;">Leadership &amp; Development</span>
+      </div>
+
+      <div class="founder-grid" style="display:grid; grid-template-columns: 190px 1fr; gap:32px; align-items:flex-start;">
+        <!-- Founder Portrait Column -->
+        <div class="founder-portrait-col" style="text-align:center;">
+          <div style="width:160px; height:160px; margin:0 auto 16px; border-radius:24px; overflow:hidden; border:2px solid var(--border-subtle); box-shadow:var(--shadow-md); background:var(--bg-card-subtle);">
+            <img src="/static/home/images/farhan_founder.jpg" 
+                 alt="Farhan NM - Founder & Developer of UniScope LK" 
+                 loading="lazy"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center 12%; display:block;">
+          </div>
+          
+          <!-- Social & Contact Actions -->
+          <div style="display:flex; justify-content:center; gap:10px;">
+            <a href="https://www.linkedin.com/in/farhan-mohammad-417a772b9" 
+               target="_blank" rel="noopener noreferrer" 
+               class="founder-social-btn" 
+               aria-label="Connect with Farhan NM on LinkedIn"
+               title="LinkedIn Profile"
+               style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); border:1px solid rgba(0,113,227,0.18); transition:all 0.15s ease; text-decoration:none;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.3a1.6 1.6 0 1 0 1.6 1.6 1.6 1.6 0 0 0-1.6-1.6z"/>
+              </svg>
+            </a>
+            <a href="mailto:farhanugc@gmail.com" 
+               class="founder-social-btn" 
+               aria-label="Send email to Farhan NM"
+               title="Professional Email"
+               style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; background:var(--apple-blue-subtle); color:var(--apple-blue); border:1px solid rgba(0,113,227,0.18); transition:all 0.15s ease; text-decoration:none;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Founder Details Column -->
+        <div>
+          <div style="margin-bottom:14px;">
+            <h2 style="font-size:24px; font-weight:800; color:var(--text-main); margin:0 0 4px; letter-spacing:-0.02em;">
+              Farhan NM
+            </h2>
+            <div style="font-size:15px; font-weight:600; color:var(--apple-blue); margin-bottom:4px;">
+              Founder &amp; Developer — UniScope LK
+            </div>
+            <div style="font-size:13px; font-weight:500; color:var(--text-muted); display:inline-flex; align-items:center; gap:6px;">
+              <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
+              Also Founder of SolarCalc LK
+            </div>
+          </div>
+
+          <!-- Academic Affiliation -->
+          <div style="padding:12px 16px; border-radius:12px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); margin-bottom:16px;">
+            <div style="display:flex; align-items:flex-start; gap:10px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--apple-blue); flex-shrink:0; margin-top:2px;">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+              <div style="font-size:13.5px; line-height:1.55; color:var(--text-secondary);">
+                <strong style="color:var(--text-main);">Education:</strong> Third-Year Electrical &amp; Electronic Engineering Undergraduate, Faculty of Engineering, University of Jaffna, Sri Lanka
+              </div>
+            </div>
+          </div>
+
+          <!-- Biography -->
+          <p style="font-size:14.5px; color:var(--text-secondary); line-height:1.75; margin-bottom:18px;">
+            Farhan NM is an Electrical &amp; Electronic Engineering undergraduate at the University of Jaffna and the founder of UniScope LK and SolarCalc LK. Passionate about engineering, technology, and digital innovation, he developed UniScope LK to make Sri Lankan university information easier to access, explore, and compare. Through his projects, he aims to create practical digital solutions that support education and technological development.
+          </p>
+
+          <!-- Core Interests -->
+          <div>
+            <div style="font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); margin-bottom:8px;">
+              Areas of Focus &amp; Interests:
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Web Development</span>
+              <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Renewable Energy</span>
+              <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Embedded Systems</span>
+              <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Artificial Intelligence</span>
+              <span style="font-size:12px; font-weight:600; padding:4px 10px; border-radius:980px; background:var(--bg-card-subtle); border:1px solid var(--border-subtle); color:var(--text-secondary);">Educational Technology</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Contact Us -->
+    <div class="uniscope-card" style="padding:24px 28px; border-radius:var(--radius-xl); margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h3 style="font-size:17px; font-weight:700; color:var(--text-main); margin:0 0 4px;">Have Questions, Suggestions, or Data Inquiries?</h3>
+        <p style="font-size:13.5px; color:var(--text-secondary); margin:0;">Reach out directly to our student advisory and development team.</p>
+      </div>
+      <a href="/contact-us/" class="btn-primary" style="padding:10px 22px; font-size:13.5px; text-decoration:none;">
+        Contact Us →
+      </a>
+    </div>
+
+    <!-- Section 5: Institutional Disclaimer -->
+    <div class="uniscope-card" style="padding:24px 28px; border-radius:var(--radius-xl); background:var(--bg-card-subtle);">
+      <div style="display:flex; align-items:flex-start; gap:12px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22" style="color:var(--text-muted); flex-shrink:0; margin-top:2px;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <div style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">
+          <strong style="color:var(--text-main);">Institutional &amp; Admissions Disclaimer:</strong>
+          UniScope LK is an independent academic directory and calculator suite. It is not affiliated with, endorsed by, or an official representative of the University Grants Commission (UGC) of Sri Lanka or the Ministry of Education. For final, legally binding admission procedures and decisions, candidates must refer to the official publications and announcements of the University Grants Commission (<a href="https://www.ugc.ac.lk/" target="_blank" rel="noopener" style="color:var(--apple-blue);">ugc.ac.lk</a>).
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>

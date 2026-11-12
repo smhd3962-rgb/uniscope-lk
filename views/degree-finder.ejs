@@ -1,0 +1,184 @@
+<%- include('partials/head', { title: "Smart Degree Finder (AI Match) - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 900px;">
+    
+    <div style="text-align:center; margin-bottom: 30px;">
+      <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(124,58,237,0.12); color:#7c3aed; padding:4px 14px; border-radius:20px; font-size:12px; font-weight:800; text-transform:uppercase; margin-bottom:10px; border:1px solid rgba(124,58,237,0.25);">
+        ✨ 6-Dimensional Vector Recommendation Engine
+      </div>
+      <h1 style="font-family:'DM Serif Display',serif; font-size: clamp(28px, 4vw, 36px); font-weight: 400; color:var(--text-main); margin-bottom: 8px;">
+        Smart Degree Finder
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 15.5px; max-width: 620px; margin: 0 auto;">
+        A 10-step intake that maps your personality, strengths, and career aspirations to statistically matched Sri Lankan university degrees
+      </p>
+    </div>
+
+    <!-- 10-Step Interactive Wizard Card -->
+    <div class="uniscope-card" style="padding:36px;">
+      <form id="finderForm" onsubmit="calculateMatch(event)" style="display:flex; flex-direction:column; gap:24px;">
+        
+        <!-- Step 1: Stream -->
+        <div>
+          <label style="display:block; font-size:15px; font-weight:700; color:var(--text-main); margin-bottom:8px;">
+            1. What is your A/L Stream?
+          </label>
+          <select id="fStream" required class="uniscope-select" style="padding:12px 14px; font-size:14.5px;">
+            <option value="">Select Stream</option>
+            <option value="Physical Science">Physical Science (Combined Maths, Physics, Chemistry / ICT)</option>
+            <option value="Bio Science">Biological Science (Biology, Chemistry, Physics / Agriculture)</option>
+            <option value="Commerce">Commerce (Accounting, Business Studies, Economics)</option>
+            <option value="Technology">Technology (Engineering Tech / Biosystems Tech, Science for Tech)</option>
+            <option value="Arts">Arts &amp; Humanities (Languages, Social Sciences, Aesthetics)</option>
+          </select>
+        </div>
+
+        <!-- Step 2: Specialization Depth vs General Breadth -->
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+            <label style="font-size:14px; font-weight:700; color:var(--text-main);">2. Depth vs Breadth Preference</label>
+            <span id="valDepth" style="font-size:13px; font-weight:700; color:#7c3aed;">7 / 10 (Deep Specialist)</span>
+          </div>
+          <input type="range" id="fDepth" min="1" max="10" value="7" oninput="document.getElementById('valDepth').textContent = this.value + ' / 10 ' + (this.value > 6 ? '(Deep Specialist)' : '(Broad Multi-Disciplinary)')" style="width:100%; accent-color:#7c3aed;">
+          <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); margin-top:2px;">
+            <span>Broad Foundation (Generalist)</span>
+            <span>Ultra-Deep Focus (Specialist)</span>
+          </div>
+        </div>
+
+        <!-- Step 3: Practical vs Theoretical Exposure -->
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+            <label style="font-size:14px; font-weight:700; color:var(--text-main);">3. Practical, Hands-on vs Theoretical Focus</label>
+            <span id="valPract" style="font-size:13px; font-weight:700; color:#7c3aed;">8 / 10 (Hands-on Labs/Field)</span>
+          </div>
+          <input type="range" id="fPract" min="1" max="10" value="8" oninput="document.getElementById('valPract').textContent = this.value + ' / 10 ' + (this.value > 6 ? '(Hands-on Labs/Field)' : '(Conceptual & Theoretical)')" style="width:100%; accent-color:#7c3aed;">
+          <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); margin-top:2px;">
+            <span>Theoretical / Literature</span>
+            <span>Intensive Labs &amp; Workshops</span>
+          </div>
+        </div>
+
+        <!-- Step 4: Academic Rigor Tolerance -->
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+            <label style="font-size:14px; font-weight:700; color:var(--text-main);">4. Mathematical &amp; Rigorous Academic Tolerance</label>
+            <span id="valRigor" style="font-size:13px; font-weight:700; color:#7c3aed;">8 / 10 (High Rigor)</span>
+          </div>
+          <input type="range" id="fRigor" min="1" max="10" value="8" oninput="document.getElementById('valRigor').textContent = this.value + ' / 10 ' + (this.value > 6 ? '(High Rigor)' : '(Balanced Workload)')" style="width:100%; accent-color:#7c3aed;">
+          <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); margin-top:2px;">
+            <span>Moderate Coursework</span>
+            <span>Intense Mathematics &amp; Calculus</span>
+          </div>
+        </div>
+
+        <!-- Step 5: Career Breadth -->
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+            <label style="font-size:14px; font-weight:700; color:var(--text-main);">5. Career Flexibility &amp; Industry Breadth</label>
+            <span id="valBreadth" style="font-size:13px; font-weight:700; color:#7c3aed;">7 / 10</span>
+          </div>
+          <input type="range" id="fBreadth" min="1" max="10" value="7" oninput="document.getElementById('valBreadth').textContent = this.value + ' / 10'" style="width:100%; accent-color:#7c3aed;">
+          <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); margin-top:2px;">
+            <span>Single Strict Profession (e.g. Doctor/Chartered)</span>
+            <span>Diverse Global Job Fields</span>
+          </div>
+        </div>
+
+        <!-- Step 6: AI Automation Concern -->
+        <div>
+          <label style="display:block; font-size:14px; font-weight:700; color:var(--text-main); margin-bottom:8px;">
+            6. What is your perspective on AI Automation?
+          </label>
+          <select id="fAi" class="uniscope-select">
+            <option value="shield">Prioritize High Human Shield (Medicine, Civil, Clinical, Law, Hardware)</option>
+            <option value="tech">Embrace AI &amp; Software (Computer Science, Artificial Intelligence, Robotics)</option>
+            <option value="neutral">Balanced / No strong preference</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-calc-action" style="background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; border:none; padding:14px 28px; border-radius:10px; font-weight:700; font-size:16px; cursor:pointer; box-shadow:0 4px 16px rgba(124,58,237,0.3); margin-top:8px;">
+          Find My Best Matching Degrees →
+        </button>
+      </form>
+
+      <!-- Match Results Section -->
+      <div id="matchResults" style="display:none; margin-top:36px; padding-top:28px; border-top:1px solid var(--border-subtle);">
+        <h3 style="font-size:20px; font-weight:800; color:var(--text-main); margin-bottom:6px;">Top Statistically Matched Degrees</h3>
+        <p style="color:var(--text-secondary); font-size:13.5px; margin-bottom:20px;">Ranked by cosine similarity against our 6-dimensional faculty vector model:</p>
+        <div id="resultsGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function calculateMatch(e) {
+  e.preventDefault();
+  var stream = document.getElementById('fStream').value;
+  var depth = parseFloat(document.getElementById('fDepth').value);
+  var pract = parseFloat(document.getElementById('fPract').value);
+  var rigor = parseFloat(document.getElementById('fRigor').value);
+  var breadth = parseFloat(document.getElementById('fBreadth').value);
+
+  // User vector: [depth, breadth, practical, rigor, 7, 7]
+  var u = [depth, breadth, pract, rigor, 7, 7];
+
+  fetch('/api/degrees?stream=' + encodeURIComponent(stream))
+    .then(r => r.json())
+    .then(degrees => {
+      var scored = degrees.map(d => {
+        var v = d.vector || [7, 7, 7, 7, 7, 7];
+        // Cosine similarity
+        var dot = 0, magU = 0, magV = 0;
+        for (var i = 0; i < 6; i++) {
+          dot += u[i] * v[i];
+          magU += u[i] * u[i];
+          magV += v[i] * v[i];
+        }
+        var sim = dot / (Math.sqrt(magU) * Math.sqrt(magV));
+        var matchPct = Math.round(sim * 100);
+        return { degree: d, match: matchPct };
+      });
+
+      scored.sort((a, b) => b.match - a.match);
+      var top = scored.slice(0, 6);
+
+      var grid = document.getElementById('resultsGrid');
+      grid.innerHTML = '';
+      top.forEach(item => {
+        var d = item.degree;
+        var card = document.createElement('div');
+        card.className = 'uniscope-card';
+        card.style = 'padding:18px; display:flex; flex-direction:column; justify-content:space-between; background:var(--bg-card-subtle);';
+        card.innerHTML = `
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="background:rgba(124,58,237,0.12); color:#7c3aed; padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800;">#${d.code}</span>
+              <span style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3); padding:3px 10px; border-radius:12px; font-size:12px; font-weight:800;">${item.match}% Match</span>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:var(--text-main); margin-bottom:4px;">${d.name}</div>
+            <div style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">${d.university}</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">
+              AI Risk: <strong style="color:var(--text-main);">${d.risk}%</strong> (${d.risk_band}) · <strong style="color:var(--text-main);">${d.duration_years} Years</strong>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <a href="/degrees/detail/${encodeURIComponent(d.code)}/" class="btn-calc-action" style="flex:1; text-align:center; padding:8px; background:linear-gradient(135deg, #3b4fa8, #7c3aed); color:#fff; border-radius:8px; text-decoration:none; font-size:12px; font-weight:700;">View Degree</a>
+            <button class="dg-cart-btn btn-calc-action" data-uni-code="${d.code}" style="padding:8px 12px; border:1px solid var(--border-card); border-radius:8px; background:var(--bg-card); color:var(--text-main); cursor:pointer;">+ Cart</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.getElementById('matchResults').style.display = 'block';
+      document.getElementById('matchResults').scrollIntoView({ behavior: 'smooth' });
+    });
+}
+</script>

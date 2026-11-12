@@ -1,0 +1,125 @@
+<%- include('partials/head', { title: "AI Displacement Risk Checker - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 1100px;">
+    
+    <div style="text-align:center; margin-bottom: 30px;">
+      <div style="display:inline-flex; align-items:center; gap:6px; background:var(--apple-blue-subtle); color:var(--apple-blue); padding:4px 14px; border-radius:980px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px; border:1px solid rgba(0,113,227,0.2);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Sri Lanka's Degree-Level Automation Model
+      </div>
+      <h1 style="font-family:'DM Serif Display',serif; font-size: clamp(28px, 4vw, 36px); font-weight: 400; color:var(--text-main); margin-bottom: 8px;">
+        AI Displacement Risk Checker
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 15.5px; max-width: 650px; margin: 0 auto;">
+        Composite automation probability across 7 international research frameworks calibrated with local Sri Lankan employment data
+      </p>
+    </div>
+
+    <!-- Formula Banner Card -->
+    <div style="background:linear-gradient(135deg, #0f172a, #312e81); color:#fff; border-radius:20px; padding:32px; margin-bottom:32px; box-shadow:0 8px 30px rgba(15,23,42,0.25);">
+      <div style="font-size:12px; text-transform:uppercase; font-weight:800; color:#fbbf24; margin-bottom:8px;">
+        UniScope Research · Composite Risk Equation
+      </div>
+      <div style="font-family:'Courier New', monospace; font-size:clamp(16px, 3.5vw, 24px); font-weight:700; color:#f8fafc; margin-bottom:16px; background:rgba(0,0,0,0.25); padding:16px 20px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
+        R<sub>degree</sub> = Σ<sub>i=1..7</sub> (w<sub>i</sub> · F<sub>i</sub> · T<sub>i</sub>) + α · C<sub>SL</sub> − β · H<sub>human</sub>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; font-size:12.5px; color:#cbd5e1;">
+        <div>• <strong>w<sub>i</sub> · F<sub>i</sub></strong>: 7 Framework automation weights</div>
+        <div>• <strong>T<sub>i</sub></strong>: Task time-share within professional roles</div>
+        <div>• <strong>C<sub>SL</sub></strong>: Sri Lankan industry &amp; public sector absorption</div>
+        <div>• <strong>H<sub>human</sub></strong>: Empathy &amp; physical dexterity shield</div>
+      </div>
+    </div>
+
+    <!-- 4 Risk Bands Bar -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:36px;">
+      <div class="uniscope-card" style="border-left:4px solid #10b981; padding:18px;">
+        <div style="font-size:12px; font-weight:800; color:#10b981; text-transform:uppercase;">0 – 25 · Low Risk</div>
+        <div style="font-size:16px; font-weight:800; color:var(--text-main); margin:4px 0;">Shielded / Clinical</div>
+        <p style="font-size:12px; color:var(--text-secondary); margin:0; line-height:1.5;">Medicine, Dental, Surgery, Civil Onsite, Electrical Commissioning.</p>
+      </div>
+
+      <div class="uniscope-card" style="border-left:4px solid #f59e0b; padding:18px;">
+        <div style="font-size:12px; font-weight:800; color:#f59e0b; text-transform:uppercase;">26 – 50 · Moderate Risk</div>
+        <div style="font-size:16px; font-weight:800; color:var(--text-main); margin:4px 0;">Augmented Co-Pilots</div>
+        <p style="font-size:12px; color:var(--text-secondary); margin:0; line-height:1.5;">Software Engineering, Management MIT, Biotech, Applied Sciences.</p>
+      </div>
+
+      <div class="uniscope-card" style="border-left:4px solid #f97316; padding:18px;">
+        <div style="font-size:12px; font-weight:800; color:#f97316; text-transform:uppercase;">51 – 75 · High Risk</div>
+        <div style="font-size:16px; font-weight:800; color:var(--text-main); margin:4px 0;">Substantial Shift</div>
+        <p style="font-size:12px; color:var(--text-secondary); margin:0; line-height:1.5;">Routine Accounting, Standard Translation, Data Administration.</p>
+      </div>
+
+      <div class="uniscope-card" style="border-left:4px solid #ef4444; padding:18px;">
+        <div style="font-size:12px; font-weight:800; color:#ef4444; text-transform:uppercase;">76 – 100 · Severe Risk</div>
+        <div style="font-size:16px; font-weight:800; color:var(--text-main); margin:4px 0;">Heavy Automation</div>
+        <p style="font-size:12px; color:var(--text-secondary); margin:0; line-height:1.5;">High task automability. Requires mandatory AI leadership specialization.</p>
+      </div>
+    </div>
+
+    <!-- Degree Risk Table Filter -->
+    <div class="uniscope-card" style="padding:24px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+        <h3 style="font-size:18px; font-weight:800; color:var(--text-main); margin:0;">Degree-by-Degree AI Risk Index</h3>
+        <input type="text" id="riskSearch" onkeyup="filterRiskTable()" placeholder="Filter degree name or stream..." class="uniscope-input" style="width:260px;">
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table id="riskTable" class="uniscope-table" style="min-width:650px;">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Degree Course Name</th>
+              <th>University</th>
+              <th>Stream</th>
+              <th>Risk Score</th>
+              <th>Band</th>
+              <th style="text-align:right;">Profile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% degrees.forEach(function(d) { %>
+              <tr>
+                <td><span style="background:rgba(124,58,237,0.12); color:#7c3aed; border:1px solid rgba(124,58,237,0.25); padding:3px 8px; border-radius:6px; font-weight:800; font-size:12px;"><%= d.code %></span></td>
+                <td style="font-weight:700; color:var(--text-main);"><%= d.name %></td>
+                <td style="color:var(--text-secondary); font-size:13px;"><%= d.university %></td>
+                <td><span style="font-size:12px; color:var(--text-secondary); background:var(--bg-card-subtle); border:1px solid var(--border-subtle); padding:2px 8px; border-radius:4px;"><%= d.stream %></span></td>
+                <td style="font-weight:800; font-size:15px; color:<%= d.risk <= 25 ? '#10b981' : (d.risk <= 50 ? '#f59e0b' : '#ef4444') %>;">
+                  <%= d.risk %>%
+                </td>
+                <td>
+                  <span style="font-size:11.5px; font-weight:700; padding:3px 8px; border-radius:6px; background:<%= d.risk <= 25 ? 'rgba(16,185,129,0.15)' : (d.risk <= 50 ? 'rgba(245,158,11,0.15)' : 'rgba(239,68,68,0.15)') %>; color:<%= d.risk <= 25 ? '#10b981' : (d.risk <= 50 ? '#f59e0b' : '#ef4444') %>; border:1px solid <%= d.risk <= 25 ? 'rgba(16,185,129,0.3)' : (d.risk <= 50 ? 'rgba(245,158,11,0.3)' : 'rgba(239,68,68,0.3)') %>;">
+                    <%= d.risk_band %>
+                  </span>
+                </td>
+                <td style="text-align:right;">
+                  <a href="/degrees/detail/<%= encodeURIComponent(d.code) %>/" style="color:#7c3aed; font-weight:700; text-decoration:none; font-size:12.5px;">View →</a>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function filterRiskTable() {
+  var input = document.getElementById("riskSearch");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("riskTable");
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    var txt = tr[i].textContent || tr[i].innerText;
+    tr[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+  }
+}
+</script>

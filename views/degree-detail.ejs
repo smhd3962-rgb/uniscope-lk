@@ -1,0 +1,236 @@
+<%- include('partials/head', { title: degree.name + " - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 1050px;">
+    
+    <!-- Top breadcrumb & back button -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px; flex-wrap:wrap; gap:12px;">
+      <a href="/degrees/all/" style="text-decoration:none; color:var(--apple-blue); font-weight:600; font-size:14px; display:inline-flex; align-items:center; gap:6px;">
+        ← Back to All Degrees
+      </a>
+      <button class="dg-cart-btn btn-calc-action" data-uni-code="<%= degree.code %>">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Save to Degree Cart
+      </button>
+    </div>
+
+    <!-- Hero Card for Degree (Apple Product Specification Style) -->
+    <div class="uniscope-card" style="border-radius:24px; padding:36px; margin-bottom:30px; border:1px solid var(--border-card);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <span style="background:var(--bg-card-subtle); color:var(--apple-blue); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:980px; font-size:12px; font-weight:700; letter-spacing:0.04em;">
+            COURSE <%= degree.code %>
+          </span>
+          <span style="background:var(--bg-card-subtle); color:var(--text-secondary); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:980px; font-size:12px; font-weight:600;">
+            <%= degree.stream %> Stream
+          </span>
+          <span style="background:var(--bg-card-subtle); color:var(--text-secondary); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:980px; font-size:12px; font-weight:600;">
+            SLQF Level <%= degree.slqf_level %>
+          </span>
+        </div>
+
+        <!-- Official University Crest -->
+        <div style="display:flex; align-items:center; gap:10px; background:var(--bg-card-subtle); padding:6px 14px; border-radius:980px; border:1px solid var(--border-subtle);">
+          <img src="<%= getUniLogo(degree.university) %>"
+               alt="<%= degree.university %> Crest"
+               loading="lazy"
+               onerror="this.onerror=null; this.src='/assets/placeholders/university_logo_placeholder.svg';"
+               style="width:24px; height:24px; object-fit:contain;">
+          <span style="font-size:12px; font-weight:700; color:var(--text-secondary);">
+            <%= degree.university %>
+          </span>
+        </div>
+      </div>
+
+      <h1 style="font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif; font-size:clamp(28px, 4vw, 40px); font-weight:700; letter-spacing:-0.03em; margin-bottom:12px; line-height:1.2; color:var(--text-main);">
+        <%= degree.name %>
+      </h1>
+
+      <div style="display:flex; align-items:center; gap:8px; font-size:15px; color:var(--text-secondary); margin-bottom:24px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span><%= degree.university %> · <%= degree.faculty %></span>
+      </div>
+
+      <!-- Editorial Category Photographic Banner -->
+      <div style="height:200px; border-radius:16px; overflow:hidden; margin-bottom:24px; position:relative; border:1px solid var(--border-subtle); background:var(--bg-card-subtle);">
+        <img src="<%= getDegreeImage(degree) %>"
+             alt="<%= degree.name %> Category Visual"
+             loading="lazy"
+             onerror="this.onerror=null; this.src='/assets/placeholders/degree_placeholder.webp';"
+             style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,0.65); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); color:#ffffff; padding:4px 12px; border-radius:980px; font-size:11.5px; font-weight:600;">
+          <%= getDegreeCategory(degree).toUpperCase() %> FIELD
+        </div>
+      </div>
+
+      <!-- Quick Metrics Bar (Apple Segmented Spec Bar) -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; padding-top:24px; border-top:1px solid var(--border-subtle);">
+        <div style="background:var(--bg-card-subtle); padding:16px 12px; border-radius:16px; border:1px solid var(--border-subtle); text-align:center;">
+          <div style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text-main);"><%= degree.duration_years %> Years</div>
+          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:600; margin-top:4px;">Duration</div>
+        </div>
+        <div style="background:var(--bg-card-subtle); padding:16px 12px; border-radius:16px; border:1px solid var(--border-subtle); text-align:center;">
+          <div style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text-main);"><%= degree.medium %></div>
+          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:600; margin-top:4px;">Medium</div>
+        </div>
+        <div style="background:var(--bg-card-subtle); padding:16px 12px; border-radius:16px; border:1px solid var(--border-subtle); text-align:center;">
+          <div style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:#34c759;"><%= degree.min_zscore_avg %></div>
+          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:600; margin-top:4px;">Avg Min Z-Score</div>
+        </div>
+        <div style="background:var(--bg-card-subtle); padding:16px 12px; border-radius:16px; border:1px solid var(--border-subtle); text-align:center;">
+          <div style="font-size:22px; font-weight:700; letter-spacing:-0.02em; color:<%= degree.risk <= 25 ? '#34c759' : (degree.risk <= 50 ? '#ff9500' : '#ff3b30') %>;">
+            <%= degree.risk %>% (<%= degree.risk_band %>)
+          </div>
+          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:600; margin-top:4px;">AI Automation Risk</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17-Section Grid Layout -->
+    <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+      
+      <!-- Section 1 & 2: Specializations & Academic Tracks -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl);">
+        <h3 style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--apple-blue);"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          Available Specializations &amp; Majoring Tracks
+        </h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.6; margin-bottom:16px;">
+          Depending on 2nd-year academic GPA performance, students can branch into the following specialized pathways:
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <% (degree.specializations || []).forEach(function(spec) { %>
+            <div style="background:var(--bg-card-subtle); color:var(--text-main); border:1px solid var(--border-subtle); padding:8px 16px; border-radius:10px; font-size:14px; font-weight:600;">
+              <%= spec %>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- Section 3 & 4: Careers & Public/Private Sector Mapping -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;">
+        <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+          <h4 style="font-size:16px; font-weight:700; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="color:#10b981;"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 5H2l10-5z"/></svg>
+            Public Sector &amp; Government Pathways
+          </h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
+            <% (degree.careers_public || []).forEach(function(c) { %>
+              <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-secondary); font-weight:500;">
+                <span style="color:#10b981;">✓</span> <%= c %>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div class="uniscope-card" style="padding:24px; border-radius:var(--radius-xl);">
+          <h4 style="font-size:16px; font-weight:700; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="color:var(--apple-blue);"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Private Sector &amp; Global Industry Pathways
+          </h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
+            <% (degree.careers_private || []).forEach(function(c) { %>
+              <li style="display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-secondary); font-weight:500;">
+                <span style="color:var(--apple-blue);">✓</span> <%= c %>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 5: AI Displacement Risk Model Breakdown -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl);">
+        <h3 style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--apple-blue);"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          AI Displacement Risk Assessment (UniScope Model v4.5)
+        </h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.6; margin-bottom:18px;">
+          Calculated using the 7 research frameworks aggregated with Sri Lankan labor market absorption coefficients:
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:16px;">
+          <div style="background:var(--bg-card-subtle); border:1px solid var(--border-subtle); border-radius:12px; padding:14px;">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Composite Risk</div>
+            <div style="font-size:22px; font-weight:800; color:var(--text-main);"><%= degree.risk %>/100</div>
+            <div style="font-size:12px; font-weight:700; color:<%= degree.risk <= 25 ? '#10b981' : (degree.risk <= 50 ? '#f59e0b' : '#ef4444') %>;">
+              <%= degree.risk_band %> Risk Band
+            </div>
+          </div>
+
+          <div style="background:var(--bg-card-subtle); border:1px solid var(--border-subtle); border-radius:12px; padding:14px;">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Human Empathy Shield</div>
+            <div style="font-size:22px; font-weight:800; color:#10b981;"><%= degree.h_human %> pt</div>
+            <div style="font-size:12px; color:var(--text-muted);">Protective Factor</div>
+          </div>
+
+          <div style="background:var(--bg-card-subtle); border:1px solid var(--border-subtle); border-radius:12px; padding:14px;">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700; text-transform:uppercase;">SL Market Calibration</div>
+            <div style="font-size:22px; font-weight:800; color:var(--apple-blue);">+<%= degree.c_sl %> pt</div>
+            <div style="font-size:12px; color:var(--text-muted);">Local Industry Shift</div>
+          </div>
+        </div>
+
+        <div style="font-size:13.5px; color:var(--text-main); background:var(--bg-card-subtle); border:1px solid var(--border-subtle); padding:14px 18px; border-radius:10px; line-height:1.6;">
+          <strong>Strategic Advice:</strong> <%= degree.risk <= 40 ? 'This degree focuses heavily on physical intuition, legal responsibility, patient health, or direct engineering commissioning — tasks inherently protected against automation.' : 'Routine cognitive tasks in this field will experience AI co-pilots. Students are strongly encouraged to specialize in prompt engineering, AI system architecture, and strategic leadership.' %>
+        </div>
+      </div>
+
+      <!-- Section 6: Vector Dimension Profile (Radar Dimensions) -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl);">
+        <h3 style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color:var(--apple-blue);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          6-Dimensional Academic Profile
+        </h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:14px;">
+          <div style="background:var(--bg-card-subtle); padding:12px 14px; border-radius:10px; border:1px solid var(--border-subtle);">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700;">Specialization Depth</div>
+            <div style="font-size:20px; font-weight:800; color:#7c3aed;"><%= (degree.vector && degree.vector[0]) || 8 %>/10</div>
+          </div>
+          <div style="background:var(--bg-card-subtle); padding:12px 14px; border-radius:10px; border:1px solid var(--border-subtle);">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700;">Career Breadth</div>
+            <div style="font-size:20px; font-weight:800; color:#7c3aed;"><%= (degree.vector && degree.vector[1]) || 8 %>/10</div>
+          </div>
+          <div style="background:var(--bg-card-subtle); padding:12px 14px; border-radius:10px; border:1px solid var(--border-subtle);">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700;">Practical Exposure</div>
+            <div style="font-size:20px; font-weight:800; color:#7c3aed;"><%= (degree.vector && degree.vector[2]) || 9 %>/10</div>
+          </div>
+          <div style="background:var(--bg-card-subtle); padding:12px 14px; border-radius:10px; border:1px solid var(--border-subtle);">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700;">Academic Rigor</div>
+            <div style="font-size:20px; font-weight:800; color:#7c3aed;"><%= (degree.vector && degree.vector[3]) || 9 %>/10</div>
+          </div>
+          <div style="background:var(--bg-card-subtle); padding:12px 14px; border-radius:10px; border:1px solid var(--border-subtle);">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700;">Flexibility</div>
+            <div style="font-size:20px; font-weight:800; color:#7c3aed;"><%= (degree.vector && degree.vector[4]) || 7 %>/10</div>
+          </div>
+          <div style="background:var(--bg-card-subtle); padding:12px 14px; border-radius:10px; border:1px solid var(--border-subtle);">
+            <div style="font-size:12px; color:var(--text-muted); font-weight:700;">Entry Breadth</div>
+            <div style="font-size:20px; font-weight:800; color:#7c3aed;"><%= (degree.vector && degree.vector[5]) || 7 %>/10</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="uniscope-card" style="display:flex; justify-content:space-between; align-items:center; padding:20px; flex-wrap:wrap; gap:12px;">
+        <span style="font-size:13px; color:var(--text-secondary);">
+          Verified against UGC Sri Lanka Admission Handbook &amp; University Faculty Regulations.
+        </span>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="/student-tools/degree-recognition/" class="btn-calc-action" style="background:transparent; color:var(--text-main); border:1px solid var(--border-card);">
+            Check Accreditation Guide ↗
+          </a>
+          <a href="/student-tools/cost-planner/" class="btn-calc-action" style="background:transparent; color:var(--text-main); border:1px solid var(--border-card);">
+            Estimate Living Costs ↗
+          </a>
+          <a href="/dashboard/compare/?d1=<%= encodeURIComponent(degree.code) %>" class="btn-calc-action">
+            Open Comparison Tool →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>

@@ -1,0 +1,379 @@
+<%- include('partials/head', { title: "Admissions & Student FAQ - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<style>
+.faq-wrap {
+  background: var(--bg-page);
+  min-height: 100vh;
+  padding: 100px 20px 80px;
+  color: var(--text-main);
+}
+.faq-hero {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 40px;
+}
+.faq-search-box {
+  max-width: 600px;
+  margin: 0 auto 32px;
+  position: relative;
+}
+.faq-search-input {
+  width: 100%;
+  padding: 14px 20px 14px 46px;
+  border-radius: var(--radius-pill, 980px);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  font-size: 15px;
+  color: var(--text-main);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.faq-search-input:focus {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+.faq-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.faq-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.faq-tab-btn {
+  padding: 7px 16px;
+  border-radius: 980px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.faq-tab-btn:hover {
+  color: var(--apple-blue);
+  border-color: var(--apple-blue);
+}
+.faq-tab-btn.active {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border-color: var(--apple-blue);
+}
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.faq-item:hover {
+  border-color: rgba(0, 113, 227, 0.3);
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  font-family: inherit;
+  gap: 16px;
+}
+.faq-question:hover {
+  color: var(--apple-blue);
+}
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  stroke: var(--apple-blue);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+  padding: 0 24px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+  padding: 0 24px 22px;
+}
+.faq-cat-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  background: var(--apple-blue-subtle);
+  color: var(--apple-blue);
+}
+</style>
+
+<div class="faq-wrap">
+  <div class="container" style="max-width: 880px;">
+    
+    <!-- Hero Banner -->
+    <div class="faq-hero">
+      <div style="display:inline-flex; align-items:center; gap:8px; background:var(--apple-blue-subtle); color:var(--apple-blue); padding:5px 16px; border-radius:980px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:14px; border:1px solid rgba(0,113,227,0.2);">
+        <img src="/static/home/images/uniscope_logo_mark.png" alt="" style="width:16px; height:16px; object-fit:contain;">
+        Admissions &amp; Higher Education Knowledge Base
+      </div>
+      <h1 style="font-size:clamp(30px, 4.5vw, 42px); font-weight:700; letter-spacing:-0.03em; color:var(--text-main); margin:0 0 14px;">
+        Frequently Asked Questions
+      </h1>
+      <p style="font-size:16px; color:var(--text-secondary); line-height:1.6; margin:0 auto; max-width:680px;">
+        Everything you need to know about G.C.E. A/L Z-scores, official UGC university quotas, aptitude tests, subject eligibility, and undergraduate GPA calculations.
+      </p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="faq-search-box">
+      <svg class="faq-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="faqSearchInput" class="faq-search-input" placeholder="Search questions (e.g. Z-score, quota, aptitude, repeat, GPA)..." oninput="filterFaqs()">
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="faq-tabs">
+      <button class="faq-tab-btn active" onclick="setFaqTab('all', this)">All Questions</button>
+      <button class="faq-tab-btn" onclick="setFaqTab('admissions', this)">UGC Quotas &amp; Selection</button>
+      <button class="faq-tab-btn" onclick="setFaqTab('zscore', this)">Z-Scores &amp; Cut-Offs</button>
+      <button class="faq-tab-btn" onclick="setFaqTab('aptitude', this)">Aptitude Tests</button>
+      <button class="faq-tab-btn" onclick="setFaqTab('undergrad', this)">GPA &amp; University Life</button>
+    </div>
+
+    <!-- FAQ Items Container -->
+    <div id="faqList">
+
+      <!-- Item 1: UGC Quota Allocation -->
+      <div class="faq-item open" data-cat="admissions">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the University Grants Commission (UGC) allocate university placements?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">UGC Quota Policy</span>
+          <p>
+            Under the national university admissions policy in Sri Lanka, undergraduate seats in state universities are filled through a composite three-tier formula:
+          </p>
+          <ul style="margin:8px 0 12px 20px; line-height:1.7;">
+            <li><strong>40% All-Island Merit:</strong> Selected strictly on island-wide Z-score ranking regardless of the candidate’s district.</li>
+            <li><strong>55% District Population Quota:</strong> Proportionately divided among the 25 administrative districts based on census school population ratios.</li>
+            <li><strong>5% Underprivileged Districts:</strong> Allocated affirmatively among the 16 recognized educationally underprivileged districts.</li>
+          </ul>
+          <p>
+            Certain specialised programmes (such as Arts, Music, Dance, and Sports Science) may admit students up to 100% on merit or specific institutional quotas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 2: Z-Score Calculation -->
+      <div class="faq-item" data-cat="zscore">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What is the Z-score and why is it used instead of total raw marks?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">Z-Scores &amp; Cut-Offs</span>
+          <p>
+            The Z-score standardizes examination results across subjects with varying difficulties and grading scales. A candidate's mark in each subject is converted into a standard score using the formula: <code>Z = (Raw Mark - Subject Mean) / Standard Deviation</code>.
+          </p>
+          <p>
+            The composite Z-score is the average of the candidate's three subject Z-scores. This ensures fair comparison regardless of whether a student chose higher-scoring or lower-scoring subjects.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 3: Repeat Attempts -->
+      <div class="faq-item" data-cat="admissions">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Does sitting for G.C.E. A/L in a second or third attempt (repeat shy) reduce my chances?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">UGC Quota Policy</span>
+          <p>
+            No. The University Grants Commission treats all three valid attempts equally. There is no mark reduction or penalty applied to a candidate's Z-score for sitting a second or third attempt, provided the three subjects are taken in one single examination sitting.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 4: Aptitude Tests -->
+      <div class="faq-item" data-cat="aptitude">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Which university degree courses require Aptitude Tests?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">Aptitude Tests</span>
+          <p>
+            Certain specialised degree programmes require candidates to pass an institutional aptitude test in addition to meeting the minimum Z-score cut-off:
+          </p>
+          <ul style="margin:8px 0 12px 20px; line-height:1.7;">
+            <li><strong>Architecture &amp; Landscape Architecture:</strong> University of Moratuwa</li>
+            <li><strong>Design &amp; Fashion Design:</strong> University of Moratuwa</li>
+            <li><strong>Information Technology &amp; Management (ITM):</strong> University of Moratuwa</li>
+            <li><strong>Visual &amp; Performing Arts:</strong> UVPA and Eastern University (SVIAS)</li>
+            <li><strong>Physical Education &amp; Sports Science:</strong> Sabaragamuwa, Jaffna, Kelaniya &amp; Sri Jayewardenepura</li>
+            <li><strong>Translation Studies:</strong> Kelaniya, Jaffna &amp; Sabaragamuwa</li>
+          </ul>
+          <p>
+            Students must apply directly to individual universities when aptitude test notices are published following A/L results release.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 5: Multi-Stream Courses -->
+      <div class="faq-item" data-cat="admissions">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I apply for degrees outside my primary A/L stream?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">UGC Quota Policy</span>
+          <p>
+            Yes. The UGC provides multiple <strong>Common Streams</strong> that accept candidates from different A/L backgrounds:
+          </p>
+          <ul style="margin:8px 0 12px 20px; line-height:1.7;">
+            <li><strong>Information Systems &amp; Computing:</strong> Accepts Physical Science, Biological Science, Commerce, and Technology streams.</li>
+            <li><strong>Town &amp; Country Planning:</strong> Accepts Physical Science, Biological Science, and Technology.</li>
+            <li><strong>Management &amp; Public Policy:</strong> Accepts Commerce, Arts, and Science streams meeting specific minimum requirements.</li>
+            <li><strong>Law (LL.B):</strong> Open to all streams with minimum English and general qualification thresholds.</li>
+          </ul>
+          <p>
+            Use our <a href="/subject-combination/" style="color:var(--apple-blue); font-weight:600;">Subject to Degree Matcher</a> to test your exact 3-subject combination.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 6: Undergrad GPA & Repeat Caps -->
+      <div class="faq-item" data-cat="undergrad">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How is University GPA calculated, and what does the Repeat Cap (Max C) mean?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">GPA &amp; University Life</span>
+          <p>
+            Semester GPA (SGPA) and Cumulative GPA (CGPA) are weighted averages of Grade Point Values (GPV) multiplied by module credits: <code>GPA = Σ(GPV × Credits) / Σ(Credits)</code>.
+          </p>
+          <p>
+            In most Sri Lankan state universities (e.g. UoM, UoC, UoP, USJ), if a student repeats a course module to improve an F or lower grade, the maximum grade credited towards their official GPA transcript is capped at <strong>C (GPV 2.0)</strong>, even if the student scores an A in the repeat paper.
+          </p>
+          <p>
+            You can plan and compute your semesters using our official <a href="/gpa-calculator/" style="color:var(--apple-blue); font-weight:600;">GPA &amp; CGPA Calculator</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 7: Honours Classification -->
+      <div class="faq-item" data-cat="undergrad">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What CGPA is required to graduate with a First Class Honours degree?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <span class="faq-cat-badge">GPA &amp; University Life</span>
+          <p>
+            Standard Honours Class thresholds across Sri Lankan national universities:
+          </p>
+          <ul style="margin:8px 0 12px 20px; line-height:1.7;">
+            <li><strong>First Class Honours:</strong> CGPA ≥ 3.70</li>
+            <li><strong>Second Class (Upper Division):</strong> 3.30 ≤ CGPA &lt; 3.70</li>
+            <li><strong>Second Class (Lower Division):</strong> 3.00 ≤ CGPA &lt; 3.30</li>
+            <li><strong>General / Pass Degree:</strong> 2.00 ≤ CGPA &lt; 3.00</li>
+          </ul>
+          <p>
+            Note: Graduating with honours often requires completing the degree within the minimum prescribed period (e.g., 4 years) without active disciplinary sanctions or uncompleted repeat modules.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Need More Help Banner -->
+    <div class="uniscope-card" style="margin-top:40px; padding:32px; border-radius:20px; text-align:center;">
+      <h3 style="font-size:20px; font-weight:700; color:var(--text-main); margin:0 0 8px;">Have a Question Not Listed Here?</h3>
+      <p style="font-size:14.5px; color:var(--text-secondary); margin:0 auto 20px; max-width:540px; line-height:1.6;">
+        Our team reviews official UGC notices and student inquiries weekly. Feel free to reach out with any curriculum or admissions question.
+      </p>
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+        <a href="/contact-us/" class="btn-primary" style="padding:10px 24px; font-size:14px; text-decoration:none;">Contact Support Desk</a>
+        <a href="/degrees/cutoff-tool/" class="btn-hero-outline" style="padding:10px 24px; font-size:14px; text-decoration:none;">Check Cut-Off Marks</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  // Optional: close siblings if desired, or keep multi-open
+  item.classList.toggle('open');
+}
+
+function setFaqTab(category, btn) {
+  document.querySelectorAll('.faq-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const items = document.querySelectorAll('.faq-item');
+  items.forEach(item => {
+    if (category === 'all' || item.getAttribute('data-cat') === category) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+function filterFaqs() {
+  const q = document.getElementById('faqSearchInput').value.toLowerCase().trim();
+  const items = document.querySelectorAll('.faq-item');
+  
+  items.forEach(item => {
+    const text = item.innerText.toLowerCase();
+    if (!q || text.includes(q)) {
+      item.style.display = 'block';
+      if (q) item.classList.add('open');
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+</script>

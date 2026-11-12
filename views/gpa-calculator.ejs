@@ -1,0 +1,1575 @@
+<%- include('partials/head', { title: "Sri Lanka University GPA & CGPA Calculator - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<style>
+  /* GPA Calculator Styles matching UniScope LK Design Language */
+  .gpa-hero {
+    background: linear-gradient(135deg, rgba(59,79,168,0.08) 0%, rgba(148,112,188,0.12) 100%);
+    padding: 120px 0 35px;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.12);
+  }
+  .gpa-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #7c3aed, #4f46e5);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
+    margin-bottom: 14px;
+  }
+  .gpa-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 30px 20px 80px;
+  }
+  .gpa-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+    align-items: start;
+  }
+  @media (max-width: 992px) {
+    .gpa-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Preset Selector Card */
+  .gpa-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    margin-bottom: 24px;
+    transition: box-shadow 180ms var(--ease-out), border-color 150ms var(--ease-out);
+  }
+  [data-theme="dark"] .gpa-card,
+  body.dark .gpa-card {
+    background: #161f36;
+    border-color: #273553;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .preset-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .select-styled {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #cbd5e1;
+    background: var(--card-bg, #fff);
+    color: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    min-width: 240px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  [data-theme="dark"] .select-styled,
+  body.dark .select-styled {
+    background: #161f36;
+    border-color: #273553;
+    color: #e2e8f0;
+  }
+  .select-styled:focus {
+    border-color: #7c3aed;
+  }
+
+  /* Semester Accordions */
+  .semester-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  }
+  [data-theme="dark"] .semester-card,
+  body.dark .semester-card {
+    background: #161f36;
+    border-color: #273553;
+  }
+
+  .semester-header {
+    background: rgba(124, 58, 237, 0.04);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+  }
+  [data-theme="dark"] .semester-header,
+  body.dark .semester-header {
+    background: rgba(124, 58, 237, 0.1);
+    border-bottom-color: rgba(124, 58, 237, 0.2);
+  }
+
+  .sem-title-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sem-title-input {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    color: inherit;
+    background: transparent;
+    border: none;
+    border-bottom: 2px dashed transparent;
+    padding: 2px 6px;
+    width: auto;
+    cursor: pointer;
+  }
+  .sem-title-input:hover, .sem-title-input:focus {
+    border-bottom-color: #7c3aed;
+    background: rgba(124, 58, 237, 0.05);
+    outline: none;
+  }
+
+  .sem-badge {
+    background: #ede9fe;
+    color: #7c3aed;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  [data-theme="dark"] .sem-badge,
+  body.dark .sem-badge {
+    background: #312e81;
+    color: #c7d2fe;
+  }
+
+  .sem-stats {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .sem-gpa-pill {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+  }
+
+  .modules-table-wrap {
+    padding: 18px 22px;
+    overflow-x: auto;
+  }
+  .modules-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+  }
+  .modules-table th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    padding: 8px 10px;
+    border-bottom: 1.5px solid #e2e8f0;
+  }
+  [data-theme="dark"] .modules-table th,
+  body.dark .modules-table th {
+    color: #94a3b8;
+    border-bottom-color: #273553;
+  }
+  .modules-table td {
+    padding: 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  [data-theme="dark"] .modules-table td,
+  body.dark .modules-table td {
+    border-bottom-color: #273553;
+  }
+
+  .input-tbl {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: var(--card-bg, #fff);
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  [data-theme="dark"] .input-tbl,
+  body.dark .input-tbl {
+    background: #0f172a;
+    border-color: #334155;
+    color: #f8fafc;
+  }
+  .input-tbl:focus {
+    border-color: #7c3aed;
+  }
+
+  .btn-icon-del {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    border: none;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 140ms var(--ease-out), color 140ms var(--ease-out), transform 100ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-icon-del:hover {
+      background: #ef4444;
+      color: #fff;
+    }
+  }
+  .btn-icon-del:active {
+    transform: scale(0.93);
+  }
+
+  .tbl-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 22px 18px;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .btn-add-row {
+    background: rgba(124, 58, 237, 0.08);
+    color: #7c3aed;
+    border: 1.5px dashed #7c3aed;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background-color 140ms var(--ease-out), color 140ms var(--ease-out), transform 100ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-add-row:hover {
+      background: #7c3aed;
+      color: #fff;
+    }
+  }
+  .btn-add-row:active {
+    transform: scale(0.97);
+  }
+
+  /* Right Sticky Dashboard */
+  .sticky-dashboard {
+    position: sticky;
+    top: 90px;
+  }
+  .cgpa-display-card {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+    color: #fff;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 10px 30px rgba(67, 56, 202, 0.35);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .cgpa-display-card::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+    top: -80px;
+    right: -60px;
+    pointer-events: none;
+  }
+  .cgpa-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 56px;
+    line-height: 1;
+    font-weight: 800;
+    margin: 10px 0 6px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  .cgpa-scale {
+    font-size: 16px;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  .class-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .class-first {
+    background: #10b981;
+    color: #fff;
+  }
+  .class-second-upper {
+    background: #3b82f6;
+    color: #fff;
+  }
+  .class-second-lower {
+    background: #f59e0b;
+    color: #fff;
+  }
+  .class-general {
+    background: #6b7280;
+    color: #fff;
+  }
+  .class-warning {
+    background: #ef4444;
+    color: #fff;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+    text-align: left;
+    background: rgba(255,255,255,0.08);
+    padding: 14px;
+    border-radius: 12px;
+  }
+  .metric-item-num {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .metric-item-lbl {
+    font-size: 11.5px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Target GPA Forecaster */
+  .target-planner {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 24px;
+  }
+  [data-theme="dark"] .target-planner,
+  body.dark .target-planner {
+    background: #161f36;
+    border-color: #273553;
+  }
+
+  .action-btn-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn-calc-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 120ms var(--ease-out), box-shadow 150ms var(--ease-out), background-color 150ms var(--ease-out), opacity 150ms var(--ease-out);
+    border: none;
+  }
+  .btn-calc-action:active {
+    transform: scale(0.97) !important;
+  }
+  .btn-p-gradient {
+    background: linear-gradient(90deg, #7c3aed, #4f46e5);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-p-gradient:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+  }
+  .btn-secondary {
+    background: rgba(124, 58, 237, 0.08);
+    color: #7c3aed;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+  }
+  [data-theme="dark"] .btn-secondary,
+  body.dark .btn-secondary {
+    background: rgba(124, 58, 237, 0.15);
+    color: #c7d2fe;
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-secondary:hover {
+      background: rgba(124, 58, 237, 0.15);
+    }
+  }
+
+  /* Repeat & NGPA badges */
+  .chip-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .chip-repeat {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+  .chip-ngpa {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  [data-theme="dark"] .chip-repeat,
+  body.dark .chip-repeat {
+    background: #7f1d1d;
+    color: #fca5a5;
+  }
+  [data-theme="dark"] .chip-ngpa,
+  body.dark .chip-ngpa {
+    background: #78350f;
+    color: #fde68a;
+  }
+
+  /* Printable transcript container */
+  .print-only {
+    display: none !important;
+  }
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm 15mm 15mm;
+    }
+
+    html, body {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      height: auto !important;
+      overflow: visible !important;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+      font-size: 10pt !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Hide screen UI elements */
+    #navbar,
+    .navbar,
+    .gpa-hero,
+    .gpa-container,
+    .ft,
+    footer,
+    #backToTop,
+    #cartToast,
+    .mobile-menu,
+    .no-print {
+      display: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Display official transcript section cleanly */
+    #printSection.print-only,
+    #printSection {
+      display: block !important;
+      visibility: visible !important;
+      position: static !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      background: #ffffff !important;
+      color: #0f172a !important;
+      box-sizing: border-box !important;
+    }
+
+    #printSection * {
+      visibility: visible !important;
+      color: inherit;
+    }
+
+    #printSection table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin-top: 8px !important;
+      margin-bottom: 18px !important;
+      page-break-inside: auto;
+    }
+
+    #printSection th,
+    #printSection td {
+      border: 1px solid #cbd5e1 !important;
+      padding: 6px 8px !important;
+      font-size: 9pt !important;
+      text-align: left;
+    }
+
+    #printSection th {
+      background: #f1f5f9 !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+    }
+
+    #printSection td {
+      color: #334155 !important;
+    }
+
+    #printSection .sem-block {
+      page-break-inside: avoid;
+      margin-bottom: 18px !important;
+    }
+  }
+</style>
+
+<!-- Hero Section -->
+<section class="gpa-hero">
+  <div class="container">
+    <div style="max-width: 850px;">
+      <div class="gpa-badge-pill">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        Exclusively for Sri Lankan University Students
+      </div>
+      <h1 style="font-family: 'DM Serif Display', serif; font-size: 42px; line-height: 1.15; margin-bottom: 12px;">
+        Sri Lankan University GPA &amp; CGPA Calculator
+      </h1>
+      <p style="font-size: 17px; opacity: 0.88; max-width: 720px; line-height: 1.6;">
+        Engineered with official UGC &amp; faculty grading bylaws across 17+ state universities. Calculate <strong>SGPA</strong>, <strong>CGPA</strong>, track repeat caps, manage Non-GPA modules, predict Honours Classifications (First Class / 2nd Upper), and forecast required future grades.
+      </p>
+      <div style="display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; opacity:0.85;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          UOM 4.2 Scale &amp; Standard 4.0 Scale
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; opacity:0.85;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Repeat Exam Max-C Capping Logic
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; opacity:0.85;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          PDF Transcript &amp; Auto-Save
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Workspace -->
+<div class="gpa-container">
+  <!-- University & Preset Selector Card -->
+  <div class="gpa-card no-print">
+    <div class="preset-row">
+      <div>
+        <label style="display:block; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:#64748b; margin-bottom:6px;">
+          Select University &amp; Faculty Grading Scale
+        </label>
+        <select id="scalePresetSelect" class="select-styled" onchange="onScaleChange()">
+          <option value="ugc_standard">Sri Lanka Standard UGC / SLQF (4.00 Scale)</option>
+          <option value="uom">University of Moratuwa (UOM - 4.20 Scale)</option>
+          <option value="uop">University of Peradeniya (UOP - 4.00 Scale)</option>
+          <option value="uoj" selected>University of Jaffna (UOJ - Engineering &amp; Science 4.00)</option>
+          <option value="uoc">University of Colombo / UCSC (4.00 Scale)</option>
+          <option value="usj">University of Sri Jayewardenepura (USJ - 4.00 Scale)</option>
+          <option value="uok">University of Kelaniya (4.00 Scale)</option>
+          <option value="ruh">University of Ruhuna (4.00 Scale)</option>
+          <option value="sliit">SLIIT (4.00 Scale)</option>
+          <option value="custom">Custom University Grading Scale</option>
+        </select>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn-calc-action btn-secondary" onclick="loadSampleJaffnaData()" title="Pre-fill with authentic sample engineering modules">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Load Sample Modules
+        </button>
+        <button class="btn-calc-action btn-secondary" onclick="addNewSemester()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add New Semester
+        </button>
+        <button class="btn-calc-action btn-secondary" onclick="clearAllData()" style="color:#ef4444; border-color:rgba(239,68,68,0.3);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Scale Legend -->
+    <div id="scaleLegend" style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(0,0,0,0.06); display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-size:12.5px;">
+      <span style="font-weight:700; color:#64748b;">Active Scale GPVs:</span>
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <!-- Layout: Left Workspaces & Right Sticky Summary -->
+  <div class="gpa-layout">
+    <!-- Semesters Container -->
+    <div id="semestersContainer">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Right Column: Sticky Performance Board -->
+    <div class="sticky-dashboard no-print">
+      <!-- Cumulative CGPA Card -->
+      <div class="cgpa-display-card">
+        <span style="text-transform:uppercase; font-size:12px; letter-spacing:1px; font-weight:700; opacity:0.85;">Overall Cumulative GPA</span>
+        <div class="cgpa-number" id="cgpaDisplay">0.00</div>
+        <div class="cgpa-scale" id="scaleMaxDisplay">out of 4.00 Scale</div>
+        
+        <div id="honoursClassBadge" class="class-badge class-general">
+          Pass / General Degree
+        </div>
+
+        <div class="metric-grid">
+          <div>
+            <div class="metric-item-num" id="totalGpaCreditsDisplay">0</div>
+            <div class="metric-item-lbl">GPA Credits</div>
+          </div>
+          <div>
+            <div class="metric-item-num" id="totalDegreeCreditsDisplay">0</div>
+            <div class="metric-item-lbl">Total Credits (inc. NGPA)</div>
+          </div>
+          <div>
+            <div class="metric-item-num" id="totalPointsDisplay">0.0</div>
+            <div class="metric-item-lbl">Quality Points</div>
+          </div>
+          <div>
+            <div class="metric-item-num" id="semestersCountDisplay">0</div>
+            <div class="metric-item-lbl">Semesters Added</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Honours Classification Benchmark Rules -->
+      <div class="gpa-card">
+        <h4 style="font-size:15px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          Sri Lankan Degree Class Criteria
+        </h4>
+        <div style="font-size:13px; line-height:1.6;">
+          <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed rgba(0,0,0,0.06);">
+            <span><strong>First Class Honours:</strong></span>
+            <span style="color:#10b981; font-weight:800;">CGPA ≥ 3.70</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed rgba(0,0,0,0.06);">
+            <span><strong>Second Upper (2:1):</strong></span>
+            <span style="color:#3b82f6; font-weight:800;">3.30 – 3.69</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed rgba(0,0,0,0.06);">
+            <span><strong>Second Lower (2:2):</strong></span>
+            <span style="color:#f59e0b; font-weight:800;">3.00 – 3.29</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; padding:4px 0;">
+            <span><strong>General Pass:</strong></span>
+            <span style="color:#6b7280; font-weight:800;">2.00 – 2.99</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Target GPA & What-If Planner -->
+      <div class="target-planner">
+        <h4 style="font-size:15px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          Target GPA / What-If Planner
+        </h4>
+        <p style="font-size:12.5px; opacity:0.8; margin-bottom:14px;">
+          Estimate what GPA you need in your upcoming semesters to graduate with a desired Honours class.
+        </p>
+        
+        <div style="margin-bottom:12px;">
+          <label style="display:block; font-size:12px; font-weight:700; margin-bottom:4px;">Target CGPA to Achieve:</label>
+          <select id="targetClassSelect" class="input-tbl" onchange="calculateTargetGpa()">
+            <option value="3.70">First Class Honours (3.70)</option>
+            <option value="3.30">Second Class Upper (3.30)</option>
+            <option value="3.00">Second Class Lower (3.00)</option>
+            <option value="custom_target">Custom Target GPA</option>
+          </select>
+        </div>
+
+        <div id="customTargetRow" style="display:none; margin-bottom:12px;">
+          <label style="display:block; font-size:12px; font-weight:700; margin-bottom:4px;">Enter Exact Target CGPA:</label>
+          <input type="number" id="customTargetInput" class="input-tbl" step="0.01" min="2.0" max="4.2" value="3.80" oninput="calculateTargetGpa()">
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="display:block; font-size:12px; font-weight:700; margin-bottom:4px;">Remaining Credits to Complete:</label>
+          <input type="number" id="remainingCreditsInput" class="input-tbl" min="1" max="120" value="30" oninput="calculateTargetGpa()">
+        </div>
+
+        <div id="targetResultBox" style="background:rgba(124, 58, 237, 0.08); border:1px solid rgba(124, 58, 237, 0.2); border-radius:10px; padding:12px; font-size:13px; font-weight:600;">
+          Required GPA will appear here...
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="action-btn-block">
+        <button type="button" class="btn-calc-action btn-p-gradient" onclick="triggerGpaPrint()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Download Official PDF Report
+        </button>
+        <button class="btn-calc-action btn-secondary" onclick="exportDataJson()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Backup Records (Export JSON)
+        </button>
+        <label class="btn-calc-action btn-secondary" style="margin:0; cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Restore Backup (Import JSON)
+          <input type="file" id="importJsonInput" accept=".json" style="display:none;" onchange="importDataJson(event)">
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Print Section (Clean Academic Transcript) -->
+<div id="printSection" class="print-only">
+  <div style="border-bottom:2px solid #0071e3; padding-bottom:14px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:flex-end;">
+    <div>
+      <div style="font-size:11px; font-weight:700; color:#0071e3; letter-spacing:0.04em; text-transform:uppercase; margin-bottom:4px;">
+        UniScope LK Higher Education Platform
+      </div>
+      <h2 style="margin:0; color:#0f172a; font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif; font-size:24px; font-weight:700;">
+        Academic Performance Transcript &amp; GPA Audit
+      </h2>
+      <p style="margin:4px 0 0; font-size:12px; color:#64748b;">
+        Official Sri Lankan University Student GPA &amp; CGPA Audit Transcript · Verified Statutory By-Laws
+      </p>
+    </div>
+    <div style="text-align:right;">
+      <span style="font-size:11.5px; color:#64748b;">Date Generated:<br><strong id="printDate" style="color:#0f172a;"></strong></span>
+    </div>
+  </div>
+
+  <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
+    <div><span style="font-size:11px; color:#64748b; font-weight:600; text-transform:uppercase;">Grading Scale:</span> <div id="printScale" style="font-weight:700; font-size:13px; color:#0f172a; margin-top:2px;">UGC Standard</div></div>
+    <div><span style="font-size:11px; color:#64748b; font-weight:600; text-transform:uppercase;">Overall CGPA:</span> <div id="printCgpa" style="font-size:20px; font-weight:800; color:#0071e3; margin-top:2px;">0.00</div></div>
+    <div><span style="font-size:11px; color:#64748b; font-weight:600; text-transform:uppercase;">Classification:</span> <div id="printClass" style="font-weight:700; font-size:13px; color:#10b981; margin-top:2px;">General</div></div>
+    <div><span style="font-size:11px; color:#64748b; font-weight:600; text-transform:uppercase;">Degree Credits:</span> <div id="printCredits" style="font-weight:700; font-size:13px; color:#0f172a; margin-top:2px;">0 Earned</div></div>
+  </div>
+
+  <div id="printSemestersBody">
+    <!-- Generated dynamically during print -->
+  </div>
+
+  <div style="margin-top:28px; border-top:1px dashed #cbd5e1; padding-top:10px; font-size:10.5px; color:#64748b; text-align:center;">
+    This academic audit transcript was computed via UniScope LK (https://uniscope.lk) in accordance with published Sri Lankan University By-Laws.
+  </div>
+</div>
+
+<script>
+  // =========================================================================
+  // SRI LANKAN UNIVERSITY GRADING SCALES DEFINITION
+  // =========================================================================
+  const GRADING_SCALES = {
+    ugc_standard: {
+      name: "Sri Lanka Standard UGC / SLQF (4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D+": 1.3, "D": 1.0, "E/F": 0.0
+      }
+    },
+    uom: {
+      name: "University of Moratuwa (UOM - 4.20 Scale)",
+      max: 4.2,
+      grades: {
+        "A+": 4.2, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D": 1.0, "I-we/F": 0.0
+      }
+    },
+    uop: {
+      name: "University of Peradeniya (UOP - 4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D": 1.0, "E": 0.0
+      }
+    },
+    uoj: {
+      name: "University of Jaffna (UOJ - Engineering & Science 4.00)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D+": 1.3, "D": 1.0, "E": 0.0
+      }
+    },
+    uoc: {
+      name: "University of Colombo / UCSC (4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.7,
+        "D+": 1.3, "D": 1.0, "E": 0.0
+      }
+    },
+    usj: {
+      name: "University of Sri Jayewardenepura (USJ - 4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.7,
+        "D+": 1.3, "D": 1.0, "E": 0.0
+      }
+    },
+    uok: {
+      name: "University of Kelaniya (4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D": 1.0, "E": 0.0
+      }
+    },
+    ruh: {
+      name: "University of Ruhuna (4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D": 1.0, "E": 0.0
+      }
+    },
+    sliit: {
+      name: "SLIIT (4.00 Scale)",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.7,
+        "D+": 1.3, "D": 1.0, "F": 0.0
+      }
+    },
+    custom: {
+      name: "Custom University Scale",
+      max: 4.0,
+      grades: {
+        "A+": 4.0, "A": 4.0, "A-": 3.7,
+        "B+": 3.3, "B": 3.0, "B-": 2.7,
+        "C+": 2.3, "C": 2.0, "C-": 1.5,
+        "D": 1.0, "E/F": 0.0
+      }
+    }
+  };
+
+  // State
+  let currentScaleKey = 'uoj';
+  let semesters = [];
+
+  // =========================================================================
+  // INITIALIZATION & LIFECYCLE
+  // =========================================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check saved state in localStorage
+    const saved = localStorage.getItem('uniscope_gpa_state');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.scaleKey && GRADING_SCALES[parsed.scaleKey]) {
+          currentScaleKey = parsed.scaleKey;
+          document.getElementById('scalePresetSelect').value = currentScaleKey;
+        }
+        if (parsed.semesters && Array.isArray(parsed.semesters) && parsed.semesters.length > 0) {
+          semesters = parsed.semesters;
+        }
+      } catch (e) {
+        console.error('Error parsing saved state', e);
+      }
+    }
+
+    // If empty, load sample data
+    if (semesters.length === 0) {
+      loadSampleJaffnaData(false);
+    } else {
+      renderScaleLegend();
+      renderAllSemesters();
+      recalculateAll();
+    }
+
+    // Set print date
+    const d = new Date();
+    const pDate = document.getElementById('printDate');
+    if (pDate) {
+      pDate.textContent = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+  });
+
+  function saveStateToLocal() {
+    const state = {
+      scaleKey: currentScaleKey,
+      semesters: semesters
+    };
+    localStorage.setItem('uniscope_gpa_state', JSON.stringify(state));
+  }
+
+  function onScaleChange() {
+    currentScaleKey = document.getElementById('scalePresetSelect').value;
+    renderScaleLegend();
+    renderAllSemesters();
+    recalculateAll();
+    saveStateToLocal();
+  }
+
+  function renderScaleLegend() {
+    const scale = GRADING_SCALES[currentScaleKey];
+    const container = document.getElementById('scaleLegend');
+    let html = `<span style="font-weight:700; color:#64748b;">Active Scale (${scale.name}):</span>`;
+    for (const [grade, gpv] of Object.entries(scale.grades)) {
+      html += `<span style="background:rgba(124,58,237,0.06); padding:2px 8px; border-radius:6px; font-size:12px;"><strong>${grade}</strong> = ${gpv.toFixed(1)}</span>`;
+    }
+    container.innerHTML = html;
+    document.getElementById('scaleMaxDisplay').textContent = `out of ${scale.max.toFixed(2)} Scale`;
+  }
+
+  // =========================================================================
+  // SAMPLE DATA: UNIVERSITY OF JAFFNA ELECTRICAL & ELECTRONIC ENGINEERING
+  // =========================================================================
+  function loadSampleJaffnaData(showAlert = true) {
+    currentScaleKey = 'uoj';
+    document.getElementById('scalePresetSelect').value = 'uoj';
+
+    semesters = [
+      {
+        id: 'sem_1',
+        title: 'Year 1 - Semester 1 (General Engineering)',
+        modules: [
+          { code: 'GE1010', name: 'Engineering Mathematics I', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+          { code: 'GE1020', name: 'Engineering Mechanics', credits: 3, grade: 'A-', isRepeat: false, isNgpa: false },
+          { code: 'GE1030', name: 'Introduction to Electrical Engineering', credits: 3, grade: 'A+', isRepeat: false, isNgpa: false },
+          { code: 'GE1040', name: 'Computer Programming (C/C++)', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+          { code: 'GE1050', name: 'Engineering Drawing', credits: 2, grade: 'B+', isRepeat: false, isNgpa: false },
+          { code: 'EN1010', name: 'English for Academic Communication', credits: 2, grade: 'A', isRepeat: false, isNgpa: true } // NGPA
+        ]
+      },
+      {
+        id: 'sem_2',
+        title: 'Year 1 - Semester 2 (General Engineering)',
+        modules: [
+          { code: 'GE2010', name: 'Engineering Mathematics II', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+          { code: 'GE2020', name: 'Materials Science & Engineering', credits: 3, grade: 'B+', isRepeat: false, isNgpa: false },
+          { code: 'GE2030', name: 'Basic Thermodynamics & Fluid Mechanics', credits: 3, grade: 'A-', isRepeat: false, isNgpa: false },
+          { code: 'EC2010', name: 'Analog Electronics & Semiconductor Devices', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+          { code: 'GE2040', name: 'Engineering Workshop Practice', credits: 2, grade: 'A+', isRepeat: false, isNgpa: false }
+        ]
+      },
+      {
+        id: 'sem_3',
+        title: 'Year 2 - Semester 1 (Electrical & Electronic Focus)',
+        modules: [
+          { code: 'EC3010', name: 'Signals and Systems', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+          { code: 'EC3020', name: 'Electric Circuit Analysis & Network Theory', credits: 3, grade: 'A+', isRepeat: false, isNgpa: false },
+          { code: 'EC3030', name: 'Digital Logic Design & Microcontrollers', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+          { code: 'EC3040', name: 'Electromagnetic Field Theory', credits: 3, grade: 'B+', isRepeat: false, isNgpa: false },
+          { code: 'MA3010', name: 'Advanced Engineering Mathematics III', credits: 3, grade: 'A-', isRepeat: false, isNgpa: false }
+        ]
+      }
+    ];
+
+    renderScaleLegend();
+    renderAllSemesters();
+    recalculateAll();
+    saveStateToLocal();
+
+    if (showAlert && typeof showCartToast === 'function') {
+      showCartToast('Loaded authentic sample Engineering modules (UOJ)');
+    }
+  }
+
+  function clearAllData() {
+    if (confirm("Are you sure you want to clear all semesters and courses?")) {
+      semesters = [];
+      addNewSemester();
+      saveStateToLocal();
+    }
+  }
+
+  // =========================================================================
+  // SEMESTER & MODULE DOM MANIPULATION
+  // =========================================================================
+  function addNewSemester() {
+    const semIndex = semesters.length + 1;
+    const year = Math.ceil(semIndex / 2);
+    const semInYear = (semIndex % 2 === 1) ? 1 : 2;
+    const newSem = {
+      id: 'sem_' + Date.now(),
+      title: `Year ${year} - Semester ${semInYear}`,
+      modules: [
+        { code: '', name: 'Core Course 1', credits: 3, grade: 'A', isRepeat: false, isNgpa: false },
+        { code: '', name: 'Core Course 2', credits: 3, grade: 'B+', isRepeat: false, isNgpa: false },
+        { code: '', name: 'Core Course 3', credits: 3, grade: 'A-', isRepeat: false, isNgpa: false }
+      ]
+    };
+    semesters.push(newSem);
+    renderAllSemesters();
+    recalculateAll();
+    saveStateToLocal();
+  }
+
+  function removeSemester(semId) {
+    if (confirm("Remove this semester and its courses?")) {
+      semesters = semesters.filter(s => s.id !== semId);
+      renderAllSemesters();
+      recalculateAll();
+      saveStateToLocal();
+    }
+  }
+
+  function addModule(semId) {
+    const sem = semesters.find(s => s.id === semId);
+    if (sem) {
+      sem.modules.push({
+        code: '',
+        name: 'New Course',
+        credits: 3,
+        grade: 'A',
+        isRepeat: false,
+        isNgpa: false
+      });
+      renderAllSemesters();
+      recalculateAll();
+      saveStateToLocal();
+    }
+  }
+
+  function removeModule(semId, modIndex) {
+    const sem = semesters.find(s => s.id === semId);
+    if (sem) {
+      sem.modules.splice(modIndex, 1);
+      renderAllSemesters();
+      recalculateAll();
+      saveStateToLocal();
+    }
+  }
+
+  function onSemTitleChange(semId, val) {
+    const sem = semesters.find(s => s.id === semId);
+    if (sem) {
+      sem.title = val;
+      saveStateToLocal();
+    }
+  }
+
+  function onModuleChange(semId, modIndex, field, val) {
+    const sem = semesters.find(s => s.id === semId);
+    if (sem && sem.modules[modIndex]) {
+      if (field === 'credits') {
+        sem.modules[modIndex].credits = parseFloat(val) || 0;
+      } else if (field === 'isRepeat' || field === 'isNgpa') {
+        sem.modules[modIndex][field] = Boolean(val);
+      } else {
+        sem.modules[modIndex][field] = val;
+      }
+      recalculateAll();
+      saveStateToLocal();
+    }
+  }
+
+  // =========================================================================
+  // RENDERING
+  // =========================================================================
+  function renderAllSemesters() {
+    const container = document.getElementById('semestersContainer');
+    const scale = GRADING_SCALES[currentScaleKey];
+    let html = '';
+
+    semesters.forEach((sem, sIdx) => {
+      let semGpaCredits = 0;
+      let semPoints = 0;
+      let semTotalCredits = 0;
+
+      sem.modules.forEach(m => {
+        const c = parseFloat(m.credits) || 0;
+        semTotalCredits += c;
+        if (!m.isNgpa) {
+          let gpv = scale.grades[m.grade] !== undefined ? scale.grades[m.grade] : 0.0;
+          // Sri Lankan repeat rule: cap at 'C' / GPV 2.00
+          if (m.isRepeat && gpv > 2.0) {
+            gpv = 2.0;
+          }
+          semGpaCredits += c;
+          semPoints += (c * gpv);
+        }
+      });
+
+      const semGpa = semGpaCredits > 0 ? (semPoints / semGpaCredits).toFixed(2) : '0.00';
+
+      html += `
+        <div class="semester-card" id="card_${sem.id}">
+          <div class="semester-header">
+            <div class="sem-title-box">
+              <span class="sem-badge">#${sIdx + 1}</span>
+              <input type="text" class="sem-title-input" value="${escapeHtml(sem.title)}" onchange="onSemTitleChange('${sem.id}', this.value)" title="Click to rename semester">
+            </div>
+
+            <div class="sem-stats">
+              <div>
+                <span style="color:#64748b; font-size:12px;">Credits:</span>
+                <strong>${semTotalCredits}</strong>
+              </div>
+              <div class="sem-gpa-pill">
+                SGPA: ${semGpa}
+              </div>
+              <button class="btn-icon-del no-print" onclick="removeSemester('${sem.id}')" title="Delete Semester">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="modules-table-wrap">
+            <table class="modules-table">
+              <thead>
+                <tr>
+                  <th style="width:110px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width:90px;">Credits</th>
+                  <th style="width:110px;">Grade</th>
+                  <th style="width:75px;">GPV</th>
+                  <th style="width:140px;">Flags / Rules</th>
+                  <th style="width:45px;" class="no-print"></th>
+                </tr>
+              </thead>
+              <tbody>
+      `;
+
+      sem.modules.forEach((mod, mIdx) => {
+        let gpv = scale.grades[mod.grade] !== undefined ? scale.grades[mod.grade] : 0.0;
+        let isCapped = false;
+        if (mod.isRepeat && gpv > 2.0) {
+          gpv = 2.0;
+          isCapped = true;
+        }
+
+        // Grade options
+        let gradeOptions = '';
+        for (const g of Object.keys(scale.grades)) {
+          gradeOptions += `<option value="${g}" ${mod.grade === g ? 'selected' : ''}>${g}</option>`;
+        }
+
+        html += `
+          <tr>
+            <td>
+              <input type="text" class="input-tbl" placeholder="e.g. CS101" value="${escapeHtml(mod.code || '')}" onchange="onModuleChange('${sem.id}', ${mIdx}, 'code', this.value)">
+            </td>
+            <td>
+              <input type="text" class="input-tbl" placeholder="e.g. Data Structures" value="${escapeHtml(mod.name || '')}" onchange="onModuleChange('${sem.id}', ${mIdx}, 'name', this.value)">
+            </td>
+            <td>
+              <select class="input-tbl" onchange="onModuleChange('${sem.id}', ${mIdx}, 'credits', this.value)">
+                <option value="1" ${mod.credits == 1 ? 'selected' : ''}>1</option>
+                <option value="2" ${mod.credits == 2 ? 'selected' : ''}>2</option>
+                <option value="3" ${mod.credits == 3 ? 'selected' : ''}>3</option>
+                <option value="4" ${mod.credits == 4 ? 'selected' : ''}>4</option>
+                <option value="5" ${mod.credits == 5 ? 'selected' : ''}>5</option>
+                <option value="6" ${mod.credits == 6 ? 'selected' : ''}>6</option>
+                <option value="8" ${mod.credits == 8 ? 'selected' : ''}>8</option>
+              </select>
+            </td>
+            <td>
+              <select class="input-tbl" onchange="onModuleChange('${sem.id}', ${mIdx}, 'grade', this.value)">
+                ${gradeOptions}
+              </select>
+            </td>
+            <td>
+              <strong style="color:${mod.isNgpa ? '#94a3b8' : '#7c3aed'}; font-size:14px;">
+                ${mod.isNgpa ? 'NGPA' : gpv.toFixed(1)}
+              </strong>
+              ${isCapped ? '<br><span style="font-size:10px; color:#ef4444; font-weight:700;">Cap 2.0</span>' : ''}
+            </td>
+            <td>
+              <div style="display:flex; flex-direction:column; gap:4px; font-size:12px;">
+                <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+                  <input type="checkbox" ${mod.isRepeat ? 'checked' : ''} onchange="onModuleChange('${sem.id}', ${mIdx}, 'isRepeat', this.checked)">
+                  <span class="chip-tag chip-repeat" title="Sri Lankan Exam by-law: Repeat max grade is capped at 'C' / 2.0 GPV">Repeat (Cap C)</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+                  <input type="checkbox" ${mod.isNgpa ? 'checked' : ''} onchange="onModuleChange('${sem.id}', ${mIdx}, 'isNgpa', this.checked)">
+                  <span class="chip-tag chip-ngpa" title="Non-GPA Module: Counts towards graduation credits, zero impact on GPA">Non-GPA (NGPA)</span>
+                </label>
+              </div>
+            </td>
+            <td class="no-print">
+              <button class="btn-icon-del" onclick="removeModule('${sem.id}', ${mIdx})" title="Delete Course">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tbl-footer no-print">
+            <button class="btn-add-row" onclick="addModule('${sem.id}')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Course to Semester
+            </button>
+            <span style="font-size:12px; color:#64748b;">
+              Semester Quality Points: <strong>${semPoints.toFixed(1)}</strong>
+            </span>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+  }
+
+  // =========================================================================
+  // RECALCULATION & HONOURS CLASS ENGINE
+  // =========================================================================
+  function recalculateAll() {
+    const scale = GRADING_SCALES[currentScaleKey];
+    let totalGpaCredits = 0;
+    let totalDegreeCredits = 0;
+    let totalQualityPoints = 0;
+
+    semesters.forEach(sem => {
+      sem.modules.forEach(m => {
+        const c = parseFloat(m.credits) || 0;
+        totalDegreeCredits += c;
+        if (!m.isNgpa) {
+          let gpv = scale.grades[m.grade] !== undefined ? scale.grades[m.grade] : 0.0;
+          if (m.isRepeat && gpv > 2.0) {
+            gpv = 2.0; // Repeat cap per Sri Lankan rules
+          }
+          totalGpaCredits += c;
+          totalQualityPoints += (c * gpv);
+        }
+      });
+    });
+
+    const cgpa = totalGpaCredits > 0 ? (totalQualityPoints / totalGpaCredits) : 0.0;
+    const cgpaFormatted = cgpa.toFixed(2);
+
+    // Update Sticky Display
+    document.getElementById('cgpaDisplay').textContent = cgpaFormatted;
+    document.getElementById('totalGpaCreditsDisplay').textContent = totalGpaCredits;
+    document.getElementById('totalDegreeCreditsDisplay').textContent = totalDegreeCredits;
+    document.getElementById('totalPointsDisplay').textContent = totalQualityPoints.toFixed(1);
+    document.getElementById('semestersCountDisplay').textContent = semesters.length;
+
+    // Honours Classification
+    const badge = document.getElementById('honoursClassBadge');
+    badge.className = 'class-badge';
+    let className = 'Pass / General Degree';
+
+    if (totalGpaCredits === 0) {
+      className = 'No Courses Entered';
+      badge.classList.add('class-general');
+    } else if (cgpa >= 3.70) {
+      className = 'First Class Honours';
+      badge.classList.add('class-first');
+    } else if (cgpa >= 3.30) {
+      className = 'Second Class (Upper Division)';
+      badge.classList.add('class-second-upper');
+    } else if (cgpa >= 3.00) {
+      className = 'Second Class (Lower Division)';
+      badge.classList.add('class-second-lower');
+    } else if (cgpa >= 2.00) {
+      className = 'Pass / General Degree';
+      badge.classList.add('class-general');
+    } else {
+      className = 'Academic Warning / Probation';
+      badge.classList.add('class-warning');
+    }
+    badge.textContent = className;
+
+    // Recalculate Target
+    calculateTargetGpa(totalGpaCredits, totalQualityPoints);
+
+    // Update Print Preview values
+    document.getElementById('printScale').textContent = scale.name;
+    document.getElementById('printCgpa').textContent = `${cgpaFormatted} / ${scale.max.toFixed(2)}`;
+    document.getElementById('printClass').textContent = className;
+    document.getElementById('printCredits').textContent = `${totalDegreeCredits} Total (${totalGpaCredits} GPA)`;
+    preparePrintTranscript(scale);
+  }
+
+  // =========================================================================
+  // TARGET GPA & WHAT-IF PLANNER
+  // =========================================================================
+  function calculateTargetGpa(currentGpaCredits = null, currentQualityPoints = null) {
+    const scale = GRADING_SCALES[currentScaleKey];
+    if (currentGpaCredits === null || currentQualityPoints === null) {
+      currentGpaCredits = 0;
+      currentQualityPoints = 0;
+      semesters.forEach(sem => {
+        sem.modules.forEach(m => {
+          if (!m.isNgpa) {
+            let gpv = scale.grades[m.grade] !== undefined ? scale.grades[m.grade] : 0.0;
+            if (m.isRepeat && gpv > 2.0) gpv = 2.0;
+            const c = parseFloat(m.credits) || 0;
+            currentGpaCredits += c;
+            currentQualityPoints += (c * gpv);
+          }
+        });
+      });
+    }
+
+    const targetType = document.getElementById('targetClassSelect').value;
+    const customRow = document.getElementById('customTargetRow');
+    let targetCgpa = 3.70;
+
+    if (targetType === 'custom_target') {
+      customRow.style.display = 'block';
+      targetCgpa = parseFloat(document.getElementById('customTargetInput').value) || 3.70;
+    } else {
+      customRow.style.display = 'none';
+      targetCgpa = parseFloat(targetType);
+    }
+
+    const remainingCredits = parseFloat(document.getElementById('remainingCreditsInput').value) || 0;
+    const resultBox = document.getElementById('targetResultBox');
+
+    if (remainingCredits <= 0) {
+      resultBox.innerHTML = '<span style="color:#ef4444;">Please enter remaining credits (> 0).</span>';
+      return;
+    }
+
+    const totalTargetCredits = currentGpaCredits + remainingCredits;
+    const requiredTotalPoints = targetCgpa * totalTargetCredits;
+    const neededPoints = requiredTotalPoints - currentQualityPoints;
+    const requiredAvgGpa = neededPoints / remainingCredits;
+
+    if (requiredAvgGpa <= 0) {
+      resultBox.innerHTML = `
+        <span style="color:#10b981; font-weight:700;">Target Secured</span><br>
+        Your current performance already guarantees a CGPA ≥ ${targetCgpa.toFixed(2)} with minimum passing grades.
+      `;
+    } else if (requiredAvgGpa > scale.max) {
+      resultBox.innerHTML = `
+        <span style="color:#ef4444; font-weight:700;">Mathematically Out of Reach</span><br>
+        You would need an average GPA of <strong>${requiredAvgGpa.toFixed(2)}</strong> across the remaining ${remainingCredits} credits, which exceeds the university's maximum scale (${scale.max.toFixed(2)}).
+      `;
+    } else {
+      let gradeSuggestion = 'A / A+';
+      if (requiredAvgGpa <= 2.3) gradeSuggestion = 'C+ or higher';
+      else if (requiredAvgGpa <= 2.7) gradeSuggestion = 'B- or higher';
+      else if (requiredAvgGpa <= 3.0) gradeSuggestion = 'B or higher';
+      else if (requiredAvgGpa <= 3.3) gradeSuggestion = 'B+ or higher';
+      else if (requiredAvgGpa <= 3.7) gradeSuggestion = 'A- or higher';
+
+      resultBox.innerHTML = `
+        To graduate with <strong>${targetCgpa.toFixed(2)}</strong>, you must maintain an average GPA of:
+        <div style="font-size:22px; font-weight:800; color:#7c3aed; margin:6px 0;">${requiredAvgGpa.toFixed(2)} / ${scale.max.toFixed(2)}</div>
+        <span style="font-size:12px; opacity:0.85;">Aim for <strong>${gradeSuggestion}</strong> in all upcoming modules.</span>
+      `;
+    }
+  }
+
+  // =========================================================================
+  // PRINT & EXPORT / IMPORT JSON
+  // =========================================================================
+  function preparePrintTranscript(scale) {
+    const body = document.getElementById('printSemestersBody');
+    if (!body) return;
+    let html = '';
+
+    semesters.forEach((sem, idx) => {
+      let semGpaCredits = 0;
+      let semPoints = 0;
+      let semTotalCredits = 0;
+
+      sem.modules.forEach(m => {
+        const c = parseFloat(m.credits) || 0;
+        semTotalCredits += c;
+        if (!m.isNgpa) {
+          let gpv = scale.grades[m.grade] !== undefined ? scale.grades[m.grade] : 0.0;
+          if (m.isRepeat && gpv > 2.0) gpv = 2.0;
+          semGpaCredits += c;
+          semPoints += (c * gpv);
+        }
+      });
+      const semGpa = semGpaCredits > 0 ? (semPoints / semGpaCredits).toFixed(2) : '0.00';
+
+      html += `
+        <div class="sem-block" style="margin-bottom:18px; page-break-inside:avoid;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #0071e3; padding-bottom:4px; margin-bottom:8px;">
+            <h4 style="margin:0; font-size:12pt; color:#0f172a; font-weight:700;">
+              Semester #${idx + 1}: ${escapeHtml(sem.title)}
+            </h4>
+            <span style="font-size:9.5pt; font-weight:700; color:#0071e3;">
+              SGPA: ${semGpa} (${semGpaCredits} GPA Credits · ${semTotalCredits} Total)
+            </span>
+          </div>
+          <table style="width:100%; border-collapse:collapse; font-size:9pt; margin-bottom:10px;">
+            <thead>
+              <tr style="background:#f1f5f9; text-align:left;">
+                <th style="padding:5px 8px; border:1px solid #cbd5e1; width:80px;">Course Code</th>
+                <th style="padding:5px 8px; border:1px solid #cbd5e1;">Course Title</th>
+                <th style="padding:5px 8px; border:1px solid #cbd5e1; width:55px; text-align:center;">Credits</th>
+                <th style="padding:5px 8px; border:1px solid #cbd5e1; width:55px; text-align:center;">Grade</th>
+                <th style="padding:5px 8px; border:1px solid #cbd5e1; width:55px; text-align:center;">GPV</th>
+                <th style="padding:5px 8px; border:1px solid #cbd5e1; width:110px;">Status / Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+
+      sem.modules.forEach(m => {
+        let gpv = scale.grades[m.grade] !== undefined ? scale.grades[m.grade] : 0.0;
+        let remarks = [];
+        if (m.isRepeat) {
+          remarks.push('Repeat (Cap 2.0)');
+          if (gpv > 2.0) gpv = 2.0;
+        }
+        if (m.isNgpa) {
+          remarks.push('Non-GPA (Audit/NC)');
+        }
+
+        html += `
+          <tr>
+            <td style="padding:5px 8px; border:1px solid #cbd5e1; font-weight:600; font-family:monospace;">${escapeHtml(m.code || '-')}</td>
+            <td style="padding:5px 8px; border:1px solid #cbd5e1;">${escapeHtml(m.name || 'Course Title')}</td>
+            <td style="padding:5px 8px; border:1px solid #cbd5e1; text-align:center;">${m.credits}</td>
+            <td style="padding:5px 8px; border:1px solid #cbd5e1; text-align:center; font-weight:700;">${m.grade}</td>
+            <td style="padding:5px 8px; border:1px solid #cbd5e1; text-align:center;">${m.isNgpa ? '-' : gpv.toFixed(1)}</td>
+            <td style="padding:5px 8px; border:1px solid #cbd5e1; font-size:8.5pt; color:#64748b;">${remarks.join(', ') || 'Standard'}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+            </tbody>
+          </table>
+        </div>
+      `;
+    });
+
+    body.innerHTML = html;
+  }
+
+  function triggerGpaPrint() {
+    const scale = GRADING_SCALES[currentScaleKey];
+    recalculateAll();
+    preparePrintTranscript(scale);
+    const d = new Date();
+    const dateEl = document.getElementById('printDate');
+    if (dateEl) {
+      dateEl.textContent = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+    window.print();
+  }
+
+  window.addEventListener('beforeprint', () => {
+    const scale = GRADING_SCALES[currentScaleKey];
+    recalculateAll();
+    preparePrintTranscript(scale);
+    const d = new Date();
+    const dateEl = document.getElementById('printDate');
+    if (dateEl) {
+      dateEl.textContent = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+  });
+
+  function exportDataJson() {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+      scaleKey: currentScaleKey,
+      semesters: semesters,
+      exportDate: new Date().toISOString(),
+      platform: "UniScope LK"
+    }, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", `UniScope_GPA_Transcript_${Date.now()}.json`);
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    dlAnchor.remove();
+  }
+
+  function importDataJson(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      try {
+        const parsed = JSON.parse(evt.target.result);
+        if (parsed.semesters && Array.isArray(parsed.semesters)) {
+          semesters = parsed.semesters;
+          if (parsed.scaleKey && GRADING_SCALES[parsed.scaleKey]) {
+            currentScaleKey = parsed.scaleKey;
+            document.getElementById('scalePresetSelect').value = currentScaleKey;
+          }
+          renderScaleLegend();
+          renderAllSemesters();
+          recalculateAll();
+          saveStateToLocal();
+          alert('Academic records successfully imported!');
+        } else {
+          alert('Invalid transcript JSON structure.');
+        }
+      } catch (err) {
+        alert('Failed to parse JSON file.');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/[&<>"']/g, function(m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+    });
+  }
+</script>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>

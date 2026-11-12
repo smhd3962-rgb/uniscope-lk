@@ -1,0 +1,12 @@
+node_modules
+.git
+audit_screenshots
+Uni photos
+Bacground
+Updated Cutoff
+dev_reference
+scraped_thush
+scripts
+test
+*.zip
+*.log

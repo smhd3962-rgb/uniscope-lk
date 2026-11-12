@@ -1,0 +1,59 @@
+{
+  "platform": "UniScope LK",
+  "updated_at": "2026-11-10T19:30:00Z",
+  "primary_academic_year": "2025/2026",
+  "verification_authority": "University Grants Commission (UGC) Sri Lanka",
+  "sources": [
+    {
+      "academic_year": "2025/2026",
+      "title": "Minimum 'Z' Scores for Selection to Various Courses of Study of Universities (Academic Year 2025/2026)",
+      "document": "COP_2025_2026-ENGLISH_Final.pdf",
+      "publication_date": "2026-07-31",
+      "authority": "University Grants Commission - Sri Lanka",
+      "status": "Latest Official Verified",
+      "total_pages": 10,
+      "districts_covered": 25
+    },
+    {
+      "academic_year": "2024/2025",
+      "title": "Minimum 'Z' Scores for Selection to Various Courses of Study of Universities (Academic Year 2024/2025)",
+      "document": "COP_2024_2025-ENGLISH_Final.pdf",
+      "publication_date": "2025-08-25",
+      "authority": "University Grants Commission - Sri Lanka",
+      "status": "Previous Academic Year Verified",
+      "total_pages": 10,
+      "districts_covered": 25
+    },
+    {
+      "academic_year": "2023/2024",
+      "title": "Minimum 'Z' Scores for Selection to Various Courses of Study of Universities (Academic Year 2023/2024)",
+      "document": "University Cut-Off Marks 2024 English - www.gazette.lk.pdf",
+      "publication_date": "2024-09-20",
+      "authority": "University Grants Commission - Sri Lanka",
+      "status": "Historical Official Verified",
+      "total_pages": 10,
+      "districts_covered": 25
+    },
+    {
+      "academic_year": "2022/2023",
+      "title": "Minimum 'Z' Scores for Selection to Various Courses of Study of Universities (Academic Year 2022/2023)",
+      "document": "COP_2022_2023-ENGLISH_AR_TG.pdf",
+      "publication_date": "2023-12-01",
+      "authority": "University Grants Commission - Sri Lanka",
+      "status": "Historical Official Verified",
+      "total_pages": 10,
+      "districts_covered": 25
+    },
+    {
+      "academic_year": "2025/2026",
+      "title": "Admission to Undergraduate Courses of the Universities in Sri Lanka (Academic Year 2025/2026)",
+      "document": "student_handbook_english.pdf",
+      "publication_date": "2025-11-15",
+      "authority": "University Grants Commission - Sri Lanka",
+      "status": "Official Student Admission Handbook",
+      "total_pages": 210,
+      "description": "Rules, subject combinations, course codes, and eligibility criteria for state university admission."
+    }
+  ],
+  "copyright_notice": "Official UGC publications are referenced strictly for non-commercial educational transparency, public guidance, and student research. Extracted structured data is preserved under statutory fair use."
+}

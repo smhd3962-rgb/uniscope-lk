@@ -1,0 +1,42 @@
+[
+  {
+    "id": "msg_1794459920587_825011",
+    "name": "QA Test Student",
+    "email": "qatest@example.com",
+    "message": "Automated verification test of student message recording.",
+    "receivedAt": "2026-11-12T05:05:20.587Z",
+    "ip": "::1",
+    "userAgent": "unknown",
+    "status": "recorded"
+  },
+  {
+    "id": "msg_1794459983720_e24d1f",
+    "name": "QA Test Student",
+    "email": "qatest@example.com",
+    "message": "Automated verification test of student message recording.",
+    "receivedAt": "2026-11-12T05:06:23.720Z",
+    "ip": "::1",
+    "userAgent": "unknown",
+    "status": "recorded"
+  },
+  {
+    "id": "msg_1794460276218_0ea9c5",
+    "name": "QA Test Student",
+    "email": "qatest@example.com",
+    "message": "Automated verification test of student message recording.",
+    "receivedAt": "2026-11-12T05:11:16.218Z",
+    "ip": "::1",
+    "userAgent": "unknown",
+    "status": "recorded"
+  },
+  {
+    "id": "msg_1794462831694_b0fc79",
+    "name": "QA Test Student",
+    "email": "qatest@example.com",
+    "message": "Automated verification test of student message recording.",
+    "receivedAt": "2026-11-12T05:53:51.694Z",
+    "ip": "::1",
+    "userAgent": "unknown",
+    "status": "recorded"
+  }
+]

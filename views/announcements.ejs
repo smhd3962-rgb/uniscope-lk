@@ -1,0 +1,84 @@
+<%- include('partials/head', { title: "Official UGC Announcements - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<div style="background:var(--bg-page); min-height: 100vh; padding: 100px 20px 80px; color:var(--text-main);">
+  <div class="container" style="max-width: 920px;">
+    
+    <div style="text-align:center; margin-bottom: 36px;">
+      <div style="display:inline-flex; align-items:center; gap:6px; background:var(--apple-blue-subtle); color:var(--apple-blue); padding:4px 14px; border-radius:980px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px; border:1px solid rgba(0,113,227,0.2);">
+        Official UGC Bulletins
+      </div>
+      <h1 style="font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif; font-size: clamp(28px, 4vw, 38px); font-weight: 700; letter-spacing:-0.03em; color:var(--text-main); margin-bottom: 8px;">
+        University Admissions &amp; UGC Announcements
+      </h1>
+      <p style="color:var(--text-secondary); font-size: 15.5px; max-width: 650px; margin: 0 auto; line-height:1.55;">
+        Verified notices, official cutoff point releases, and aptitude examination schedules from the University Grants Commission of Sri Lanka.
+      </p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      
+      <!-- Announcement 1: Latest 2025/2026 Cutoffs -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl); border-color:rgba(0,113,227,0.3);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <span style="background:var(--apple-blue-subtle); color:var(--apple-blue); border:1px solid rgba(0,113,227,0.25); padding:3px 10px; border-radius:6px; font-size:12px; font-weight:700;">
+            OFFICIAL GAZETTE · LATEST
+          </span>
+          <span style="font-size:12.5px; color:var(--text-muted); font-weight:600;">Published: 31 July 2026</span>
+        </div>
+        <h3 style="font-size:19px; font-weight:700; color:var(--text-main); margin-bottom:8px;">
+          Release of University Minimum Selection Z-Scores for Academic Year 2025/2026
+        </h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.7; margin-bottom:14px;">
+          The University Grants Commission (UGC) has officially published the minimum Z-Scores for university undergraduate admissions for the Academic Year 2025/2026. All 6,500 district cutoff records across 260 degree courses have been parsed, validated, and integrated into UniScope LK.
+        </p>
+        <a href="/degrees/cutoff-tool/?year=2025/2026" class="apple-link" style="color:var(--apple-blue); font-weight:600; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+          Explore 2025/2026 Official Cutoffs <span>→</span>
+        </a>
+      </div>
+
+      <!-- Announcement 2: Previous 2024/2025 Reference -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <span style="background:var(--bg-card-subtle); color:var(--text-secondary); border:1px solid var(--border-subtle); padding:3px 10px; border-radius:6px; font-size:12px; font-weight:600;">
+            HISTORICAL REFERENCE
+          </span>
+          <span style="font-size:12.5px; color:var(--text-muted); font-weight:600;">Published: 25 August 2025</span>
+        </div>
+        <h3 style="font-size:19px; font-weight:700; color:var(--text-main); margin-bottom:8px;">
+          Official Cut-Off Marks for Academic Year 2024/2025
+        </h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.7; margin-bottom:14px;">
+          Complete dataset of 6,650 cutoff entries across 266 courses and all 25 administrative districts preserved for historical comparison and trend forecasting.
+        </p>
+        <a href="/degrees/cutoff-tool/?year=2024/2025" class="apple-link" style="color:var(--apple-blue); font-weight:600; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+          Inspect 2024/2025 Historical Records <span>→</span>
+        </a>
+      </div>
+
+      <!-- Announcement 3: Aptitude Examinations -->
+      <div class="uniscope-card" style="padding:28px; border-radius:var(--radius-xl);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <span style="background:rgba(245,158,11,0.12); color:#f59e0b; border:1px solid rgba(245,158,11,0.25); padding:3px 10px; border-radius:6px; font-size:12px; font-weight:700;">
+            APTITUDE EXAMINATIONS
+          </span>
+          <span style="font-size:12.5px; color:var(--text-muted); font-weight:600;">Faculty Admissions Advisory</span>
+        </div>
+        <h3 style="font-size:19px; font-weight:700; color:var(--text-main); margin-bottom:8px;">
+          Special Aptitude Tests (Architecture, Information Technology, Design, Sports Science)
+        </h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.7; margin-bottom:14px;">
+          Candidates applying for Architecture (UoM), Design (UoM), Information Technology (UoM, UCSC, UoJ), Landscape Architecture, and Sports Science &amp; Management (USJ, SUSL, UWU) are reminded that qualifying university-conducted practical aptitude assessments is compulsory in addition to meeting the minimum Z-score.
+        </p>
+        <a href="/subject-combination/" class="apple-link" style="color:var(--apple-blue); font-weight:600; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+          Check Prerequisite Subject Combinations <span>→</span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>

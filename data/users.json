@@ -1,0 +1,11 @@
+[
+  {
+    "id": "usr_sample_01",
+    "name": "UniScope Student",
+    "email": "student@uniscope.lk",
+    "passwordHash": "7cfd530385599832fdddd439dfb189e3:f452c26ee11787bae43fab3f1fb093d34cd04cdac78bab9bc4e93fbb69bb9c9887dc6eb086806eb3eccb256340e66c91d87e8e574ac7a029363102395cb9f43f",
+    "district": "Colombo",
+    "stream": "Physical Science",
+    "createdAt": "2026-11-12T05:05:19.933Z"
+  }
+]

@@ -1,0 +1,859 @@
+<%- include('partials/head', { title: "Degree Recognition & Accreditation Guide - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<style>
+.rec-page {
+  background: var(--bg-page);
+  min-height: 100vh;
+  padding: 110px 20px 80px;
+  color: var(--text-main);
+}
+
+.rec-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.rec-hero {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 36px;
+}
+
+.rec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(99, 102, 241, 0.08);
+  color: #6366f1;
+  padding: 6px 18px;
+  border-radius: 980px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.rec-title {
+  font-size: clamp(30px, 4.2vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: var(--text-main);
+}
+
+.rec-subtitle {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-muted, #64748b);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* Quick Nav Anchor Pills */
+.rec-nav-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.rec-nav-pill {
+  padding: 8px 18px;
+  border-radius: 980px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--card-bg, #ffffff);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 160ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rec-nav-pill:hover {
+  border-color: var(--apple-blue);
+  color: var(--apple-blue);
+}
+
+/* Section Cards */
+.rec-section {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 36px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+[data-theme="dark"] .rec-section,
+body.dark .rec-section {
+  background: #161f36;
+  border-color: #273553;
+}
+
+.rec-section-header {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+.rec-sec-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--apple-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.rec-sec-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin: 0 0 6px;
+}
+.rec-sec-desc {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Section A: Concept Grid */
+.rec-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.rec-concept-card {
+  background: var(--bg-page, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 18px;
+  padding: 22px;
+}
+.rec-concept-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--apple-blue-subtle, rgba(0, 113, 227, 0.1));
+  color: var(--apple-blue, #0071e3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.rec-concept-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 8px;
+}
+.rec-concept-text {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Distiction Alert Box */
+.rec-distinction-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.rec-distinction-box svg {
+  color: #d97706;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.rec-distinction-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+.rec-distinction-text strong {
+  color: #b45309;
+}
+
+/* Section B: Authorities Directory */
+.rec-auth-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+.rec-auth-card {
+  background: var(--bg-page, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 18px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.rec-auth-top {
+  margin-bottom: 14px;
+}
+.rec-auth-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--apple-blue);
+  background: var(--apple-blue-subtle);
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.rec-auth-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 6px;
+}
+.rec-auth-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.rec-auth-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--apple-blue);
+  text-decoration: none;
+  margin-top: 14px;
+}
+.rec-auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Section C: Directory Search & Records */
+.rec-search-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.rec-search-input {
+  flex: 1;
+  min-width: 260px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-page, #f8fafc);
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  font-family: inherit;
+}
+.rec-search-input:focus {
+  border-color: var(--apple-blue);
+  background: var(--card-bg, #ffffff);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+.rec-filter-select {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-page, #ffffff);
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Record Card */
+.rec-record-card {
+  background: var(--bg-page, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 16px;
+  transition: all 180ms ease;
+}
+.rec-record-card:hover {
+  border-color: var(--apple-blue);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.rec-record-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.rec-record-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+.rec-record-inst {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--apple-blue);
+}
+.rec-badges-wrap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.rec-badge-verified {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 980px;
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.rec-badge-accord {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 980px;
+  background: rgba(0, 113, 227, 0.1);
+  color: #0071e3;
+  border: 1px solid rgba(0, 113, 227, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.rec-badge-tier2 {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 980px;
+  background: rgba(139, 92, 246, 0.1);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.rec-record-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.rec-detail-item {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.rec-detail-lbl {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+.rec-detail-val {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.rec-record-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.rec-source-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--apple-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+.rec-source-btn:hover {
+  text-decoration: underline;
+}
+
+/* Section D: Accordion FAQs */
+.rec-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rec-faq-item {
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-page, #f8fafc);
+}
+.rec-faq-q {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  user-select: none;
+}
+.rec-faq-q:hover {
+  background: rgba(0,0,0,0.02);
+}
+.rec-faq-chev {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  transition: transform 200ms ease;
+}
+.rec-faq-item.active .rec-faq-chev {
+  transform: rotate(180deg);
+}
+.rec-faq-a {
+  display: none;
+  padding: 0 22px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.rec-faq-item.active .rec-faq-a {
+  display: block;
+}
+
+/* Disclaimer at bottom */
+.rec-footer-disclaimer {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+[data-theme="dark"] .rec-footer-disclaimer,
+body.dark .rec-footer-disclaimer {
+  background: #161f36;
+  border-color: #273553;
+}
+.rec-footer-disclaimer strong {
+  color: var(--text-main);
+}
+</style>
+
+<div class="rec-page">
+  <div class="rec-container">
+
+    <!-- Hero Header -->
+    <div class="rec-hero">
+      <div class="rec-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Educational Verification Guide
+      </div>
+      <h1 class="rec-title">Degree Recognition &amp; Accreditation Guide</h1>
+      <div class="rec-subtitle">
+        Understand university legal recognition, non-state degree-awarding status, and professional engineering/medical accreditation in Sri Lanka.
+      </div>
+
+      <!-- Quick Nav Pills -->
+      <div class="rec-nav-pills">
+        <a href="#sectionA" class="rec-nav-pill">
+          <span>01.</span> Understanding Recognition
+        </a>
+        <a href="#sectionB" class="rec-nav-pill">
+          <span>02.</span> Official Authorities
+        </a>
+        <a href="#sectionC" class="rec-nav-pill">
+          <span>03.</span> Verified Programme Directory (<%= records.length %>)
+        </a>
+        <a href="#sectionD" class="rec-nav-pill">
+          <span>04.</span> Common FAQs
+        </a>
+      </div>
+    </div>
+
+    <!-- Section A: Understanding Degree Recognition -->
+    <section class="rec-section" id="sectionA">
+      <div class="rec-section-header">
+        <div class="rec-sec-tag">Foundational Knowledge</div>
+        <h2 class="rec-sec-title">Section A: Understanding Degree Recognition</h2>
+        <p class="rec-sec-desc">
+          Before enrolling in any university or degree, it is vital to understand the crucial legal difference between university recognition, degree specification, and professional council accreditation.
+        </p>
+      </div>
+
+      <div class="rec-concept-grid">
+        <div class="rec-concept-card">
+          <div class="rec-concept-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M9 10v11M15 10v11M19 10v11M12 2l10 5H2l10-5z"/></svg>
+          </div>
+          <h3 class="rec-concept-title">1. State University Recognition (UGC)</h3>
+          <p class="rec-concept-text">
+            All 17 Sri Lankan state universities are established under the <strong>Universities Act No. 16 of 1978</strong> and governed by the University Grants Commission (UGC). Their internal degrees carry automatic legal validity in Sri Lanka.
+          </p>
+        </div>
+
+        <div class="rec-concept-card">
+          <div class="rec-concept-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3 class="rec-concept-title">2. Specified Non-State Institutes (MoHE)</h3>
+          <p class="rec-concept-text">
+            Non-state institutes (e.g. SLIIT, NSBM, Horizon, CINEC) receive degree-awarding status from the <strong>Ministry of Higher Education</strong> under <strong>Section 25A</strong> of the Universities Act. Only specific approved degree titles gazetted by the Minister are recognized.
+          </p>
+        </div>
+
+        <div class="rec-concept-card">
+          <div class="rec-concept-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="rec-concept-title">3. Professional Council Accreditation</h3>
+          <p class="rec-concept-text">
+            Statutory professional bodies (e.g. <strong>IESL</strong> for Engineers, <strong>SLMC</strong> for Doctors, <strong>SLIA</strong> for Architects) accredit specific degrees to grant graduates professional licensing and practice rights in Sri Lanka.
+          </p>
+        </div>
+
+        <div class="rec-concept-card">
+          <div class="rec-concept-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="rec-concept-title">4. Foreign Transnational Degrees</h3>
+          <p class="rec-concept-text">
+            Degrees offered by local institutes partnered with foreign universities (e.g. UK, Australia) are awarded by the foreign university. Recognition depends on whether the foreign parent university is accredited in its home country and accepted by UGC for postgrad/public service.
+          </p>
+        </div>
+      </div>
+
+      <!-- Vital Distinction Notice -->
+      <div class="rec-distinction-box">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div class="rec-distinction-text">
+          <strong>Important Distinction: IESL Recognition vs IESL Washington Accord Accreditation</strong><br>
+          • <strong>IESL Recognition (Tier 2):</strong> Indicates that an engineering programme satisfies the educational requirements for Associate Membership of IESL within Sri Lanka.<br>
+          • <strong>IESL Accreditation (Tier 1 - Washington Accord):</strong> Rigorous international substantial equivalence. Washington Accord accredited degrees allow graduates mutual professional registration across signatories worldwide (e.g. USA, UK, Canada, Australia, Singapore, Japan). They are <strong>not interchangeable terms</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- Section B: Official Verification Resources -->
+    <section class="rec-section" id="sectionB">
+      <div class="rec-section-header">
+        <div class="rec-sec-tag">Direct Verification Channels</div>
+        <h2 class="rec-sec-title">Section B: Official Verification Resources</h2>
+        <p class="rec-sec-desc">
+          Always cross-check claims against the official registers maintained by Sri Lankan statutory bodies.
+        </p>
+      </div>
+
+      <div class="rec-auth-grid">
+
+        <div class="rec-auth-card">
+          <div class="rec-auth-top">
+            <span class="rec-auth-badge">State Universities</span>
+            <h3 class="rec-auth-name">University Grants Commission (UGC)</h3>
+            <p class="rec-auth-desc">The apex body for state higher education. Publishes list of 17 state universities, affiliated campuses, and official admission cut-offs.</p>
+          </div>
+          <a href="https://www.ugc.ac.lk/" target="_blank" rel="noopener noreferrer" class="rec-auth-link">
+            Visit Official UGC Portal ↗
+          </a>
+        </div>
+
+        <div class="rec-auth-card">
+          <div class="rec-auth-top">
+            <span class="rec-auth-badge">Non-State Institutes</span>
+            <h3 class="rec-auth-name">Ministry of Higher Education (MoHE)</h3>
+            <p class="rec-auth-desc">Maintains the official directory of Non-State Higher Education Institutes and Degree Programmes specified under Section 25A of the Universities Act.</p>
+          </div>
+          <a href="https://newweb.mohe.gov.lk/?page_id=1632" target="_blank" rel="noopener noreferrer" class="rec-auth-link">
+            MoHE Specified Institutes Register ↗
+          </a>
+        </div>
+
+        <div class="rec-auth-card">
+          <div class="rec-auth-top">
+            <span class="rec-auth-badge">Engineering Degrees</span>
+            <h3 class="rec-auth-name">Institution of Engineers, Sri Lanka (IESL)</h3>
+            <p class="rec-auth-desc">Official registry of Washington Accord accredited engineering programmes and IESL recognized qualifications for professional practice.</p>
+          </div>
+          <a href="https://iesl.lk/index.php?Itemid=170&id=126&lang=en" target="_blank" rel="noopener noreferrer" class="rec-auth-link">
+            IESL Washington Accord Register ↗
+          </a>
+        </div>
+
+        <div class="rec-auth-card">
+          <div class="rec-auth-top">
+            <span class="rec-auth-badge">Engineering Regulators</span>
+            <h3 class="rec-auth-name">Engineering Council, Sri Lanka (ECSL)</h3>
+            <p class="rec-auth-desc">Statutory body established by Parliament Act No. 4 of 2017 to register engineering practitioners (Chartered Engineers, Associate Engineers, etc.).</p>
+          </div>
+          <a href="https://www.ecsl.gov.lk/" target="_blank" rel="noopener noreferrer" class="rec-auth-link">
+            Visit ECSL Register ↗
+          </a>
+        </div>
+
+        <div class="rec-auth-card">
+          <div class="rec-auth-top">
+            <span class="rec-auth-badge">Medical Degrees</span>
+            <h3 class="rec-auth-name">Sri Lanka Medical Council (SLMC)</h3>
+            <p class="rec-auth-desc">Statutory authority regulating medical and dental education under the Medical Ordinance. Publishes approved state and foreign medical faculties.</p>
+          </div>
+          <a href="https://srilankamedicalcouncil.org/" target="_blank" rel="noopener noreferrer" class="rec-auth-link">
+            Visit SLMC Portal ↗
+          </a>
+        </div>
+
+        <div class="rec-auth-card">
+          <div class="rec-auth-top">
+            <span class="rec-auth-badge">Architecture</span>
+            <h3 class="rec-auth-name">Sri Lanka Institute of Architects (SLIA)</h3>
+            <p class="rec-auth-desc">Board of Architectural Education accredits professional architectural courses (Part I, II and III) leading to Chartered Architect qualification.</p>
+          </div>
+          <a href="https://www.slia.lk/" target="_blank" rel="noopener noreferrer" class="rec-auth-link">
+            Visit SLIA Official Site ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section C: Degree Recognition Directory & Search -->
+    <section class="rec-section" id="sectionC">
+      <div class="rec-section-header">
+        <div class="rec-sec-tag">Public Registry</div>
+        <h2 class="rec-sec-title">Section C: Degree Recognition &amp; Accreditation Directory</h2>
+        <p class="rec-sec-desc">
+          Search verified higher education qualifications across state universities and non-state degree-awarding institutes in Sri Lanka.
+        </p>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="rec-search-bar">
+        <input type="text" id="recSearch" class="rec-search-input" placeholder="Search by degree name, university, or discipline (e.g. Moratuwa, Civil, MBBS, SLIIT)..." oninput="filterRecords()">
+
+        <select id="recTypeFilter" class="rec-filter-select" onchange="filterRecords()">
+          <option value="all">All Institution Types</option>
+          <option value="State University">State Universities (UGC)</option>
+          <option value="Non-State">Non-State Specified (MoHE)</option>
+          <option value="Transnational">Transnational / Partner</option>
+        </select>
+
+        <select id="recDisciplineFilter" class="rec-filter-select" onchange="filterRecords()">
+          <option value="all">All Disciplines</option>
+          <option value="Engineering">Engineering &amp; Technology</option>
+          <option value="Medicine">Medicine &amp; Healthcare</option>
+          <option value="Computing">Computing &amp; IT</option>
+          <option value="Business">Business &amp; Management</option>
+          <option value="Architecture">Architecture</option>
+        </select>
+      </div>
+
+      <div style="font-size:13px; color:var(--text-muted); margin-bottom:18px;">
+        Showing <strong><span id="recordCount"><%= records.length %></span></strong> verified records
+      </div>
+
+      <!-- Records List -->
+      <div class="rec-records-list" id="recordsList">
+        <% records.forEach(function(r) { %>
+          <div class="rec-record-card"
+               data-programme="<%= r.programme.toLowerCase() %>"
+               data-institution="<%= r.institution.toLowerCase() %>"
+               data-type="<%= r.institutionType.toLowerCase() %>"
+               data-discipline="<%= r.discipline.toLowerCase() %>"
+               data-authority="<%= r.authority.toLowerCase() %>">
+
+            <div class="rec-record-top">
+              <div>
+                <h3 class="rec-record-title"><%= r.programme %></h3>
+                <div class="rec-record-inst"><%= r.institution %> — <span style="color:var(--text-muted);"><%= r.institutionType %></span></div>
+              </div>
+              <div class="rec-badges-wrap">
+                <% if (r.accreditationStatus.includes('Washington Accord')) { %>
+                  <span class="rec-badge-accord">★ Washington Accord</span>
+                <% } %>
+                <% if (r.recognitionStatus === 'Officially Verified') { %>
+                  <span class="rec-badge-verified">✓ <%= r.recognitionStatus %></span>
+                <% } else { %>
+                  <span class="rec-badge-tier2"><%= r.recognitionStatus %></span>
+                <% } %>
+              </div>
+            </div>
+
+            <div class="rec-record-details">
+              <div class="rec-detail-item">
+                <div class="rec-detail-lbl">Governing Authority</div>
+                <div class="rec-detail-val"><%= r.authority %></div>
+              </div>
+              <div class="rec-detail-item">
+                <div class="rec-detail-lbl">Accreditation Status</div>
+                <div class="rec-detail-val"><%= r.accreditationStatus %></div>
+              </div>
+              <div class="rec-detail-item">
+                <div class="rec-detail-lbl">Applicable Cohorts</div>
+                <div class="rec-detail-val"><%= r.applicableCohorts %></div>
+              </div>
+            </div>
+
+            <p style="font-size:13px; color:var(--text-muted); line-height:1.55; margin:0 0 12px;">
+              <strong>Details:</strong> <%= r.recognitionDetails %> <%= r.notes ? `(${r.notes})` : '' %>
+            </p>
+
+            <div class="rec-record-bottom">
+              <span>Verified Date: <%= r.lastVerified %></span>
+              <a href="<%= r.verificationSource %>" target="_blank" rel="noopener noreferrer" class="rec-source-btn">
+                <span><%= r.sourceLabel || 'Official Registry Source' %></span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+
+          </div>
+        <% }); %>
+      </div>
+
+      <div id="noRecordsFound" style="display:none; text-align:center; padding:40px 20px;">
+        <h4 style="font-size:17px; color:var(--text-main); margin-bottom:6px;">No programmes found matching your search.</h4>
+        <p style="font-size:13.5px; color:var(--text-muted);">Try a broader search keyword or clear filters.</p>
+      </div>
+
+    </section>
+
+    <!-- Section D: Educational FAQs -->
+    <section class="rec-section" id="sectionD">
+      <div class="rec-section-header">
+        <div class="rec-sec-tag">Common Inquiries</div>
+        <h2 class="rec-sec-title">Section D: Frequently Asked Questions</h2>
+        <p class="rec-sec-desc">
+          Essential clarifications for Sri Lankan students and parents evaluating higher education options.
+        </p>
+      </div>
+
+      <div class="rec-faq-list">
+
+        <div class="rec-faq-item">
+          <div class="rec-faq-q" onclick="toggleFaq(this)">
+            <span>Is a UGC-recognized institution the same as a professionally accredited degree?</span>
+            <svg class="rec-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="rec-faq-a">
+            No. University Grants Commission (UGC) recognition confirms that the institution has legal authority to confer academic degrees in Sri Lanka. Professional accreditation (e.g., from IESL for engineering or SLMC for medicine) is granted separately by statutory professional bodies. A degree can be academically recognized by UGC or MoHE, but still lack professional accreditation if its curriculum or faculty facilities do not satisfy the professional council's benchmarks.
+          </div>
+        </div>
+
+        <div class="rec-faq-item">
+          <div class="rec-faq-q" onclick="toggleFaq(this)">
+            <span>How do I verify if an engineering degree in Sri Lanka is recognized by IESL?</span>
+            <svg class="rec-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="rec-faq-a">
+            Visit the official website of the Institution of Engineers, Sri Lanka (iesl.lk). Check both the <strong>Washington Accord Accredited Degrees</strong> list (Tier 1 international substantial equivalence) and the <strong>Recognized Engineering Degrees</strong> list (Tier 2 fulfilling Associate Membership educational requirements). Ensure your specific graduating intake or cohort falls within the accreditation validity window.
+          </div>
+        </div>
+
+        <div class="rec-faq-item">
+          <div class="rec-faq-q" onclick="toggleFaq(this)">
+            <span>How do I verify if a private university degree is legally recognized by the Sri Lankan Government?</span>
+            <svg class="rec-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="rec-faq-a">
+            Non-state higher education institutes must be specified as degree-awarding institutes by the Minister under Section 25A of the Universities Act No. 16 of 1978. Check the official Non-State Higher Education directory on the Ministry of Higher Education portal (mohe.gov.lk). Verify that the exact degree title you intend to study has been gazetted.
+          </div>
+        </div>
+
+        <div class="rec-faq-item">
+          <div class="rec-faq-q" onclick="toggleFaq(this)">
+            <span>Does a foreign university partnership or top-up guarantee recognition in Sri Lanka?</span>
+            <svg class="rec-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="rec-faq-a">
+            Not automatically. While foreign partnered degrees (e.g. from UK, Australian, or Malaysian universities) are awarded by the foreign institution and recognized in their home country, their recognition for Sri Lankan public sector jobs or professional registration requires verification by the UGC Foreign Qualifications Verification Division or relevant professional council.
+          </div>
+        </div>
+
+        <div class="rec-faq-item">
+          <div class="rec-faq-q" onclick="toggleFaq(this)">
+            <span>Why might professional accreditation apply only to particular student intakes?</span>
+            <svg class="rec-faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="rec-faq-a">
+            Professional councils like IESL and SLMC evaluate university programmes through periodic on-site visits assessing laboratory facilities, academic staff qualifications, and curriculum standards. Accreditation is granted for a fixed period (typically 3 to 5 years). Intakes entering or graduating during that specific accredited window are covered; subsequent cohorts must be reviewed through renewal evaluations.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Disclaimer -->
+    <div class="rec-footer-disclaimer">
+      <strong>Public Information &amp; Legal Notice:</strong>
+      UniScope LK is an independent public information platform created to assist students.
+      UniScope LK is not an accreditation authority, statutory council, or government agency.
+      Recognition and accreditation statuses are subject to periodic regulatory updates, gazettes, and council reviews.
+      Students and guardians are strongly advised to confirm current accreditation status with the respective universities and statutory bodies prior to making enrollment commitments.
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
+
+<script>
+function filterRecords() {
+  const query = document.getElementById('recSearch').value.toLowerCase().trim();
+  const typeFilter = document.getElementById('recTypeFilter').value.toLowerCase();
+  const discFilter = document.getElementById('recDisciplineFilter').value.toLowerCase();
+
+  const cards = document.querySelectorAll('.rec-record-card');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const prog = card.getAttribute('data-programme');
+    const inst = card.getAttribute('data-institution');
+    const type = card.getAttribute('data-type');
+    const disc = card.getAttribute('data-discipline');
+    const auth = card.getAttribute('data-authority');
+
+    const matchesQuery = !query || prog.includes(query) || inst.includes(query) || disc.includes(query) || auth.includes(query);
+    const matchesType = typeFilter === 'all' || type.includes(typeFilter);
+    const matchesDisc = discFilter === 'all' || disc.includes(discFilter);
+
+    if (matchesQuery && matchesType && matchesDisc) {
+      card.style.display = 'block';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  document.getElementById('recordCount').textContent = visibleCount;
+  document.getElementById('noRecordsFound').style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('active');
+}
+</script>

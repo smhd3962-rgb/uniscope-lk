@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title><%= typeof title !== 'undefined' ? title : "UniScope LK - Sri Lanka Higher Education Directory & UGC Admissions Platform" %></title>
+  <link rel="icon" type="image/png" sizes="64x64" href="/static/home/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/home/images/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="/static/home/images/logo.svg">
+  <link rel="apple-touch-icon" href="/static/home/images/uniscope_logo_mark.png">
+  <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="UniScope LK">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+  /* Anti-flash: apply dark theme before CSS paints */
+  (function(){
+    try {
+      var t = localStorage.getItem('uniscope_theme') || localStorage.getItem('thush_theme') || 'light';
+      if (t === 'dark' || (t === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch(e) {}
+  })();
+  </script>
+  <link rel="stylesheet" href="/static/home/css/styles.css">
+  
+  <style>
+  /* ── Apple Design Easing Tokens & Interactive Palette ── */
+  :root {
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-blue-subtle: rgba(0, 113, 227, 0.08);
+    --primary-grad: linear-gradient(135deg, #0071e3, #439dfc);
+    --accent-purple: #0071e3;
+    --accent-gold: #f59e0b;
+    --accent-green: #34c759;
+  }
+
+  [data-theme="dark"] {
+    --apple-blue: #2997ff;
+    --apple-blue-hover: #47a3ff;
+    --apple-blue-subtle: rgba(41, 151, 255, 0.15);
+    --primary-grad: linear-gradient(135deg, #2997ff, #64b5f6);
+    --accent-purple: #2997ff;
+    --accent-green: #30d158;
+  }
+
+  /* Mobile-native: tap highlight removal & fast clicks */
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  button, a, input, select {
+    touch-action: manipulation;
+  }
+
+  button, .btn-calc-action, .login-btn, .dg-cart-btn, .tab-btn {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Prevent iOS Safari auto-zoom on inputs */
+  @media (max-width: 768px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Tactile active feedback for pressable elements */
+  .login-btn:active,
+  .dev-by-btn:active,
+  .theme-toggle-btn:active,
+  .bp-btn:active,
+  .btn-calc-action:active,
+  .dg-cart-btn:active,
+  .tab-btn:active {
+    transform: scale(0.96) !important;
+    transition: transform 100ms var(--ease-out) !important;
+  }
+
+  /* Accessibility: Prefers Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  [data-theme="dark"] {
+    --bg-dark: #0f172a;
+    --surface-dark: #1e293b;
+    --text-dark: #f8fafc;
+    --border-dark: #334155;
+    background-color: var(--bg-dark) !important;
+    color: var(--text-dark) !important;
+  }
+
+  [data-theme="dark"] body {
+    background-color: #0b0f19 !important;
+    color: #e2e8f0 !important;
+  }
+
+  [data-theme="dark"] .why-section,
+  [data-theme="dark"] .tools-section,
+  [data-theme="dark"] .content,
+  [data-theme="dark"] .combination-container,
+  [data-theme="dark"] .dg-body {
+    background-color: #0b0f19 !important;
+  }
+
+  [data-theme="dark"] .feature-card,
+  [data-theme="dark"] .tool-card,
+  [data-theme="dark"] .join-card,
+  [data-theme="dark"] .selectors-card,
+  [data-theme="dark"] .table-container,
+  [data-theme="dark"] .deg-card,
+  [data-theme="dark"] .pillar,
+  [data-theme="dark"] .step,
+  [data-theme="dark"] .fw,
+  [data-theme="dark"] .band,
+  [data-theme="dark"] .tool,
+  [data-theme="dark"] .story-card,
+  [data-theme="dark"] .promises {
+    background-color: #161f36 !important;
+    border-color: #273553 !important;
+    color: #f1f5f9 !important;
+  }
+
+  [data-theme="dark"] .feature-card h4,
+  [data-theme="dark"] .tool-card h4,
+  [data-theme="dark"] .deg-name,
+  [data-theme="dark"] .tool-name,
+  [data-theme="dark"] .pillar-name,
+  [data-theme="dark"] .step-name {
+    color: #ffffff !important;
+  }
+
+  [data-theme="dark"] .feature-card p,
+  [data-theme="dark"] .tool-card p,
+  [data-theme="dark"] .tool-card ul li,
+  [data-theme="dark"] .deg-meta,
+  [data-theme="dark"] .pillar-desc,
+  [data-theme="dark"] .step-body,
+  [data-theme="dark"] .tool-desc {
+    color: #94a3b8 !important;
+  }
+
+  .nav-active {
+    color: var(--apple-blue) !important;
+    font-weight: 600 !important;
+  }
+
+  /* ── Desktop nav dropdowns (Apple-Inspired Floating Glass) ────────── */
+  .nav-dd { position: relative; }
+  .nav-dd > button {
+    background: none; border: none; cursor: pointer;
+    font-family: inherit; padding: 4px 2px;
+    display: flex; align-items: center; gap: 4px;
+    color: var(--text-main); font-weight: 450; font-size: 13.5px;
+    letter-spacing: -0.01em; opacity: 0.85;
+    transition: opacity 150ms var(--ease-apple), color 150ms ease;
+  }
+  .nav-dd:hover > button,
+  .nav-dd:focus-within > button {
+    opacity: 1;
+    color: var(--apple-blue);
+  }
+
+  .nav-dd-panel {
+    display: block;
+    position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%) translateY(4px) scale(0.98);
+    transform-origin: top center;
+    opacity: 0; pointer-events: none;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-lg);
+    min-width: 240px; padding: 8px; z-index: 10000;
+    white-space: nowrap;
+    transition: opacity 160ms var(--ease-apple), transform 160ms var(--ease-apple);
+  }
+  .nav-dd-panel::before {
+    content: ""; position: absolute;
+    top: -12px; left: 0; right: 0; height: 12px;
+  }
+  .nav-dd:hover .nav-dd-panel,
+  .nav-dd:focus-within .nav-dd-panel {
+    opacity: 1; pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  .nav-dd-panel a {
+    display: block; padding: 9px 14px;
+    color: var(--text-main) !important; font-size: 13.5px;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: background-color 140ms ease, color 140ms ease;
+    font-family: inherit; font-weight: 450;
+  }
+  .nav-dd-panel a:hover {
+    background: var(--apple-blue-subtle);
+    color: var(--apple-blue) !important;
+  }
+
+  /* ── Mobile accordions (Clean iOS Settings Style) ─────────────── */
+  .mob-acc-body {
+    display: none; padding-left: 12px;
+    border-left: 2px solid var(--apple-blue); margin-bottom: 4px;
+  }
+  .mob-acc-body.open { display: block; }
+  .mob-acc-btn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; color: var(--text-main); }
+  .mob-acc-chevron { font-size: 11px; transition: transform 200ms var(--ease-apple); display: inline-block; color: var(--text-muted); }
+  .mob-acc-btn.open .mob-acc-chevron { transform: rotate(180deg); }
+  .mob-acc-item {
+    display: block !important; padding: 9px 4px !important;
+    font-size: 14px !important; color: var(--text-secondary) !important;
+    text-decoration: none; border: none; background: none;
+  }
+  .mob-acc-item:hover { color: var(--apple-blue) !important; }
+
+  /* Notification Bell Panel (Apple Floating Glass Menu) */
+  .bp-wrap { position: relative; display: inline-flex; align-items: center; }
+  .bp-btn {
+    position: relative; background: var(--bg-card-subtle); border: 1px solid var(--border-subtle);
+    cursor: pointer; padding: 0; color: var(--text-main);
+    width: 34px; height: 34px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: transform 120ms var(--ease-apple), background-color 0.15s ease;
+  }
+  .bp-btn:hover { background: var(--bg-card); color: var(--apple-blue); }
+  .bp-btn:active { transform: scale(0.95); }
+  .bp-btn svg { width: 17px; height: 17px; display: block; stroke: currentColor; }
+  .bp-btn .bp-count {
+    position: absolute; top: -3px; right: -3px; min-width: 16px; height: 16px; padding: 0 4px;
+    background: #ff3b30; color: #fff; border-radius: 980px;
+    font-size: 9.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+  }
+  .bp-panel {
+    position: absolute; top: calc(100% + 12px); right: -10px; width: 360px; max-width: calc(100vw - 24px);
+    background: var(--bg-card); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-card); z-index: 10000; overflow: hidden; font-family: inherit;
+    opacity: 0; pointer-events: none;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity 180ms var(--ease-apple), transform 180ms var(--ease-apple);
+    display: block;
+  }
+  .bp-panel.open {
+    opacity: 1; pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .bp-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--bg-card-subtle); color: var(--text-main); border-bottom: 1px solid var(--border-subtle); }
+  .bp-head h4 { margin: 0; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; color: var(--text-main); }
+  .bp-body { max-height: 380px; overflow-y: auto; background: var(--bg-card); }
+  .bp-item { padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); display: flex; gap: 12px; text-decoration: none; color: inherit; transition: background-color 140ms ease; }
+  .bp-item:hover { background: var(--bg-card-subtle); }
+  .bp-title { font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 2px; }
+  .bp-msg { font-size: 12px; color: var(--text-secondary); line-height: 1.45; margin: 0; }
+  .bp-time { font-size: 10.5px; color: var(--text-muted); margin-top: 4px; }
+  .bp-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .bp-avatar.broadcast { background: rgba(255, 149, 0, 0.12); color: #ff9500; }
+  .bp-avatar.ugc { background: rgba(0, 113, 227, 0.12); color: #0071e3; }
+  .bp-avatar.system { background: rgba(52, 199, 89, 0.12); color: #34c759; }
+
+  [data-theme="dark"] .bp-panel {
+    background: #161617 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.7) !important;
+  }
+  [data-theme="dark"] .bp-body {
+    background: #161617 !important;
+  }
+  [data-theme="dark"] .bp-item {
+    border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+    color: #f5f5f7 !important;
+  }
+  [data-theme="dark"] .bp-item:hover {
+    background: #1d1d1f !important;
+  }
+  [data-theme="dark"] .bp-title {
+    color: #f5f5f7 !important;
+  }
+  [data-theme="dark"] .bp-msg {
+    color: #86868b !important;
+  }
+  [data-theme="dark"] .bp-footer {
+    background: #161617 !important;
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* Theme Toggle Icon */
+  .theme-toggle-btn {
+    background: var(--bg-card-subtle); border: 1px solid var(--border-subtle);
+    color: var(--text-main); border-radius: 50%; width: 34px; height: 34px;
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background-color 150ms var(--ease-apple), transform 120ms var(--ease-apple), color 150ms ease;
+  }
+  .theme-toggle-btn:hover { background: var(--bg-card); color: var(--apple-blue); }
+  .theme-toggle-btn:active { transform: scale(0.95); }
+
+  /* Floating Cart Toast (High-Craft Scale + Asymmetric Timing) */
+  #cartToast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(16px) scale(0.96);
+    transform-origin: bottom center;
+    z-index: 99999; pointer-events: none; opacity: 0;
+    transition: transform 220ms var(--ease-out), opacity 220ms var(--ease-out);
+    font-family: 'Outfit', sans-serif;
+  }
+  #cartToast.toast-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    transition: transform 220ms var(--ease-out), opacity 220ms var(--ease-out);
+  }
+  #cartToast.toast-hiding {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px) scale(0.97);
+    transition: transform 160ms ease-in, opacity 160ms ease-in;
+  }
+  .cart-toast-inner {
+    display: flex; align-items: center; gap: 10px; background: #1e293b; color: #fff;
+    padding: 12px 24px; border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,.28);
+    font-size: 14px; font-weight: 600; white-space: nowrap; border: 1px solid rgba(255,255,255,0.12);
+  }
+  </style>
+</head>
+<body data-user-id="<%= typeof user !== 'undefined' && user ? user.id : '' %>">

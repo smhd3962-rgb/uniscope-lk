@@ -1,0 +1,74 @@
+<%- include('partials/head', { title: "Sign Up Free - UniScope LK" }) %>
+<%- include('partials/navbar') %>
+
+<link rel="stylesheet" href="/static/accounts/css/auth.css">
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div style="text-align:center; margin-bottom: 22px;">
+            <a href="/" title="Return to UniScope LK Home">
+                <img src="/static/home/images/uniscope_logo_full.png" alt="UniScope LK" style="height:44px; width:auto; max-width:85%; object-fit:contain;">
+            </a>
+        </div>
+        <div class="auth-header">
+            <h1>Create Free Account</h1>
+            <p>Explore degrees, calculate GPA, and track official UGC cutoffs</p>
+        </div>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="auth-error">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <form method="POST" action="/accounts/register/" class="auth-form" data-testid="form-register">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. Kasun Perera" class="uniscope-input">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="name@example.com" class="uniscope-input">
+            </div>
+
+            <div class="form-group">
+                <label for="district">Your A/L District</label>
+                <select id="district" name="district" required class="uniscope-select">
+                  <option value="">Select District</option>
+                  <% districts.forEach(function(d) { %>
+                    <option value="<%= d %>"><%= d %></option>
+                  <% }); %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="stream">A/L Stream</label>
+                <select id="stream" name="stream" required class="uniscope-select">
+                  <option value="">Select Stream</option>
+                  <option value="Physical Science">Physical Science</option>
+                  <option value="Bio Science">Biological Science</option>
+                  <option value="Commerce">Commerce</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Arts">Arts</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input type="password" id="password" name="password" required placeholder="Minimum 6 characters" class="uniscope-input">
+            </div>
+
+            <button type="submit" class="btn-calc-action" style="background:linear-gradient(135deg,#3b4fa8,#7c3aed); color:#fff; border:none; padding:12px; border-radius:10px; font-weight:700; font-size:15px; cursor:pointer; margin-top:6px; width:100%;">
+              Create Free Student Account
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            Already have an account? <a href="/accounts/login/" style="color:#7c3aed; font-weight:700; text-decoration:none;">Log In</a>
+        </p>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/scripts') %>
